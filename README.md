@@ -103,6 +103,6 @@ em breve
 
 ## 📄 Licença
 
-![MIT](https://img.shields.io/github/license/HiveSoft-UEFS/vota-aii?style=for-the-badge)
+![MIT](https://img.shields.io/github/license/HiveSoft-UEFS/vota-ai?style=for-the-badge)
 
 [Este projeto está licenciado sob a licença MIT.](https://github.com/micaelmz/you-shop/blob/master/LICENSE)
