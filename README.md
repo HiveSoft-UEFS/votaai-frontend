@@ -37,7 +37,7 @@ Um sistema de enquetes e votações online, que oferece aos usuários a capacida
 - [Links úteis](#-links-úteis)
 - [Licença](#-licença)
 
-<br><br>
+<br>
 
 ## ⚙ Funcionalidades
 
@@ -48,17 +48,14 @@ Um sistema de enquetes e votações online, que oferece aos usuários a capacida
 - [ ] Criptografia MD5 
 - E mais...
 
-<br>
 
 ## 🔧 Instalação
 em breve
 
-<br>
 
 ## 📋 Requisitos
 em breve
 
-<br>
 
 ## 🖼️ Imagens
 
@@ -69,7 +66,6 @@ em breve
 
 </details>
 
-<br>
 
 ## 📈 Situação atual do projeto
 ![BadgeCount](https://img.shields.io/badge/Fase%20atual-2-blue) ![BadgeCount](https://img.shields.io/badge/Progresso-66%25-blue)
@@ -81,7 +77,6 @@ em breve
 | ✅ Relatório                 | ⬜ Estimativa de Tempo e Custo | ⬜ Modelo Lógico SQL   | ⬜ Testes Finais |
 |                             |                               |                       | ⬜ Documentação  |
 
-<br>
 
 ## ❓ FAQs
 
@@ -91,7 +86,6 @@ em breve
 ### Posso contribuir com o projeto?
 > O projeto é desenvolvido por alunos da Universidade Estadual de Feira de Santana (UEFS) como parte da disciplina de Engenharia de Software e não está aberto para contribuições externas.
 
-<br>
 
 ## 🔗 Links úteis
 - [Documentação [EM BREVE]](#)
@@ -99,7 +93,6 @@ em breve
 - [ECOMP UEFS](https://www.ecomp.uefs.br/)
 - [Relatório [EM BREVE]](#)
 
-<br>
 
 ## 📄 Licença
 
