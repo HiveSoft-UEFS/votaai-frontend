@@ -65,7 +65,7 @@ em breve
 <details>
     <summary style="font-size: 0.9rem;">🎨 Design das telas</summary>
     
-  - <h5>Tela Inicial</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/Auditoria.png" width="100%" alt="">
+  - <h5>Tela Inicial</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/presenting.jpg" width="100%" alt="">
   - <h5>Tela de Login</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/login.jpg" width="100%" alt="">
   - <h5>Tela de Cadastro</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/register.jpg" width="100%" alt="">
   - <h5>Tela de Home</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/home.jpg" width="100%" alt="">
