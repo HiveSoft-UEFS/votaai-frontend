@@ -65,15 +65,15 @@ em breve
 <details>
     <summary style="font-size: 0.9rem;">🎨 Design das telas</summary>
     
-  - <h5>Tela Inicial</h5>![TelaInicial](https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/Auditoria.png)
-  - <h5>Tela de Login</h5>![TelaLogin](https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/login.jpg)
-  - <h5>Tela de Cadastro</h5>![TelaCadastro](https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/register.jpg)
-  - <h5>Tela de Home</h5>![TelaEnquetes](https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/home.jpg)
-  - <h5>Tela de Resultado de Pesquisa</h5>![TelaEnquete](https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/search-results.jpg)
-  - <h5>Tela de Votação</h5>![TelaVotacao](https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/voting.jpg)
-  - <h5>Tela de Auditoria</h5>![TelaAuditoria](https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/Auditoria.png)
-  - <h5>Tela de Histórico de Votação</h5>![TelaHistorico](https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/history.jpg)
-  - <h5>Tela de Perfil</h5>![TelaPerfil](https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/profile.jpg)
+  - <h5>Tela Inicial</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/Auditoria.png" width="100%" alt="">
+  - <h5>Tela de Login</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/login.jpg" width="100%" alt="">
+  - <h5>Tela de Cadastro</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/register.jpg" width="100%" alt="">
+  - <h5>Tela de Home</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/home.jpg" width="100%" alt="">
+  - <h5>Tela de Resultado de Pesquisa</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/search-results.jpg" width="100%" alt="">
+  - <h5>Tela de Votação</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/voting.jpg" width="100%" alt="">
+  - <h5>Tela de Auditoria</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/Auditoria.png" width="100%" alt="">
+  - <h5>Tela de Histórico de Votação</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/history.jpg" width="100%" alt="">
+  - <h5>Tela de Perfil</h5><img src="https://raw.githubusercontent.com/HiveSoft-UEFS/vota-ai/main/.design/profile.jpg" width="100%" alt="">
 
 </details>
 
