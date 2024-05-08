@@ -65,7 +65,15 @@ em breve
 <details>
     <summary style="font-size: 0.9rem;">🎨 Design das telas</summary>
     
-  - <h5>Tela Inicial</h5><img src="https://github.com/HiveSoft-UEFS/vota-ai/blob/main/.design/tela-inicial.png?raw=true" alt="Diagrama de Classes" width="100%"/>
+  - <h5>Tela Inicial</h5>![TelaInicial](.design/presenting.jpg)
+  - <h5>Tela de Login</h5>![TelaLogin](.design/login.jpg)
+  - <h5>Tela de Cadastro</h5>![TelaCadastro](.design/register.jpg)
+  - <h5>Tela de Home</h5>![TelaEnquetes](.design/home.jpg)
+  - <h5>Tela de Resultado de Pesquisa</h5>![TelaEnquete](.design/search-results.jpg)
+  - <h5>Tela de Votação</h5>![TelaVotacao](.design/voting.jpg)
+  - <h5>Tela de Auditoria</h5>![TelaAuditoria](.design/Auditoria.png)
+  - <h5>Tela de Histórico de Votação</h5>![TelaHistorico](.design/history.jpg)
+  - <h5>Tela de Perfil</h5>![TelaPerfil](.design/profile.jpg)
 
 </details>
 
