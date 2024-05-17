@@ -2,11 +2,11 @@
 
 # ![Icon](https://cdn.micaelmuniz.com/img/votaai/logo_vector_25.png) Vota Ai
 
-![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?logo=bootstrap&logoColor=white)
+![Python](https://img.shields.io/badge/Python-306998?logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?logo=bootstrap&logoColor=white)
 
 Um sistema de enquetes e votações online, que oferece aos usuários a capacidade de criar e participar de votações de maneira segura e transparente. Utilizando a robusta tecnologia de criptografia MD5, o sistema assegura a integridade dos votos e permite uma auditoria completa do processo de votação.
 
