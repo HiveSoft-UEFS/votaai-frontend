@@ -1,0 +1,21 @@
+name: CI/CD Pipeline
+
+on:
+    push:
+        branches:
+        - main
+
+
+# run a test to know if github actions is working
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Run a one-line script
+              run: echo "This is a one-line script"
+            - name: Run a multi-line script
+              run: |
+                echo "This is a multi-line script"
+                echo "It is running on ubuntu-latest"
