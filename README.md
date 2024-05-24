@@ -4,9 +4,9 @@
 
 ![Python](https://img.shields.io/badge/Python-306998?logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?logo=bootstrap&logoColor=white)
 
 Um sistema de enquetes e votações online, que oferece aos usuários a capacidade de criar e participar de votações de maneira segura e transparente. Utilizando a robusta tecnologia de criptografia MD5, o sistema assegura a integridade dos votos e permite uma auditoria completa do processo de votação.
 
@@ -80,13 +80,13 @@ em breve
 <br>
 
 ## 📈 Situação atual do projeto
-![BadgeCount](https://img.shields.io/badge/Fase%20atual-2-blue) ![BadgeCount](https://img.shields.io/badge/Progresso-66%25-blue)
+![BadgeCount](https://img.shields.io/badge/Fase%20atual-4-blue) ![BadgeCount](https://img.shields.io/badge/Progresso-0%25-blue)
 
 | Fase 1                      | Fase 2                        | Fase 3                | Fase 4          |
 |-----------------------------|-------------------------------|-----------------------|-----------------|
-| ✅ Requisitos Funcionais     | ✅ Prototipação de Telas       | ⬜ Casos de Uso        | ⬜ MVP           |
-| ✅ Requisitos Não Funcionais | ✅ Encadeamento das Telas      | ⬜ Diagrama de Classes | ⬜ Release Final |
-| ✅ Relatório                 | ⬜ Estimativa de Tempo e Custo | ⬜ Modelo Lógico SQL   | ⬜ Testes Finais |
+| ✅ Requisitos Funcionais     | ✅ Prototipação de Telas       | ✅ Casos de Uso        | ⌛ MVP           |
+| ✅ Requisitos Não Funcionais | ✅ Encadeamento das Telas      | ✅ Diagrama de Classes | ⬜ Release Final |
+| ✅ Relatório                 | ✅ Estimativa de Tempo e Custo | ✅ Modelo Lógico SQL   | ⬜ Testes Finais |
 |                             |                               |                       | ⬜ Documentação  |
 
 <br>
