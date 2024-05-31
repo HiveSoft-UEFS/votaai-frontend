@@ -1,0 +1,13 @@
+.box{
+ display: flex;
+ width: 17%;
+}
+.title{
+    color: #FFFFFF;
+    border-top: 4px solid #FFFFFF;
+    border-bottom: 4px solid #FFFFFF;
+    padding: 12px 0px;
+    text-align: center;
+    width: 100%;
+}
+
