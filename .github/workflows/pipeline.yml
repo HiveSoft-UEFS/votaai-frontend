@@ -20,17 +20,18 @@ jobs:
         run: |
           ORG="HiveSoft-UEFS"
           USER="${{ github.event.pull_request.user.login }}"
-          RESULT=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          RESULT=$(curl -H "Authorization: token ${{ secrets.CI_PIPELINE_READ_MEMBERS_TOKEN }}" \
                           -X POST \
-                          -d '{"query":"query { organization(login: \"'"$ORG"'\") { members(first: 100) { nodes { login } } } }"}' \
+                          -d '{"query":"query { organization(login: "$ORG") { membersWithRole(first: 100) { edges { node { login } } } } }"}' \
                           https://api.github.com/graphql)
-          if [[ "$RESULT" == *"$USER"* ]]; then
-            echo "User is a member of the organization."
-          else
-            echo "User is not a member of the organization."
-            echo $RESULT
+          for member in $(echo $RESULT | jq -r '.data.organization.membersWithRole.edges[].node.login'); do
+            if [ "$member" == "$USER" ]; then
+              echo "User is a member of the organization"
+              exit 0
+            fi
+          done
+            echo "User is not a member of the organization"
             exit 1
-          fi
 
   build:
     runs-on: ubuntu-latest
