@@ -2,8 +2,8 @@
 
 .box{
  display: flex;
- width: 17%;
- height: 15%;
+ width: 200px;
+ height: 80px;
 }
 .title{
     color: #FFFFFF;
