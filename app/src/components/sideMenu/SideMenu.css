@@ -23,7 +23,7 @@
 
 .profile-initial{
     color:#04345C;
-    border-radius: 50%; /* Torna a imagem circular */
+    border-radius: 50%; 
     background-color: #D9D9D9;    
     padding: 55px;
     width: 90px;
@@ -76,7 +76,7 @@
 }
 
 .menu-item.selected {
-    background-color: #ffffff; /* Cor de fundo do item selecionado */
-    color: #002855; /* Cor do texto do item selecionado */
-    font-weight: bold; /* Opcional: destaque adicional para o item selecionado */
+    background-color: #ffffff; 
+    color: #002855; 
+    font-weight: bold; 
 }
