@@ -1,21 +1,33 @@
-name: CI/CD Pipeline
+name: CI Pipeline
 
 on:
-    push:
-        branches:
-        - main
+  pull_request:
+    branches:
+      - main
 
-
-# run a test to know if github actions is working
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-            - name: Run a one-line script
-              run: echo "This is a one-line script"
-            - name: Run a multi-line script
-              run: |
-                echo "This is a multi-line script"
-                echo "It is running on ubuntu-latest"
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React app
+        run: npm run build
+
+      - name: Approve pull request
+        if: success()
+        uses: juliangruber/pr-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          approve: true
+          message: "CI checks passed, ready to merge"
