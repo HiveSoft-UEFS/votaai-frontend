@@ -18,13 +18,14 @@ jobs:
         with:
           node-version: '14'
 
+      - name: enter the app directory
+        run: cd app
+
       - name: Install dependencies
         run: npm install
 
       - name: Build React app
-        run: |
-          cd app
-          npm run build
+        run: npm run build
 
       - name: Approve pull request
         if: success()
