@@ -18,7 +18,7 @@ jobs:
       - name: Verify organization membership
         id: check_org_membership
         run: |
-          ORG="example-org"
+          ORG="HiveSoft-UEFS"
           USER="${{ github.event.pull_request.user.login }}"
           RESULT=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                           -X POST \
@@ -28,6 +28,7 @@ jobs:
             echo "User is a member of the organization."
           else
             echo "User is not a member of the organization."
+            echo $RESULT
             exit 1
           fi
 
