@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build React app
-        run: npm run build
+        run: react-scripts build
 
       - name: Approve pull request
         if: success()
