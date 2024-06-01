@@ -28,6 +28,8 @@ jobs:
             echo "User is a member of the organization."
           else
             echo "User is not a member of the organization."
+            echo "$RESULT"
+            echo $RESULT
             exit 1
           fi
 
