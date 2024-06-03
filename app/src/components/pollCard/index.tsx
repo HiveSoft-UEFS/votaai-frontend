@@ -4,6 +4,7 @@ export default function PollCard() {
     return (
         <div>
             Poll Card
+            Teste
         </div>
     );
 }
