@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import React from 'react'
 import PageTitle from './components/pageTitle';
-import SideMenu from './components/sideMenu'
+import SideMenu from './components/sideMenu';
+import Carousels from "./components/carousel";
 
 function App() {
   const [selectedMenuItem, setSelectedMenuItem] = useState('PERFIL')
@@ -9,20 +10,10 @@ function App() {
     setSelectedMenuItem(menuItem);
   };
   return (
-    <div className="App">
-      <h1>Hello, world!</h1>
-      <PageTitle
-        text='Histórico'
-        color='black'
-      />       
-
-      <SideMenu 
-        userName='Cláudia' 
-        selectedMenuItem={selectedMenuItem}
-        onMenuItemClick={handleMenuItemClick}
-      />
-
-    </div>
+          <div>
+              <h1>Meu Carrossel</h1>
+              <Carousels/>
+          </div>
   );
 }
 
