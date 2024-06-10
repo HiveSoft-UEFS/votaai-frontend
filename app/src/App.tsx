@@ -1,14 +1,9 @@
-import { useState } from 'react';
 import React from 'react'
+import Carousels from "./components/carousel";
 import PageTitle from './components/pageTitle';
 import SideMenu from './components/sideMenu'
 import Footer from './components/footer'
-
 function App() {
-  const [selectedMenuItem, setSelectedMenuItem] = useState('PERFIL')
-  const handleMenuItemClick = (menuItem: string) => {
-    setSelectedMenuItem(menuItem);
-  };
   return (
     <><div className="App">
       <h1>Hello, world!</h1>
@@ -22,8 +17,7 @@ function App() {
         onMenuItemClick={handleMenuItemClick} />
 
     </div>
-    <Footer /></>
-    
+    <Footer /></>    
   );
 }
 
