@@ -14,33 +14,26 @@ function App() {
     setSelectedMenuItem(menuItem);
   };
   return (
-    <div className="App">
-
-      <CustomButton 
-      text="Fazer Login" 
-      icon_component={<PersonIcon/>} 
-      bgcolor="#EBE5FC"
-      text_color="#295478" 
-      font_family="Nunito, sans-serif"
-      font_weight="Bold"
-      callback={() => alert('Button clicked!')}
-      /> 
-
-      <h1>Hello, world!</h1> 
       <PageTitle
         text='Histórico'
-        color='black'
-      />       
+        color='black' />
 
-      <SideMenu 
-        userName='Cláudia' 
+      <SideMenu
+        userName='Cláudia'
         selectedMenuItem={selectedMenuItem}
-        onMenuItemClick={handleMenuItemClick}
-      />
+        onMenuItemClick={handleMenuItemClick} />
+
+      <InfoCard
+        title="Elaboração"
+        description="Crie, gerencie, compartilhe enquetes com quem quiser, de forma online, segura e confiável."
+        icon={<HowToVoteRoundedIcon style={{ fontSize: 50 }} />} //mudando icone e texto que se torna outros infocards
+    />
 
 
 
     </div>
+    <Footer /></>
+    
   );
 }
 
