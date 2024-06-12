@@ -1,18 +1,8 @@
-import { useState } from 'react';
 import React from 'react'
+import Carousels from "./components/carousel";
 import PageTitle from './components/pageTitle';
 import SideMenu from './components/sideMenu'
-
-import PersonIcon from '@mui/icons-material/Person';
-import CustomButton from './components/customButton';
-
-
-
 function App() {
-  const [selectedMenuItem, setSelectedMenuItem] = useState('PERFIL')
-  const handleMenuItemClick = (menuItem: string) => {
-    setSelectedMenuItem(menuItem);
-  };
   return (
       <PageTitle
         text='Histórico'
@@ -32,8 +22,7 @@ function App() {
 
 
     </div>
-    <Footer /></>
-    
+    <Footer /></>    
   );
 }
 
