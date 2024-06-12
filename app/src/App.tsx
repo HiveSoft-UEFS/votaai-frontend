@@ -2,10 +2,6 @@ import { useState } from 'react';
 import React from 'react'
 import PageTitle from './components/pageTitle';
 import SideMenu from './components/sideMenu'
-import InfoCard from './components/infoCard'
-import HowToVoteRoundedIcon from '@mui/icons-material/HowToVoteRounded';
-
-
 
 function App() {
   const [selectedMenuItem, setSelectedMenuItem] = useState('PERFIL')
@@ -13,18 +9,16 @@ function App() {
     setSelectedMenuItem(menuItem);
   };
   return (
-    <div className="App">
+    <><div className="App">
       <h1>Hello, world!</h1>
       <PageTitle
         text='Histórico'
-        color='black'
-      />       
+        color='black' />
 
-      <SideMenu 
-        userName='Cláudia' 
+      <SideMenu
+        userName='Cláudia'
         selectedMenuItem={selectedMenuItem}
-        onMenuItemClick={handleMenuItemClick}
-      />
+        onMenuItemClick={handleMenuItemClick} />
 
       <InfoCard
         title="Elaboração"
@@ -33,6 +27,8 @@ function App() {
     />
 
     </div>
+    <Footer /></>
+    
   );
 }
 
