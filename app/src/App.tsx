@@ -2,7 +2,6 @@ import { useState } from 'react';
 import React from 'react'
 import PageTitle from './components/pageTitle';
 import SideMenu from './components/sideMenu'
-import Footer from './components/footer'
 
 function App() {
   const [selectedMenuItem, setSelectedMenuItem] = useState('PERFIL')
@@ -20,6 +19,12 @@ function App() {
         userName='Cláudia'
         selectedMenuItem={selectedMenuItem}
         onMenuItemClick={handleMenuItemClick} />
+
+      <InfoCard
+        title="Elaboração"
+        description="Crie, gerencie, compartilhe enquetes com quem quiser, de forma online, segura e confiável."
+        icon={<HowToVoteRoundedIcon style={{ fontSize: 50 }} />} //mudando icone e texto que se torna outros infocards
+    />
 
     </div>
     <Footer /></>
