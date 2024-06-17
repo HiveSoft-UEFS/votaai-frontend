@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import {Box, InputAdornment, Modal, TextField} from "@mui/material";
-import {AccountCircle} from "@mui/icons-material";
+import {AccountCircle, AlternateEmail} from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import logo from "./logo.png";
 import logo_nome from "./logo-nome.png";
 import hivesoft_inc from "./HiveSoft-Inc.png";
+import HttpsIcon from '@mui/icons-material/Https';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+
 function RegistrationModal() {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -62,13 +65,43 @@ function RegistrationModal() {
                 }} variant="outlined"
                            fullWidth
                            margin="normal"/>
-                <TextField id="cpf" label="CPF" variant="outlined" fullWidth
+                <TextField id="cpf" label="CPF"
+                           InputProps={{
+                               startAdornment: (
+                                   <InputAdornment position="start">
+                                       <ListAltIcon/>
+                                   </InputAdornment>
+                               ),
+                           }}
+                           variant="outlined" fullWidth
                            margin="normal"/>
-                <TextField id="email" label="Email" variant="outlined" fullWidth
+                <TextField id="email" label="Email"
+                           InputProps={{
+                               startAdornment: (
+                                   <InputAdornment position="start">
+                                       <AlternateEmail/>
+                                   </InputAdornment>
+                               ),
+                           }}
+                           variant="outlined" fullWidth
                            margin="normal"/>
-                <TextField id="password" label="Senha" variant="outlined" fullWidth
+                <TextField id="password" label="Senha"
+                           InputProps={{
+                               startAdornment: (
+                                   <InputAdornment position="start">
+                                       <HttpsIcon/>
+                                   </InputAdornment>
+                               ),
+                           }}
+                           variant="outlined" fullWidth
                            margin="normal"/>
-                <TextField id="passwordCheck" label="Confirmar senha" variant="outlined" fullWidth
+                <TextField id="passwordCheck" label="Confirmar senha" InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <HttpsIcon/>
+                        </InputAdornment>
+                    ),
+                }} variant="outlined" fullWidth
                            margin="normal"/>
                 <Box sx={{
                     textAlign: "center",
