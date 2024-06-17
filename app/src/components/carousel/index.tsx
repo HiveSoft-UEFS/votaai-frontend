@@ -5,7 +5,7 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
-import Card from "./card"
+import PollCard from "../pollCard";
 
 function Carousel() {
     const [cards, setCards] = useState<React.ReactElement[]>([]);
@@ -14,17 +14,26 @@ function Carousel() {
         "right" | "left" | undefined
     >("left");
     const cardsPerPage = 5;
-    const duplicateCards: React.ReactElement[] = Array.from({length: 10}, (_,i) => <Card key={i}/>
+
+    const duplicateCards: React.ReactElement[] = Array.from({length: 10}, (_,i) => <PollCard key={i} title="Melhores alguma coisa do ano passado"
+                                                                                             description="Votação que criei simplesmente por ter sentido alguma vontade aleatória de criar algo para ser votado, então, por favor, participe!"
+                                                                                             creator="NoNameBro"
+                                                                                             tags={['Ciência', 'Ficção', 'Cinema']}
+                                                                                             category="Cinema"
+                                                                                             expiry={new Date("2024-07-12T23:59:59")}/> //colocar aqui o que é pra ser exibido
     );
+
     const handleNextPage = () => {
         setSlideDirection("left");
-        setCurrentPage((prevPage) => prevPage + 1);
+        setCurrentPage((prevPage) => (prevPage + 1) % Math.ceil(cards.length / cardsPerPage));
     };
 
     const handlePrevPage = () => {
         setSlideDirection("right");
-        setCurrentPage((prevPage) => prevPage - 1);
-    }
+        setCurrentPage((prevPage) =>
+            prevPage === 0 ? Math.ceil(cards.length / cardsPerPage) - 1 : prevPage - 1
+        );
+    };
 
     useEffect(() => {
         // define os cartões iniciais
@@ -50,14 +59,13 @@ function Carousel() {
             <IconButton
                 onClick={handlePrevPage}
                 sx={{ margin: 5 }}
-                disabled={currentPage === 0}
             >
                 {/* botão para ir para a página anterior*/}
                 <NavigateBeforeIcon />
             </IconButton>
             <Box sx={{ width: `${containerWidth}px`, height: "100%" }}>
                 {/* container que contém os cartões e a animação de slide*/}
-                {cards.map((card, index) => (
+                {Array.from({ length: Math.ceil(cards.length / cardsPerPage) }, (_, index) => (
                     <Box
                         key={`card-${index}`}
                         sx={{
@@ -90,9 +98,6 @@ function Carousel() {
                 sx={{
                     margin: 5,
                 }}
-                disabled={
-                    currentPage >= Math.ceil((cards.length || 0) / cardsPerPage) - 1
-                }
             >
                 <NavigateNextIcon />
             </IconButton>
@@ -100,4 +105,3 @@ function Carousel() {
     );
 }
 export default Carousel;
-
