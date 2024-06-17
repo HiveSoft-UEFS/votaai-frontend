@@ -11,7 +11,7 @@ const Footer = () => {
                 <a href="" className='link-item'>Auditoria</a>
             </div> 
             
-            <p id='hivesoft'> &copy;2024 Hivesoft, Inc </p>
+            <p id='hivesoft'> &copy;2024 Hivesoft, Inc</p>
 
         </div>
     );
