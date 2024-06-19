@@ -1,0 +1,69 @@
+.audit-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .audit-form{
+    width: 65%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    margin-top: 25%;
+    justify-content: center;
+  }
+  
+  .audit-input {
+    width: 50%;
+    height: 100%;
+    background-color: #EBE5FC;
+    color: #8E8787;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 1%;
+  }
+  
+  .audit-button {
+    padding: 10px 20px;
+    height: 100%;
+    width: 178px;
+    background-color: #EBE5FC;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .audit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .audit-info {
+    margin-top: 14%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .audit-info-section {
+    width: 45%;
+  }
+  
+  .audit-info-section h2 {
+    margin-bottom: 10px;
+    color: #24DC50;
+    font-size: 50px;
+  }
+  
+  .audit-info-section p {
+    line-height: 1.5;
+    color: #EEECEC;
+    font-size: 28px;
+  }
+
+  .audit-info-section img {
+    width: 18%;
+    margin-bottom: 5%;
+  }
+  
