@@ -4,10 +4,15 @@ import PageTitle from './components/pageTitle';
 import SideMenu from './components/sideMenu'
 import PollCard from "./components/pollCard";
 import RegistrationModal from "./components/RegistrationModal";
+import CreatePoll from './pages/CreatePoll';
 
 function App() {
   return (
+    <CreatePoll/>
+
+    /*
       <RegistrationModal/>
+    */ 
   );
 }
 
