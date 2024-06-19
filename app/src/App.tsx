@@ -10,9 +10,8 @@ const initialMenuItem = 'PERFIL';
 
 function App() {
   return (
-      <BasePage username='Roberto' title={initialMenuItem} />
+      <BasePage username='Roberto' title={initialMenuItem}/>
   );
 }
-
 
 export default App;
