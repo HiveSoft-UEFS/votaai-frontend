@@ -31,6 +31,7 @@ const BasePage = ({username, title, children}: BasePageProps) => {
                         </div>
                         <div className="line"></div>
                     </div>
+                    <div className="c-Img"></div>
                     <div className="page-content">
                         {children}
                     </div>
