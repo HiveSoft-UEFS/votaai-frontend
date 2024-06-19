@@ -1,0 +1,84 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #147b63 5%, #135b4b 95%);
+    padding: 15px 7%;
+    position: fixed;
+}
+
+.logo{
+    width: 130px;
+    cursor: pointer;
+    padding: 1px 0;
+    margin-left: -6%;
+    margin-right: 10%;
+    margin-bottom: 1px;
+    margin-top: -1px;
+}
+
+.search-box{
+    height: 29px;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    background: #EBE5FC;
+    justify-content: center;
+    padding: 1px 100x;
+    border-radius: 5px;
+    margin-top: 8px;
+    margin-bottom: 1px; 
+    margin-left: 140px;
+    margin-right: 20px;
+}
+.search-box input{
+    width: 100px;
+    flex: 1;
+    padding: 5px 1%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: black;
+    font-size: 12px;
+    margin-top: 2px;
+    cursor: pointer;
+
+   
+
+}
+
+.search-icon{
+
+    width: 2px;
+   margin-right: 20px;
+    margin-top: 2px;
+    font-size: 15px;
+    cursor: pointer;
+
+}
+
+.icon{
+    width: 44px;
+    margin-right: 5px;
+    position: fixed;
+    top: 0; /* Coloca o elemento no topo da tela */
+    right: 0; /* Coloca o elemento à direita da tela */
+    margin-top: 20px;
+    margin-bottom: 1px; 
+    color:#EBE5FC;
+    cursor: pointer;
+}
+
+.circle{
+    width: 52px;
+    height: 52px;
+    margin-right: 7px;
+    position: fixed;
+    top: 0; /* Coloca o elemento no topo da tela */
+    right: 0; /* Coloca o elemento à direita da tela */
+    margin-top: 11px;
+    margin-bottom: 10px; 
+    color:#EBE5FC;
+    cursor: pointer;
+}
