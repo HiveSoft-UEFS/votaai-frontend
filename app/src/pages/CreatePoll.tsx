@@ -7,6 +7,8 @@ const CreatePoll = () =>{
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
     const [dataLimite, setDataLimite] = useState(new Date());
+    const [epublico, setEPublico] = useState(false)
+    const [multiplaEscolha, setMultiplaEscolha] = useState(false);
 
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -15,7 +17,7 @@ const CreatePoll = () =>{
 
     return (
         
-        <div className="">
+        <div className="backgroundDaEnquete">
 
             <div>
                 <BasePage username='Caio Bruno' title="Criar Votação">
@@ -44,6 +46,44 @@ const CreatePoll = () =>{
                             onChange={(e) => setDataLimite(new Date(e.target.value))} 
                         />
                     </label>
+
+                    <div>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={epublico}
+                                onChange={() => setEPublico(true)}
+                            />
+                            Enquete Pública
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={epublico}
+                                onChange={() => setEPublico(false)}
+                            />
+                            Enquete Privada
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={multiplaEscolha}
+                                onChange={() => setMultiplaEscolha(false)}
+                            />
+                            Escolha Única
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={multiplaEscolha}
+                                onChange={() => setMultiplaEscolha(true)}
+                            />
+                            Multipla Escolha
+                        </label>
+                    </div>
 
                     <button type="submit">Criar Enquete</button>
                     </form>
