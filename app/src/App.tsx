@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Carousels from "./components/carousel";
 import PageTitle from './components/pageTitle';
 import SideMenu from './components/sideMenu'
