@@ -4,13 +4,10 @@ import PageTitle from './components/pageTitle';
 import SideMenu from './components/sideMenu'
 import PollCard from "./components/pollCard";
 import RegistrationModal from "./components/RegistrationModal";
-import BasePage from './components/basePage';
-
-const initialMenuItem = 'PERFIL';
+import CreatePoll from './pages/CreatePoll';
 
 function App() {
   return (
-      <BasePage username='Roberto' title={initialMenuItem}/>
   );
 }
 

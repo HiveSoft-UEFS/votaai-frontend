@@ -5,9 +5,10 @@ import SideMenu from "../sideMenu";
 interface BasePageProps {
     username: string;
     title: string;
+    children?: React.ReactNode;
 }
 
-const BasePage = ({username, title}: BasePageProps) => {
+const BasePage = ({username, title, children}: BasePageProps) => {
     const [selectedMenuItem, setSelectedMenuItem] = useState(title);
     const handleMenuItemClick = (menuItem: string) => {
         setSelectedMenuItem(menuItem);
@@ -29,6 +30,10 @@ const BasePage = ({username, title}: BasePageProps) => {
                             <h1> { selectedMenuItem } </h1>
                         </div>
                         <div className="line"></div>
+                    </div>
+                    <div className="c-Img"></div>
+                    <div className="page-content">
+                        {children}
                     </div>
                 </div>
             </div>

@@ -29,6 +29,21 @@
     grid-template-rows: 7px 1fr 7px;
 }
 
+.c-Img {
+    position: absolute;
+    right: 70px;
+    top: 40px;
+    width: 100px;
+    height: 100px;
+
+    background-image: url('../../assets/img/LogoVotaai.svg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    z-index: 1;
+}
+
+
 .line {
     width: 100%;
     height: 7px;
