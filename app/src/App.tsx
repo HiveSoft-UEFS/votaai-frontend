@@ -8,13 +8,7 @@ import CreatePoll from './pages/CreatePoll';
 
 function App() {
   return (
-    <CreatePoll/>
-
-    /*
-      <RegistrationModal/>
-    */ 
   );
 }
-
 
 export default App;
