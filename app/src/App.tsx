@@ -8,6 +8,7 @@ import CreatePoll from './pages/CreatePollPage/CreatePoll';
 
 function App() {
   return (
+    <CreatePoll/>
   );
 }
 
