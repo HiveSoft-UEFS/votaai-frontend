@@ -5,12 +5,13 @@ import SideMenu from './components/sideMenu'
 import PollCard from "./components/pollCard";
 import RegistrationModal from "./components/RegistrationModal";
 import BasePage from './components/basePage';
+import AuditPage from './pages/auditPage';
 
 const initialMenuItem = 'PERFIL';
 
 function App() {
   return (
-      <BasePage username='Roberto' title={initialMenuItem} />
+     <AuditPage/>
   );
 }
 
