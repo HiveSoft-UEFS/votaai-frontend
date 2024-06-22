@@ -4,16 +4,12 @@ import PageTitle from './components/pageTitle';
 import SideMenu from './components/sideMenu'
 import PollCard from "./components/pollCard";
 import RegistrationModal from "./components/RegistrationModal";
-import BasePage from './components/basePage';
-import AuditPage from './pages/auditPage';
-
-const initialMenuItem = 'PERFIL';
+import CreatePoll from './pages/CreatePollPage/CreatePoll';
 
 function App() {
   return (
-     <AuditPage/>
+    main
   );
 }
-
 
 export default App;
