@@ -19,12 +19,12 @@ import Stack from '@mui/material/Stack';    // Importa o componente Stack do Mat
 
 interface CustomButtonProps {
     text: string;
-    icon_component: React.ReactElement;
+    icon_component?: React.ReactElement;
     bgcolor: string;
     text_color: string;
     font_family: string;
     font_weight?: string;
-    callback: () => void;
+    callback?: () => void;
   }
 
 function CustomButton({text, icon_component, bgcolor, text_color, font_family, font_weight, callback}: CustomButtonProps) {
