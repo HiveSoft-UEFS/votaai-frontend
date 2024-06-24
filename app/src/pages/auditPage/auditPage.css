@@ -40,7 +40,7 @@
   }
   
   .audit-info {
-    margin-top: 14%;
+    margin-top: 13%;
     display: flex;
     justify-content: space-around;
     width: 100%;
@@ -48,18 +48,18 @@
   
   .audit-info-section {
     width: 45%;
-  }
+   }
   
   .audit-info-section h2 {
     margin-bottom: 10px;
     color: #24DC50;
-    font-size: 50px;
+    font-size: 35px;
   }
   
   .audit-info-section p {
     line-height: 1.5;
     color: #EEECEC;
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .audit-info-section img {
