@@ -16,184 +16,218 @@ const CreatePoll = () => {
     const [ePrivado, setEPrivado] = useState(false);
     const [multiplaEscolha, setMultiplaEscolha] = useState(false);
     const [escolhaUnica, setEscolhaUnica] = useState(false);
-    
-    
+    const [pages, setPages] = useState([{ id: 1, titulo: "", opcoes: [{ id: 1, valor: "" }, { id: 2, valor: "" }] }]);
+    const [ativarStep, setAtivarStep] = useState(0);
 
     const tema = useTheme();
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
     };
-    const [ativarStep, setAtivarStep] = React.useState(0);
 
-    const [arraySteps, setArraySteps] = React.useState([
-        <div key="step0"> 
-            <form className="create-poll-form" onSubmit={handleSubmit}>
-                <label>
-                    Titulo da enquete:
-                    <input
-                        type="text"
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Descrição da Enquete:
-                    <textarea
-                        value={descricao}
-                        onChange={(e) => setDescricao(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Data Limite
-                    <input 
-                        type="datetime-local"
-                        value={dataLimite.toISOString().substring(0, 16)}
-                        onChange={(e) => setDataLimite(new Date(e.target.value))}
-                    />
-                </label>
-
-                <div className="checkbox-section">
-                    <label className="check-Publica-privada">
-                        <input
-                            type="checkbox"
-                            checked={ePublico}
-                            onChange={() => { setEPublico(true); setEPrivado(false); }}
-                        />
-                        Enquete Pública
-    
-                        <input
-                            type="checkbox"
-                            checked={ePrivado}
-                            onChange={() => { setEPrivado(true); setEPublico(false); }}
-                        />
-                        Enquete Privada
-                    </label>
-
-                    <label className="check-unica-multipla">
-                        <input
-                            type="checkbox"
-                            checked={escolhaUnica}
-                            onChange={() => { setEscolhaUnica(true); setMultiplaEscolha(false); }}
-                        />
-                        Escolha Única
-
-                        <input
-                            type="checkbox"
-                            checked={multiplaEscolha}
-                            onChange={() => { setMultiplaEscolha(true); setEscolhaUnica(false); }}
-                        />
-                        Multipla Escolha
-                    </label>
-                </div>
-                
-            </form>
-        
-        </div>,
-
-        <div key="step1"> 
-            <form className="create-poll-form">
-                <label>
-                    Titulo da enquete:
-                    <input
-                        type="text"
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
-                    />
-                </label>
-
-                <label>
-                Opção 1
-                    <input
-                        type="text"
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}></input>
-
-                </label>
-
-
-            </form>
-        
-        </div>
-    ])
-
-    
-
-    const proximoStep = () => {
-        setAtivarStep((prevAtivarStep) => prevAtivarStep + 1);
-      };
-    
-      const anteriorStep = () => {
-        setAtivarStep((prevAtivarStep) => prevAtivarStep - 1);
+    const handleChangeOpcao = (pageId: number, opcaoId: number, valor: string) => {
+        setPages(pages.map(page => 
+            page.id === pageId ? { ...page, opcoes: page.opcoes.map(opcao => opcao.id === opcaoId ? { ...opcao, valor } : opcao) } : page
+        ));
     };
 
-    const adicionarStep = () => {
-        const novoIndeceStep = arraySteps.length;
-        const novoStep = <div key={'step${novoIndeceStep}'}></div>;
-        setArraySteps([...arraySteps, novoStep])
+    const adicionarOpcao = (pageId: number) => {
+        setPages(pages.map(page => 
+            page.id === pageId ? { ...page, opcoes: [...page.opcoes, { id: page.opcoes.length + 1, valor: "" }] } : page
+        ));
+    };
 
-    }   
- 
+    const removerOpcao = (pageId: number) => {
+        setPages(pages.map(page => 
+            page.id === pageId ? { ...page, opcoes: page.opcoes.slice(0, -1) } : page
+        ));
+    };
+
+    const adicionarPagina = () => {
+        setPages([...pages, { id: pages.length + 1, titulo: "", opcoes: [{ id: 1, valor: "" }, { id: 2, valor: "" }] }]);
+    };
+
+    const removerPagina = () => {
+        if (pages.length > 1) {
+            const newPages = pages.slice(0, -1);
+            setPages(newPages);
+            setAtivarStep(prev => Math.min(prev, newPages.length));
+        }
+    };
+
+    const handleTituloPaginaChange = (pageId: number, valor: string) => {
+        setPages(pages.map(page => page.id === pageId ? { ...page, titulo: valor } : page));
+    };
+
+    const proximoStep = () => {
+        setAtivarStep((prevAtivarStep) => Math.min(prevAtivarStep + 1, pages.length));
+    };
+
+    const anteriorStep = () => {
+        setAtivarStep((prevAtivarStep) => Math.max(prevAtivarStep - 1, 0));
+    };
+
     return (
-        
         <div className="div-main">
             <BasePage username="Caio Bruno" title="Criar Enquete">
-                <div className="center-content"> 
-                    {/*</BasePage>*/}
-                    <div style={{ backgroundColor: 'rgb(229, 242, 253)', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', padding: '3px', borderRadius: '8px',}}>
-                        {arraySteps[ativarStep]}
-                        <MobileStepper
-                            variant="dots"
-                            steps={arraySteps.length}
-                            position="static"
-                            activeStep={ativarStep}
-                            sx={{maxWidth: 400, flexGrow: 1, marginTop: '20px'}}
-                            nextButton={
-                            <Button size="small" onClick={proximoStep} disabled={ativarStep === arraySteps.length -1}>
-                                Próximo
-                                {tema.direction === 'rtl' ? (
-                                    <KeyboardArrowLeft />
-                                ) : (
-                                    <KeyboardArrowRight/>
-                                )}
-                            </Button>
-                            }
-                            backButton={
-                                <Button size="small" onClick={anteriorStep} disabled={ativarStep === 0}>
-                                {tema.direction === 'rtl' ? (
-                                <KeyboardArrowRight />
-                                ) : (
-                                <KeyboardArrowLeft />
-                                )}
-                                Voltar
+                <div className="center-content">
+                    <div style={{ backgroundColor: 'rgb(229, 242, 253)', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', padding: '3px', borderRadius: '8px', }}>
+                        {ativarStep === pages.length && (
+                            <div className="adicionar-remover-pag">
+                                <>
+                                <Button size="small" onClick={adicionarPagina} style={{ marginTop: '20px' }}>
+                                    Adicionar pergunta
                                 </Button>
-                            }
+                                {pages.length > 1 && (
+                                    <Button size="small" onClick={removerPagina} style={{ marginTop: '20px', marginLeft: '10px' }}>
+                                        Remover pergunta
+                                    </Button>
+                                )}
+                                </>
+                            </div>
+                        )}
+                        
+                        {ativarStep === 0 && (
+                            <div key="step0">
+                                <form className="create-poll-form" onSubmit={handleSubmit}>
+                                    <label>
+                                        Titulo da enquete:
+                                        <input
+                                            type="text"
+                                            value={titulo}
+                                            onChange={(e) => setTitulo(e.target.value)}
+                                        />
+                                    </label>
+                                    <label>
+                                        Descrição da Enquete:
+                                        <textarea
+                                            value={descricao}
+                                            onChange={(e) => setDescricao(e.target.value)}
+                                        />
+                                    </label>
+                                    <label>
+                                        Data Limite
+                                        <input
+                                            type="datetime-local"
+                                            value={dataLimite.toISOString().substring(0, 16)}
+                                            onChange={(e) => setDataLimite(new Date(e.target.value))}
+                                        />
+                                    </label>
 
-                        />
+                                    <div className="checkbox">
+                                        <div className="checkbox-public-private">
+                                            <label className="check-Publica-privada">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={ePublico}
+                                                    onChange={() => { setEPublico(true); setEPrivado(false); }}
+                                                />
+                                                Enquete Pública
+                                            </label>
+                                            <label className="check-Publica-privada">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={ePrivado}
+                                                    onChange={() => { setEPrivado(true); setEPublico(false); }}
+                                                />
+                                                Enquete Privada
+                                            </label>
+                                        </div>
+
+                                        <div className="checkbox-only-multiple">
+                                            <label className="check-unica-multipla">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={escolhaUnica}
+                                                    onChange={() => { setEscolhaUnica(true); setMultiplaEscolha(false); }}
+                                                />
+                                                Escolha Única
+                                            </label>
+                                            <label className="check-unica-multipla">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={multiplaEscolha}
+                                                    onChange={() => { setMultiplaEscolha(true); setEscolhaUnica(false); }}
+                                                />
+                                                Multipla Escolha
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        )}
+
+                        {pages.map((page, index) => (
+                            ativarStep === (index + 1) && (
+                                <div key={`step${index + 1}`}>
+                                    <form className="create-poll-form">
+                                        <label>
+                                            Pergunta:
+                                            <input
+                                                type="text"
+                                                value={page.titulo}
+                                                onChange={(e) => handleTituloPaginaChange(page.id, e.target.value)}
+                                            />
+                                        </label>
+                                        {page.opcoes.map(opcao => (
+                                            <label key={opcao.id}>
+                                                Opção {opcao.id}
+                                                <input
+                                                    type="text"
+                                                    value={opcao.valor}
+                                                    onChange={(e) => handleChangeOpcao(page.id, opcao.id, e.target.value)}
+                                                />
+                                            </label>
+                                        ))}
+                                    </form>
+                                    <div className="buttom-add-remove-options">
+                                        <button onClick={() => adicionarOpcao(page.id)}>+ opção</button>
+                                        <button onClick={() => removerOpcao(page.id)}>- opção</button>
+                                    </div>
+                                </div>
+                            )
+                        ))}
+
+
+                        <div className="button-carosel">
+                            <MobileStepper
+                                variant="dots"
+                                steps={pages.length + 1}
+                                position="static"
+                                activeStep={ativarStep}
+                                sx={{ maxWidth: 500, flexGrow: 1, marginTop: '10px', color: '#04345c'}}
+                                nextButton={
+                                    <Button size="small" onClick={proximoStep} disabled={ativarStep === pages.length}>
+                                        Próximo
+                                        {tema.direction === 'rtl' ? (
+                                            <KeyboardArrowLeft />
+                                        ) : (
+                                            <KeyboardArrowRight />
+                                        )}
+                                    </Button>
+                                }
+                                backButton={
+                                    <Button size="small" onClick={anteriorStep} disabled={ativarStep === 0}>
+                                        {tema.direction === 'rtl' ? (
+                                            <KeyboardArrowRight />
+                                        ) : (
+                                            <KeyboardArrowLeft />
+                                        )}
+                                        Voltar
+                                    </Button>
+                                }
+                            />
+                        </div>
+                        
+                        
                     </div>
                 </div>
             </BasePage>
         </div>
-        
-
-            
-           
-
-
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-       
     );
 };
 
 export default CreatePoll;
+
+
