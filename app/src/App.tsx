@@ -7,8 +7,7 @@ import RegistrationModal from "./components/RegistrationModal";
 import CreatePoll from './pages/CreatePollPage/CreatePoll';
 
 function App() {
-  return (
-  );
+  return ();
 }
 
 export default App;

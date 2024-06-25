@@ -5,39 +5,42 @@ body {
     padding: 0;
 }
 
-.center-content {
+.div-main{
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
 }
 
-.page-content-wrapper {
-    max-width: 800px;
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
+.center-content {
+    display: grid;
+    place-items: center;
+    height: 112vh;
+    min-width: 800px;
+    margin: auto;
 }
+
 
 .create-poll-form {
-    background-color: #fff;
+    display: block;
+    align-items: center;
     padding: 20px;
-    margin: 20px auto;
+    margin: 2px auto;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 450px;
+    max-height: 900px;
 }
 
-.create-poll-form label {
-    display: block;
+.create-poll-form label {  
     margin-bottom: 10px;
     font-weight: bold;
 }
 
+
 .create-poll-form input[type="text"],
 .create-poll-form input[type="datetime-local"],
 .create-poll-form textarea {
-    width: 100%;
+    align-items: center;
+    width: 95%;
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 15px;
@@ -45,42 +48,61 @@ body {
     border-radius: 4px;
 }
 
-.create-poll-form input[type="checkbox"] {
-    margin-right: 10px;
+
+.checkbox {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
 }
 
-.create-poll-form button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.create-poll-form button:hover {
-    background-color: #45a049;
-}
-
-.checkbox-section {
+.checkbox-public-private, .checkbox-only-multiple {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
 }
 
-.checkbox-section label {
-    margin-bottom: 10px;
+.checkbox-only-multiple {
+    align-items: flex-start;
 }
 
-.page-title {
+
+
+.adicionar-remover-pag{
+    display: flex;
+    justify-content: right;
+    font-size: 5px;
+}
+
+.button-carosel{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.buttom-add-remove-options{
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: auto;
+}
+
+.buttom-add-remove-options button{
     text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+    background-color: #00c760;
+    color: rgb(0, 0, 0);
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 2%;
+    font-size: 12px;
+    width: 90px; /* Defina a largura desejada */
+    height: 35px; /* Defina a altura desejada */
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
-@media (max-width: 768px) {
-    .page-content-wrapper {
-        max-width: 90%;
-    }
-}
+.buttom-add-remove-options button:hover{
+    background-color: rgb(1, 142, 71);
 
+}
