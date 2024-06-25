@@ -1,6 +1,6 @@
 import React from 'react';
 import './navbar.css';
-import logo_navbar from '../navBar/votaaiLogo.png'
+import logo_navbar from '../../assets/img/votaaiLogo.png'
 import PersonIcon from '@mui/icons-material/Person';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import SearchIcon from '@mui/icons-material/Search';

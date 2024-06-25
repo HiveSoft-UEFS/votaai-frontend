@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { createTheme } from '@mui/material/styles';
-import "@fontsource/inter/600.css"; 
 import { Card, CardContent, Typography, ThemeProvider, Box, Grid } from '@mui/material';
 import './optionCard.css';
 import CustomButton  from '../customButton';
+
 
 interface OptionCardProps {
     title: string;
@@ -17,6 +17,12 @@ interface OptionCardProps {
     callback: () => void;
 }
 
+
+{/* 
+    APLIQUE A FONT INTER POR MEIO DE UM IMPORT NO PROPRIO CSS:
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+*/}
+
 export default function OptionCard({ title, description, textBtn, icon_componentBtn, bgcolorBtn, text_colorBtn, font_familyBtn, font_weightBtn, callback}:OptionCardProps) {
     const textTheme = createTheme({
         typography: {
@@ -25,7 +31,7 @@ export default function OptionCard({ title, description, textBtn, icon_component
         },
     });
     return (
-        <Card className="OptionCard" sx={{borderRadius:3,backgroundColor: "#04345C",display:'flex'}}>
+        <Card className="OptionCard" sx={{borderRadius:3,backgroundColor: "#0B5B67",display:'flex'}}>
             <CardContent className="OptionCardBody">
                 <ThemeProvider theme={textTheme}>
                     <Typography fontSize={26} component="div" className="OptionCardTitle">{title}</Typography>
