@@ -80,7 +80,6 @@ const ProfileScreen = () => {
                 />
             </div>
 
-
         </div>
         <div className="button">
             <CustomButton 

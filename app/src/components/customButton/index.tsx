@@ -47,5 +47,4 @@ function CustomButton({text, icon_component, bgcolor, text_color, font_family, f
     </Stack>
   );
 }
-
 export default CustomButton
