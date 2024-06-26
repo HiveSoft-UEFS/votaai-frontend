@@ -1,6 +1,6 @@
 import React from 'react';
 import './navbar.css';
-import logo_navbar from '../navBar/votaaiLogo.png'
+import logo_navbar from './votaaiLogo.png'
 import PersonIcon from '@mui/icons-material/Person';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import SearchIcon from '@mui/icons-material/Search';
@@ -24,40 +24,49 @@ const Navbar: React.FC = () => {
                 <div className='search-icon'>
                     <SearchIcon />
                 </div>
-
-        
-    
             </div>
-            <CustomButton
-                text="Votação"
-                icon_component={<AddIcon />}
-                bgcolor="#EBE5FC"
-                text_color= "#295478"
-                font_family="Arial, sans-serif"
-                font_weight="bold"
-                callback={() => console.log("")}
-            />
 
-            <CustomButton
-                text="Histórico"
-                icon_component={<VisibilityIcon />}
-                bgcolor="#EBE5FC"
-                text_color="#295478"
-                font_family="Arial, sans-serif"
-                font_weight="bold"
-                callback={() => console.log("")}
-            />
-            <CustomButton
-                text="Auditoria"
-                icon_component={<TaskIcon />}
-                bgcolor="#EBE5FC"
-                text_color="#295478"
-                font_family="Arial, sans-serif"
-                font_weight="bold"
-                callback={() => console.log("")}
-            />
-        </div>
+
+
+            <div className='button_container1'>
+                <CustomButton
+                    text="Votação"
+                    icon_component={<AddIcon />}
+                    bgcolor="#EBE5FC"
+                    text_color= "#295478"
+                    font_family="Arial, sans-serif"
+                    font_weight="bold"
+                    callback={() => console.log("")}
+                />
+            </div>
+
+            <div className='button_container2'>
+                <CustomButton
+                    text="Histórico"
+                    icon_component={<VisibilityIcon />}
+                    bgcolor="#EBE5FC"
+                    text_color="#295478"
+                    font_family="Arial, sans-serif"
+                    font_weight="bold"
+                    callback={() => console.log("")}
+                />
+            </div>
+
+            <div className='button_container3'>
+                <CustomButton
+                    text="Auditoria"
+                    icon_component={<TaskIcon />}
+                    bgcolor="#EBE5FC"
+                    text_color="#295478"
+                    font_family="Arial, sans-serif"
+                    font_weight="bold"
+                    callback={() => console.log("")}
+                />
+            </div>
+            </div>
+
+
     );
-};
+        };
 
 export default Navbar;
