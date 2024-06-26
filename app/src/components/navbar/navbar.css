@@ -5,6 +5,9 @@
     justify-content: space-between;
     background: linear-gradient(to right, #147b63 5%, #135b4b 95%);
     padding: 15px 7%;
+    top: 0;
+    right: 50%;
+    transform: translate(50%, 0);
     position: fixed;
 }
 
