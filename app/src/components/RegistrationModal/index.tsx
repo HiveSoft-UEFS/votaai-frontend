@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import {Box, InputAdornment, Modal, TextField} from "@mui/material";
 import {AccountCircle, AlternateEmail} from "@mui/icons-material";
 import Button from "@mui/material/Button";
-import logo from "./logo.png";
-import logo_nome from "./logo-nome.png";
+import logo from "./logo-nome.png";
 import hivesoft_inc from "./HiveSoft-Inc.png";
 import HttpsIcon from '@mui/icons-material/Https';
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import axios from 'axios';
 
 interface RegistrationModalProps {
     open: boolean;
@@ -14,6 +14,27 @@ interface RegistrationModalProps {
 }
 
 function RegistrationModal({open, handleClose}: RegistrationModalProps) {
+
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+
+        const data = {
+            username: (document.getElementById('name') as HTMLInputElement).value,
+            nickname: (document.getElementById('nickname') as HTMLInputElement).value,
+            cpf: (document.getElementById('cpf') as HTMLInputElement).value,
+            email: (document.getElementById('email') as HTMLInputElement).value,
+            password: (document.getElementById('password') as HTMLInputElement).value,
+            passwordCheck: (document.getElementById('passwordCheck') as HTMLInputElement).value,
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8000/api/register/', data);
+            console.log('Registration successful', response.data);
+        } catch (error) {
+            console.error('There was an error!', error);
+        }
+    };
+
     return(
         <div>
         <Modal
@@ -41,9 +62,6 @@ function RegistrationModal({open, handleClose}: RegistrationModalProps) {
                 <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2}}>
                     <img src={logo}
                          alt="logo.png"
-                         style={{marginTop: '16px', maxWidth: '100%'}}/>
-                    <img src={logo_nome}
-                         alt="logo_nome.png"
                          style={{marginTop: '16px', maxWidth: '100%'}}/>
                 </Box>
                 <TextField id="name" label="Nome Completo" InputProps={{
@@ -108,7 +126,7 @@ function RegistrationModal({open, handleClose}: RegistrationModalProps) {
                     display: 'flex'
                 }}>
                     <Button variant="contained">Cadastrar</Button>
-                    <Button variant="text">já possui cadastro</Button>
+                    <Button variant="text">já possuo cadastro</Button>
                     <Box sx={{width: '200px', height: '20px', marginTop: '16px'}}>
                         <img src={hivesoft_inc} alt="hivesoft-inc" style={{ width: '100%', height: '100%', objectFit: 'fill' }} />
                     </Box>
@@ -118,5 +136,9 @@ function RegistrationModal({open, handleClose}: RegistrationModalProps) {
         </div>
     );
 }
+
+
+
+
 
 export default RegistrationModal;
