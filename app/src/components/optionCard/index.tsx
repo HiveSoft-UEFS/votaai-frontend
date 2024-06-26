@@ -19,7 +19,7 @@ interface OptionCardProps {
 
 
 {/* 
-    APLIQUE A FONT INTER POR MEIO DE UM IMPORT NO PROPRIO CSS:
+    APLIQUE A FONT INTER POR MEIO DE UM IMPORT NO PROPRIO CSS :
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 */}
 
