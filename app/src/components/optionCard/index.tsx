@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { createTheme } from '@mui/material/styles';
-import "@fontsource/inter/600.css"; 
 import { Card, CardContent, Typography, ThemeProvider, Box, Grid } from '@mui/material';
 import './optionCard.css';
 import CustomButton  from '../customButton';

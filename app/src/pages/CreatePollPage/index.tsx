@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
-const CreatePoll = () => {
+const Index = () => {
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
     const [dataLimite, setDataLimite] = useState(new Date());
@@ -228,6 +228,6 @@ const CreatePoll = () => {
     );
 };
 
-export default CreatePoll;
+export default Index;
 
 

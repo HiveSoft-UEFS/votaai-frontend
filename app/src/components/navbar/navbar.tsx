@@ -12,28 +12,27 @@ import TaskIcon from '@mui/icons-material/Task';
 const Navbar: React.FC = () => {
     return (
         <div className='navbar'>
-            <div className= 'icon'>
-            <PersonIcon style={{ fontSize: '30px' }} /> 
+            <div className='icon'>
+                <PersonIcon style={{fontSize: '30px'}}/>
             </div>
-            <div className= 'circle'>
-                <PanoramaFishEyeIcon style={{ fontSize: '50px' }} />  
+            <div className='circle'>
+                <PanoramaFishEyeIcon style={{fontSize: '50px'}}/>
             </div>
             <img src={logo_navbar} alt="" className='logo'/>
-            <div className= 'search-box'>
+            <div className='search-box'>
                 <input type="text" placeholder='Digite um código ou uma tag'/>
                 <div className='search-icon'>
-                    <SearchIcon />
+                    <SearchIcon/>
                 </div>
             </div>
-
 
 
             <div className='button_container1'>
                 <CustomButton
                     text="Votação"
-                    icon_component={<AddIcon />}
+                    icon_component={<AddIcon/>}
                     bgcolor="#EBE5FC"
-                    text_color= "#295478"
+                    text_color="#295478"
                     font_family="Arial, sans-serif"
                     font_weight="bold"
                     callback={() => console.log("")}
@@ -43,7 +42,7 @@ const Navbar: React.FC = () => {
             <div className='button_container2'>
                 <CustomButton
                     text="Histórico"
-                    icon_component={<VisibilityIcon />}
+                    icon_component={<VisibilityIcon/>}
                     bgcolor="#EBE5FC"
                     text_color="#295478"
                     font_family="Arial, sans-serif"
@@ -55,7 +54,7 @@ const Navbar: React.FC = () => {
             <div className='button_container3'>
                 <CustomButton
                     text="Auditoria"
-                    icon_component={<TaskIcon />}
+                    icon_component={<TaskIcon/>}
                     bgcolor="#EBE5FC"
                     text_color="#295478"
                     font_family="Arial, sans-serif"
@@ -63,10 +62,10 @@ const Navbar: React.FC = () => {
                     callback={() => console.log("")}
                 />
             </div>
-            </div>
+        </div>
 
 
     );
-        };
+};
 
 export default Navbar;
