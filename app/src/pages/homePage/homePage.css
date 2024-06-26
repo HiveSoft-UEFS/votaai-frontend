@@ -29,7 +29,7 @@
 .carousel-homePage {
     position: absolute;
     top: 350px;
-
+    margin-left: 12%;
     z-index: -1;
 }
 
@@ -55,3 +55,4 @@
     align-items: center;
     z-index: -1;
 }
+

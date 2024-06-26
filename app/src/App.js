@@ -9,7 +9,6 @@ import CreatePollPage from "./pages/CreatePollPage";
 import AuditPage from "./pages/auditPage";
 import History from "./pages/historyPage";
 
-
 function App() {
     return (
         <Routes>
