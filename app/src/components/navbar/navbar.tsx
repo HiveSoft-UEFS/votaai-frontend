@@ -15,27 +15,27 @@ const Navbar: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <div className='navbar'>
+        <div className='navbar-navbar'>
 
-            <div className='icon'>
+            <div className='icon-navbar'>
                 <PersonIcon style={{fontSize: '30px'}}/>
             </div>
-            <div className='circle' onClick={() => navigate('/perfil')}>
+            <div className='circle-navbar' onClick={() => navigate('/perfil')}>
                 <PanoramaFishEyeIcon style={{fontSize: '50px'}}/>
             </div>
 
-            <img src={logo_navbar} alt="" className='logo'/>
+            <img src={logo_navbar} alt="" className='logo-navbar'/>
 
 
-            <div className='search-box'>
+            <div className='search-box-navbar'>
                 <input type="text" placeholder='Digite um código ou uma tag'/>
-                <div className='search-icon'>
+                <div className='search-icon-navbar'>
                     <SearchIcon/>
                 </div>
             </div>
 
 
-            <div className='button_container1'>
+            <div className='button_container1-navbar'>
                 <CustomButton
                     text="Votação"
                     icon_component={<AddIcon/>}
@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
                 />
             </div>
 
-            <div className='button_container2'>
+            <div className='button_container2-navbar'>
                 <CustomButton
                     text="Histórico"
                     icon_component={<VisibilityIcon/>}
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
                 />
             </div>
 
-            <div className='button_container3'>
+            <div className='button_container3-navbar'>
                 <CustomButton
                     text="Auditoria"
                     icon_component={<TaskIcon/>}
