@@ -14,22 +14,22 @@ import { useNavigate } from 'react-router-dom';
 const HomePage = () => {
     const navigate = useNavigate();
     return (
-        <div className="container">
-            <div className="container-content">
+        <div className="container-homePage">
+            <div className="container-content-homePage">
                 <img src={backgroundHome} alt="Imagem de Fundo da Página" />
                 
                 <Navbar />
 
-                <div className="titles">
+                <div className="titles-homePage">
                     <h1 className="title-1">Participe de</h1>
                     <h1 className="title-2">Votações Públicas</h1>
                 </div>
 
-                <div className="carousel">
+                <div className="carousel-homePage">
                     <Carousel/>
                 </div>
 
-                <div className="cards">
+                <div className="cards-homePage">
                     <OptionCard 
                         title="Compartilhe Pensamentos"
                         description="Seja parte de uma comunidade cada vez maior"
@@ -67,7 +67,7 @@ const HomePage = () => {
             </div>
 
             
-            <div className="container-footer">
+            <div className="container-footer-homePage">
                 <Footer/>      
             </div>
         </div>

@@ -6,19 +6,19 @@
     box-sizing: border-box;
 }
 
-.container {
+.container-homePage {
     display: grid;
     grid-template-rows: 1fr 0px;
     height: 1370px;
 }
 
-.container-content {
+.container-content-homePage {
     position: relative;
     width: 100%;
     height: auto;
 }
 
-.container-content>img {
+.container-content-homePage>img {
     position: absolute;
     width: 100%;
     height: auto;
@@ -26,14 +26,14 @@
     z-index: -5;
 }
 
-.carousel {
+.carousel-homePage {
     position: absolute;
     top: 350px;
 
     z-index: -1;
 }
 
-.cards {
+.cards-homePage {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -42,7 +42,7 @@
     top: 975px;
 }
 
-.titles {
+.titles-homePage {
     position: absolute;
     top: 150px;
     left: 150px;
