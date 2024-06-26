@@ -8,17 +8,25 @@ import CustomButton from '../customButton/index';
 import AddIcon from '@mui/icons-material/Add';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import TaskIcon from '@mui/icons-material/Task';
+import {useNavigate} from 'react-router-dom';
+
 
 const Navbar: React.FC = () => {
+    const navigate = useNavigate();
+
     return (
         <div className='navbar'>
+
             <div className='icon'>
                 <PersonIcon style={{fontSize: '30px'}}/>
             </div>
-            <div className='circle'>
+            <div className='circle' onClick={() => navigate('/perfil')}>
                 <PanoramaFishEyeIcon style={{fontSize: '50px'}}/>
             </div>
+
             <img src={logo_navbar} alt="" className='logo'/>
+
+
             <div className='search-box'>
                 <input type="text" placeholder='Digite um código ou uma tag'/>
                 <div className='search-icon'>
@@ -35,7 +43,7 @@ const Navbar: React.FC = () => {
                     text_color="#295478"
                     font_family="Arial, sans-serif"
                     font_weight="bold"
-                    callback={() => console.log("")}
+                    callback={() => navigate('/votacao')}
                 />
             </div>
 
@@ -47,7 +55,7 @@ const Navbar: React.FC = () => {
                     text_color="#295478"
                     font_family="Arial, sans-serif"
                     font_weight="bold"
-                    callback={() => console.log("")}
+                    callback={() => navigate('/historico')}
                 />
             </div>
 
@@ -59,7 +67,7 @@ const Navbar: React.FC = () => {
                     text_color="#295478"
                     font_family="Arial, sans-serif"
                     font_weight="bold"
-                    callback={() => console.log("")}
+                    callback={() => navigate('/auditoria')}
                 />
             </div>
         </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Welcome from './pages/Welcome';
+import Welcome from './pages/welcomePage';
 import HomeScreen from './pages/homePage';
 import ProfileScreen from "./pages/profileScreen";
 import CreatePollPage from "./pages/CreatePollPage";

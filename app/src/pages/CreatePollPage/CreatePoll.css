@@ -14,7 +14,7 @@ body {
 .center-content {
     display: grid;
     place-items: center;
-    height: 112vh;
+    height: 100vh;
     min-width: 800px;
     margin: auto;
 }

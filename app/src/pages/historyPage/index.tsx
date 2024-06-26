@@ -125,7 +125,7 @@ const History = () => {
 
 
     return (
-        <div className='container'>
+        <div className=''>
             <BasePage username='Usuario' title='Historico'>
 
                 <div className='description'>
