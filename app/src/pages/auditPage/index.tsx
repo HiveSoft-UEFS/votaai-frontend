@@ -22,8 +22,7 @@ const AuditPage = () => {
             <img src={questionIcon} alt="" />
             <h2 className="audit-info-title">O que é?</h2>
             <p>
-              Na auditoria do votaai é possível verificar como o seu voto foi computado. Ao participar de uma votação o usuário receberá um código no email cadastrado que permitirá a sua auditoria nesta página.
-            </p>
+              Na auditoria do Votaai, você pode verificar como seu voto foi computado. Após votar, o usuário recebe um código por e-mail para realizar a auditoria nesta página.            </p>
           </div>
           <div className="audit-info-section">
             <img src={confirmIcon} alt="" />

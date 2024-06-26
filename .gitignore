@@ -2,6 +2,7 @@
 
 # dependencies
 /app/node_modules
+/node_modules
 /app/.pnp
 /app/.pnp.js
 
@@ -21,3 +22,5 @@
 /app/npm-debug.log*
 /app/yarn-debug.log*
 /app/yarn-error.log*
+
+

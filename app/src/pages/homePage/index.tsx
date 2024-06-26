@@ -5,16 +5,20 @@ import Navbar from "../../components/navbar/navbar";
 import Carousel from "../../components/carousel";
 import OptionCard from "../../components/optionCard";
 import AddIcon from '@mui/icons-material/Add';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import TaskIcon from '@mui/icons-material/Task';
 import Footer from "../../components/footer";
+import { useNavigate } from 'react-router-dom';
 
 
 const HomePage = () => {
+    const navigate = useNavigate();
     return (
         <div className="container">
             <div className="container-content">
                 <img src={backgroundHome} alt="Imagem de Fundo da Página" />
                 
-                <Navbar/>
+                <Navbar />
 
                 <div className="titles">
                     <h1 className="title-1">Participe de</h1>
@@ -35,7 +39,7 @@ const HomePage = () => {
                         icon_componentBtn={<AddIcon/>}
                         bgcolorBtn="#EBE5FC"
                         textBtn="CRIAR VOTAÇÃO"
-                        callback={() => console.log("")}
+                        callback={() => navigate('#')}
                     />
                     <OptionCard 
                         title="Visualize cada Mudança"
@@ -43,10 +47,10 @@ const HomePage = () => {
                         font_familyBtn="Arial, sans-serif"
                         font_weightBtn="bold"
                         text_colorBtn="#295478"
-                        icon_componentBtn={<AddIcon/>}
+                        icon_componentBtn={<VisibilityIcon/>}
                         bgcolorBtn="#EBE5FC"
                         textBtn="VER HISTÓRICO"
-                        callback={() => console.log("")}
+                        callback={() => navigate('/historico')}
                     />     
                     <OptionCard 
                         title="Vote com Segurança"
@@ -54,10 +58,10 @@ const HomePage = () => {
                         font_familyBtn="Arial, sans-serif"
                         font_weightBtn="bold"
                         text_colorBtn="#295478"
-                        icon_componentBtn={<AddIcon/>}
+                        icon_componentBtn={<TaskIcon/>}
                         bgcolorBtn="#EBE5FC"
                         textBtn="AUDITAR VOTO"
-                        callback={() => console.log("")}
+                        callback={() => navigate('/auditoria')}
                     />
                 </div>
             </div>

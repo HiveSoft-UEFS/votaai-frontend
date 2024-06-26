@@ -5,6 +5,9 @@
     justify-content: space-between;
     background: linear-gradient(to right, #147b63 5%, #135b4b 95%);
     padding: 15px 7%;
+    top: 0;
+    right: 50%;
+    transform: translate(50%, 0);
     position: fixed;
 }
 
@@ -25,17 +28,17 @@
     align-items: center;
     background: #EBE5FC;
     justify-content: center;
-    padding: 1px 100x;
+    padding: -1px 15px;
     border-radius: 5px;
     margin-top: 8px;
     margin-bottom: 1px; 
-    margin-left: 140px;
-    margin-right: 20px;
+    margin-left: -150px;
+    margin-right: -100px;
 }
 .search-box input{
     width: 100px;
     flex: 1;
-    padding: 5px 1%;
+    padding: 2px 1%;
     background: transparent;
     border: 0;
     outline: 0;
@@ -81,4 +84,20 @@
     margin-bottom: 10px; 
     color:#EBE5FC;
     cursor: pointer;
+}
+
+.button_container1 {
+    margin-right: 10px;
+    margin-left: -80px;
+}
+
+.button_container2 {
+    margin-right: 10px;
+    margin-left: -200px;
+}
+
+.button_container3 {
+    margin-right: 300px;
+    margin-left: -200px;
+
 }

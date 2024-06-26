@@ -8,15 +8,14 @@ import hivesoft_inc from "./HiveSoft-Inc.png";
 import HttpsIcon from '@mui/icons-material/Https';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 
-function RegistrationModal() {
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+interface RegistrationModalProps {
+    open: boolean;
+    handleClose: () => void;
+}
+
+function RegistrationModal({open, handleClose}: RegistrationModalProps) {
     return(
         <div>
-            <Button variant="contained" color="primary" onClick={handleOpen}>
-                Open Modal
-            </Button>
         <Modal
             open={open}
             onClose={handleClose}
