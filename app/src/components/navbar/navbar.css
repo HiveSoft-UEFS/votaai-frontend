@@ -1,4 +1,4 @@
-.navbar{
+.navbar-navbar{
     width: 100%;
     display: flex;
     align-items: center;
@@ -11,7 +11,7 @@
     position: fixed;
 }
 
-.logo{
+.logo-navbar{
     width: 130px;
     cursor: pointer;
     padding: 1px 0;
@@ -21,7 +21,7 @@
     margin-top: -1px;
 }
 
-.search-box{
+.search-box-navbar{
     height: 29px;
     width: 350px;
     display: flex;
@@ -35,7 +35,7 @@
     margin-left: -150px;
     margin-right: -100px;
 }
-.search-box input{
+.search-box-navbar input{
     width: 100px;
     flex: 1;
     padding: 2px 1%;
@@ -51,7 +51,7 @@
 
 }
 
-.search-icon{
+.search-icon-navbar{
 
     width: 2px;
    margin-right: 20px;
@@ -61,7 +61,7 @@
 
 }
 
-.icon{
+.icon-navbar{
     width: 44px;
     margin-right: 5px;
     position: fixed;
@@ -73,7 +73,7 @@
     cursor: pointer;
 }
 
-.circle{
+.circle-navbar{
     width: 52px;
     height: 52px;
     margin-right: 7px;
@@ -86,17 +86,17 @@
     cursor: pointer;
 }
 
-.button_container1 {
+.button_container1-navbar {
     margin-right: 10px;
     margin-left: -80px;
 }
 
-.button_container2 {
+.button_container2-navbar {
     margin-right: 10px;
     margin-left: -200px;
 }
 
-.button_container3 {
+.button_container3-navbar {
     margin-right: 300px;
     margin-left: -200px;
 
