@@ -79,17 +79,29 @@ const ProfileScreen = () => {
                     className="profile-input-profile-screen"
                 />
             </div>
+            
+            <div className="button-profile-screen">
+                <CustomButton 
+                    text="Alterar Senha" 
+                    bgcolor="#EBE5FC"
+                    text_color="#295478" 
+                    font_family="Nunito, sans-serif"
+                    font_weight="Bold"
+                /> 
+            </div>
+
+            <div className="button-2-profile-screen">
+                <CustomButton 
+                    text="Alterar Dados" 
+                    bgcolor="#EBE5FC"
+                    text_color="#295478" 
+                    font_family="Nunito, sans-serif"
+                    font_weight="Bold"
+                /> 
+            </div>
 
         </div>
-        <div className="button-profile-screen">
-            <CustomButton 
-                text="Alterar Senha" 
-                bgcolor="#EBE5FC"
-                text_color="#295478" 
-                font_family="Nunito, sans-serif"
-                font_weight="Bold"
-            /> 
-        </div>
+        
 </BasePage>
     );
 
