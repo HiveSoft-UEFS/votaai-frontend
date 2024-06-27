@@ -60,7 +60,7 @@ const ProfileScreen = () => {
                 />
             </div>
 
-            <div className="input-group-2-secondary-2-profile-screen">
+            <div className="input-group-secondary-2-profile-screen">
                 <label htmlFor="votacaoCriada">Votação Criadas:</label>
                 <input
                     type="text"
@@ -70,7 +70,7 @@ const ProfileScreen = () => {
                 />
             </div>
 
-            <div className="input-group-2-secondary-2-profile-screen">
+            <div className="input-group-secondary-2-profile-screen">
                 <label htmlFor="votacaoParticipada">Votações Participadas:</label>
                 <input
                     type="text"
