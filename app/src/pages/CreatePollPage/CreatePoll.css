@@ -27,7 +27,8 @@ body {
     margin: 2px auto;
     border-radius: 8px;
     max-width: 450px;
-    max-height: 900px;
+    max-height: 480px;
+    overflow-y: scroll;
 }
 
 .create-poll-form label {

@@ -61,6 +61,7 @@ const Navbar: React.FC = () => {
                     callback={() => navigate('/auditoria')}
                 />
             </div>
+            
             <div className='c-iconProfile-navbar'>
                 <img src={ProfileImg} alt="" />
             </div>
