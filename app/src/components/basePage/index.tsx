@@ -25,11 +25,10 @@ const BasePage = ({username, title, children}: BasePageProps) => {
                 </div>
                 <div className="c-content">
                     <div className="c-title">
-                        <div className="line"></div>
                         <div className="title-space">
                             <h1> { selectedMenuItem } </h1>
                         </div>
-                        <div className="line"></div>
+
                     </div>
                     <div className="c-Img"></div>
                     <div className="page-content">
