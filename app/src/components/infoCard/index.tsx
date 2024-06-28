@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Card, CardContent, Typography, IconButton } from '@mui/material';
 import './InfoCard.css';
 
 
