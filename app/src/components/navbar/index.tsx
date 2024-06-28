@@ -9,6 +9,9 @@ import AddIcon from '@mui/icons-material/Add';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import TaskIcon from '@mui/icons-material/Task';
 import {useNavigate} from 'react-router-dom';
+import Logo_1 from "../../assets/img/logo_1.svg";
+import Logo_2 from "../../assets/img/logo_2.svg";
+import ProfileImg from  "../../assets/img/ProfileIcon.svg";
 
 
 const Navbar: React.FC = () => {
@@ -17,7 +20,62 @@ const Navbar: React.FC = () => {
     return (
         <div className='navbar-navbar'>
 
-            <div className='icon-navbar'>
+            <div className='c-logo-navbar'>
+                <img src={Logo_1} alt="" />
+                <img src={Logo_2} alt="" />
+            </div>
+
+            <div className='c-search-navbar'>
+                <input type="text" placeholder='  Digite um código ou uma tag'/>
+                <div className='search-icon-navbar'>
+                    <SearchIcon/>
+                </div>
+            </div>
+
+            <div className='c-buttons-navbar'>
+                <CustomButton
+                    text="Votação"
+                    icon_component={<AddIcon/>}
+                    bgcolor="#EBE5FC"
+                    text_color="#295478"
+                    font_family="Arial, sans-serif"
+                    font_weight="bold"
+                    callback={() => navigate('/votacao')}
+                />
+                <CustomButton
+                    text="Histórico"
+                    icon_component={<VisibilityIcon/>}
+                    bgcolor="#EBE5FC"
+                    text_color="#295478"
+                    font_family="Arial, sans-serif"
+                    font_weight="bold"
+                    callback={() => navigate('/historico')}
+                />
+                <CustomButton
+                    text="Auditoria"
+                    icon_component={<TaskIcon/>}
+                    bgcolor="#EBE5FC"
+                    text_color="#295478"
+                    font_family="Arial, sans-serif"
+                    font_weight="bold"
+                    callback={() => navigate('/auditoria')}
+                />
+            </div>
+            <div className='c-iconProfile-navbar'>
+                <img src={ProfileImg} alt="" />
+            </div>
+        </div>
+
+
+    );
+};
+
+export default Navbar;
+
+
+
+{/* 
+                <div className='icon-navbar'>
                 <PersonIcon style={{fontSize: '30px'}}/>
             </div>
             <div className='circle-navbar' onClick={() => navigate('/perfil')}>
@@ -70,10 +128,4 @@ const Navbar: React.FC = () => {
                     callback={() => navigate('/auditoria')}
                 />
             </div>
-        </div>
-
-
-    );
-};
-
-export default Navbar;
+*/}
