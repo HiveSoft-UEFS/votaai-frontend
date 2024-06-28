@@ -15,12 +15,13 @@ function Carousel() {
     >("left");
     const cardsPerPage = 5;
 
-    const duplicateCards: React.ReactElement[] = Array.from({length: 10}, (_,i) => <PollCard key={i} title="Melhores alguma coisa do ano passado"
-                                                                                             description="Votação que criei simplesmente por ter sentido alguma vontade aleatória de criar algo para ser votado, então, por favor, participe!"
-                                                                                             creator="NoNameBro"
-                                                                                             tags={['Ciência', 'Ficção', 'Cinema']}
-                                                                                             category="Cinema"
-                                                                                             expiry={new Date("2024-07-12T23:59:59")}/> //colocar aqui o que é pra ser exibido
+    const duplicateCards: React.ReactElement[] = Array.from({length: 10}, (_,i) =>
+        <PollCard key={i} title="Melhores alguma coisa do ano passado"
+
+                  description="Votação que criei simplesmente por ter sentido alguma vontade aleatória de criar algo para ser votado, então, por favor, participe!"
+                  creator="NoNameBro"
+                  tags={['Ciência', 'Ficção', 'Cinema']}
+                  category="Cinema" expiry={new Date("2024-07-12T23:59:59")}/> //colocar aqui o que é pra ser exibido
     );
 
     const handleNextPage = () => {
