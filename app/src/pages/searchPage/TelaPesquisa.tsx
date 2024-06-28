@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import PollCard from "../components/pollCard";
+import PollCard from "../../components/pollCard";
 import "./TelaPesquisa.css";
 import background from './background.svg';
-import NavBar from "../components/navBar/navbar";
-import Footer from "../components/footer";
+import NavBar from "../../components/navbar";
+import Footer from "../../components/footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const poll = [
