@@ -2,7 +2,7 @@
     background: linear-gradient(300deg, #2eba82 0%, #1a956f 100%);
 }
 #our-services{
-    background: linear-gradient(180deg, #cfcfcf 0%, #f0f3f1 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%);
 }
 #popular-polls {
     background: linear-gradient(300deg, #2eba82 0%, #1a956f 100%);
@@ -10,11 +10,13 @@
 
 .illustration-img{
     width: 75%;
+
 }
 
 .logo-img{
     width: 7.5rem;
     padding-bottom: 2rem;
+
 }
 
 .title-text-green{
