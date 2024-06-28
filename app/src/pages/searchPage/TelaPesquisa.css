@@ -1,0 +1,133 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    display: 'flex';
+    flex-direction: 'column';
+    justify-content: 'space-between';
+    width: 100%;
+    height:100vh; 
+    margin:0; 
+    overflow-y:auto;
+    /* background-image: url('./background.svg' ); */
+}
+
+.navbar {
+    position: relative;
+    width: 100%;
+}
+
+.subnavbar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    height: 75px;
+}
+
+.opcoesFiltro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background-color: transparent;
+    width: 480px;
+    height: 100%;
+    border-bottom-left-radius: 20px; 
+    border-bottom-right-radius: 20px; 
+    border-bottom: 2px solid;
+    border-bottom-color: #135b4b;
+    border-left: 2px solid;
+    border-left-color: #135b4b;
+    border-right: 2px solid;
+    border-right-color: #135b4b;
+}
+  
+.subnavbar button {
+    height: 100%;
+    width: 33.33%;
+    background-color: #E5F9EA;
+    color:#074D57;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
+    border:0px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+.button1 {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius:0px
+}
+.button2 {
+    border-radius:0px;
+    border:2px solid;
+    border-left-color:#074D57;
+    border-right:2px solid;
+    border-right-color:#074D57
+}
+.button3 {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius:20px;
+}
+
+.subnavbar button.active {
+    background-color: #06706b; /* cor de fundo quando clicado */
+    color:white; /* cor do texto quando clicado */
+}
+
+.resultado {
+    display: flex;
+    max-height: 726px; 
+    width:1300px;
+    padding:0px;
+    overflow-y:auto;
+    box-sizing: border-box;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 16%;
+}
+
+.fileira {
+    height: 100%;
+    width:100%;
+    padding:0%;
+    padding-left: 7%;
+    margin: 0%;
+    justify-content:start;
+    align-items:start;
+    /* border: 1px solid;
+    border-color: purple; */
+}
+
+.main::-webkit-scrollbar {
+    display: none;
+}
+
+.resultado::-webkit-scrollbar {
+    border: 0.5px solid;
+    border-color: #135546;
+    border-radius: 10px;
+    margin: 0%;
+}
+
+.resultado::-webkit-scrollbar-thumb {
+    background-color: #135546; /* cor de fundo da thumb */
+    border-radius: 8px; /* arredondamento da borda */
+    opacity: 0.1%;
+}
+
+img {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    z-index: -5;
+}
+
+.footer {
+    margin-top:auto; 
+    height: 170px;
+}

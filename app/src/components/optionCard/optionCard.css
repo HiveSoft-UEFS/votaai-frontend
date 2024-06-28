@@ -1,8 +1,7 @@
 .OptionCard {
     display: flex;
-    width: 500px;
-    height: 280px;
-    opacity: 0.6;
+    width: 370px;
+    height: 200px;
     padding: 0%;
 }
 

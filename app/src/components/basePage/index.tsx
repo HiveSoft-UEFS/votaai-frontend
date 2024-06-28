@@ -15,7 +15,7 @@ const BasePage = ({username, title, children}: BasePageProps) => {
     };
 
         return (
-            <div className="container">
+            <div className="container-base-page">
                 <div className="c-menu">
                     <SideMenu 
                         userName={username}
