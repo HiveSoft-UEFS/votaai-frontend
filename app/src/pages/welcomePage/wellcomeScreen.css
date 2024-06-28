@@ -20,7 +20,7 @@
 }
 
 .title-text-green{
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     font-style: normal;
     font-weight: 600;
     color: #2eba82;
@@ -28,7 +28,7 @@
 }
 
 .title-text-white{
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     font-style: normal;
     font-weight: 600;
     color: #f0f3f1;
