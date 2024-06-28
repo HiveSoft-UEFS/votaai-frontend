@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    
+}
+
+.App{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+}
+
