@@ -4,11 +4,11 @@ import PageTitle from './components/pageTitle';
 import SideMenu from './components/sideMenu'
 import PollCard from "./components/pollCard";
 import RegistrationModal from "./components/RegistrationModal";
-import CreatePoll from './pages/CreatePollPage/CreatePoll';
+import BasePage from './components/basePage';
 
 function App() {
   return (
-    <CreatePoll/>
+    <BasePage username='pimpolho' title='PERFIL'/>
   );
 }
 
