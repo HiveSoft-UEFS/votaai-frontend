@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import PollCard from "../components/pollCard";
+import "./TelaPesquisa.css";
+import background from './background2.svg';
+import NavBar from "../components/navBar";
+import Footer from "../components/footer";
 import PollCard from "../../components/pollCard";
 import "./TelaPesquisa.css";
 import background from './background.svg';
@@ -320,6 +325,10 @@ const poll = [
     },
     {
         id: 15,
+        title: "Qual é a ave mais ameaçada de extinção no Brasil?",
+        description: "Escolha a ave que enfrenta maior risco de extinção no território brasileiro.",
+        creator: "Fernanda Conservationist",
+        tags: ["aves", "extinção"],
         title: "Qual é a ave mais ameaçada de extinção no Brasil",
         description: "Escolha a ave que enfrenta maior risco de extinção no território brasileiro.",
         creator: "Fernanda Conservationist Conservationist",
@@ -340,7 +349,6 @@ const poll = [
         ]
     },
 ]
-
 
 function TelaPesquisa() {
     const [activeButton, setActiveButton] = useState<number | null>(1);
@@ -375,7 +383,6 @@ function TelaPesquisa() {
         );
       }
       
-
       return (
         <>
         <div className="main">
@@ -391,6 +398,17 @@ function TelaPesquisa() {
                 </div>
             </div>
             <div className="resultado">
+                <div className="row row-cols-1 fileira">
+                    {sortedPolls.map(poll => (
+                        <div  className="col mb-4" style={{width:'297.14px',maxHeight:'338px',justifyContent:'end',alignItems:'end',padding:'0%',display: 'table'}}>
+                            <PollCard
+                                title={poll.title}
+                                description={""}
+                                creator={poll.creator}
+                                category={poll.category}
+                                expiry={poll.pollClosing}
+                                tags={poll.tags}
+                            ></PollCard>
                 <div className="row row-eq-height row-cols-4 fileira">
                     {sortedPolls.map(poll => (
                         <div  className="col mb-4">
@@ -409,6 +427,8 @@ function TelaPesquisa() {
                     ))}
                 </div>
             </div>
+            <div className="footer">
+                    <Footer/>      
             <div>
                 <Footer/>
             </div>
