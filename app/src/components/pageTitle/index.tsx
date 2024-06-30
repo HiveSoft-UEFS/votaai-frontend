@@ -1,6 +1,7 @@
 import React from 'react';
 import './PageTitle.css'
 
+//teste
 interface PageTitleProps{
     text: string;
     color: string

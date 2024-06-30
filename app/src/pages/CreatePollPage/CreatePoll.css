@@ -5,7 +5,7 @@ body {
     padding: 0;
 }
 
-.div-main{
+.div-main {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,7 +14,7 @@ body {
 .center-content {
     display: grid;
     place-items: center;
-    height: 112vh;
+    height: 100vh;
     min-width: 800px;
     margin: auto;
 }
@@ -27,10 +27,11 @@ body {
     margin: 2px auto;
     border-radius: 8px;
     max-width: 450px;
-    max-height: 900px;
+    max-height: 580px;
+    overflow-y: scroll;
 }
 
-.create-poll-form label {  
+.create-poll-form label {
     margin-bottom: 10px;
     font-weight: bold;
 }
@@ -38,7 +39,9 @@ body {
 
 .create-poll-form input[type="text"],
 .create-poll-form input[type="datetime-local"],
-.create-poll-form textarea {
+.create-poll-form input[type="number"],
+.create-poll-form textarea,
+.create-poll-form select {
     align-items: center;
     width: 95%;
     padding: 10px;
@@ -88,7 +91,7 @@ body {
     margin-bottom: auto;
 }
 
-.buttom-add-remove-options button{
+.buttom-add-remove-options button {
     text-align: center;
     background-color: #00c760;
     color: rgb(0, 0, 0);
@@ -96,13 +99,12 @@ body {
     margin-right: 5px;
     padding: 2%;
     font-size: 12px;
-    width: 90px; /* Defina a largura desejada */
-    height: 35px; /* Defina a altura desejada */
+    width: 90px; 
+    height: 35px; 
     border: 1px solid #ccc;
     border-radius: 6px;
 }
 
-.buttom-add-remove-options button:hover{
+.buttom-add-remove-options button:hover {
     background-color: rgb(1, 142, 71);
-
 }
