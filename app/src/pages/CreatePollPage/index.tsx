@@ -12,11 +12,9 @@ const CreatePoll = () => {
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
     const [dataLimite, setDataLimite] = useState(new Date());
-    const [ePublico, setEPublico] = useState(false);
-    const [ePrivado, setEPrivado] = useState(false);
-    const [multiplaEscolha, setMultiplaEscolha] = useState(false);
-    const [escolhaUnica, setEscolhaUnica] = useState(false);
-    const [pages, setPages] = useState([{ id: 1, titulo: "", opcoes: [{ id: 1, valor: "" }, { id: 2, valor: "" }] }]);
+    const [categoria, setCategoria] = useState("");
+    const [visibilidade, setVisibilidade] = useState("Público");
+    const [pages, setPages] = useState([{ id: 1, titulo: "", maxOpcoes: 1, opcoes: [{ id: 1, valor: "" }, { id: 2, valor: "" }] }]);
     const [ativarStep, setAtivarStep] = useState(0);
 
     const tema = useTheme();
@@ -44,7 +42,7 @@ const CreatePoll = () => {
     };
 
     const adicionarPagina = () => {
-        setPages([...pages, { id: pages.length + 1, titulo: "", opcoes: [{ id: 1, valor: "" }, { id: 2, valor: "" }] }]);
+        setPages([...pages, { id: pages.length + 1, titulo: "", maxOpcoes: 1, opcoes: [{ id: 1, valor: "" }, { id: 2, valor: "" }] }]);
     };
 
     const removerPagina = () => {
@@ -57,6 +55,10 @@ const CreatePoll = () => {
 
     const handleTituloPaginaChange = (pageId: number, valor: string) => {
         setPages(pages.map(page => page.id === pageId ? { ...page, titulo: valor } : page));
+    };
+
+    const handleMaxOpcoesChange = (pageId: number, valor: number) => {
+        setPages(pages.map(page => page.id === pageId ? { ...page, maxOpcoes: valor } : page));
     };
 
     const proximoStep = () => {
@@ -113,47 +115,36 @@ const CreatePoll = () => {
                                             onChange={(e) => setDataLimite(new Date(e.target.value))}
                                         />
                                     </label>
-
-                                    <div className="checkbox">
-                                        <div className="checkbox-public-private">
-                                            <label className="check-Publica-privada">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={ePublico}
-                                                    onChange={() => { setEPublico(true); setEPrivado(false); }}
-                                                />
-                                                Enquete Pública
-                                            </label>
-                                            <label className="check-Publica-privada">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={ePrivado}
-                                                    onChange={() => { setEPrivado(true); setEPublico(false); }}
-                                                />
-                                                Enquete Privada
-                                            </label>
-                                        </div>
-
-                                        <div className="checkbox-only-multiple">
-                                            <label className="check-unica-multipla">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={escolhaUnica}
-                                                    onChange={() => { setEscolhaUnica(true); setMultiplaEscolha(false); }}
-                                                />
-                                                Escolha Única
-                                            </label>
-                                            <label className="check-unica-multipla">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={multiplaEscolha}
-                                                    onChange={() => { setMultiplaEscolha(true); setEscolhaUnica(false); }}
-                                                />
-                                                Multipla Escolha
-                                            </label>
-                                        </div>
-                                    </div>
-                                    
+                                    <label>
+                                        Categoria:
+                                        <select
+                                            value={categoria}
+                                            onChange={(e) => setCategoria(e.target.value)}
+                                        >
+                                            <option value="">Selecione uma categoria</option>
+                                            <option value="Entretenimento">Entretenimento</option>
+                                            <option value="Tecnologia">Tecnologia</option>
+                                            <option value="Esportes">Esportes</option>
+                                            <option value="Alimentação">Alimentação</option>
+                                            <option value="Viagens">Viagens</option>
+                                            <option value="Cultura e Arte">Cultura e Arte</option>
+                                            <option value="Política e Sociedade">Política e Sociedade</option>
+                                            <option value="Ciência e Educação">Ciência e Educação</option>
+                                            <option value="Moda e Beleza">Moda e Beleza</option>
+                                            <option value="Outros">Outros</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        Visibilidade:
+                                        <select
+                                            value={visibilidade}
+                                            onChange={(e) => setVisibilidade(e.target.value)}
+                                        >
+                                            <option value="Público">Público</option>
+                                            <option value="Restrito">Restrito</option>
+                                            <option value="Oculto">Oculto</option>
+                                        </select>
+                                    </label>
                                 </form>
                             </div>
                         )}
@@ -168,6 +159,15 @@ const CreatePoll = () => {
                                                 type="text"
                                                 value={page.titulo}
                                                 onChange={(e) => handleTituloPaginaChange(page.id, e.target.value)}
+                                            />
+                                        </label>
+                                        <label>
+                                            Número máximo de opções que o usuário pode escolher:
+                                            <input
+                                                type="number"
+                                                value={page.maxOpcoes}
+                                                onChange={(e) => handleMaxOpcoesChange(page.id, parseInt(e.target.value))}
+                                                min="1"
                                             />
                                         </label>
                                         {page.opcoes.map(opcao => (
@@ -188,7 +188,6 @@ const CreatePoll = () => {
                                 </div>
                             )
                         ))}
-
 
                         <div className="button-carosel">
                             <MobileStepper
@@ -219,8 +218,6 @@ const CreatePoll = () => {
                                 }
                             />
                         </div>
-                        
-                        
                     </div>
                 </div>
             </BasePage>
@@ -229,5 +226,3 @@ const CreatePoll = () => {
 };
 
 export default CreatePoll;
-
-

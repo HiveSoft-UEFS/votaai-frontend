@@ -4,6 +4,11 @@ import "./TelaPesquisa.css";
 import background from './background2.svg';
 import NavBar from "../components/navBar";
 import Footer from "../components/footer";
+import PollCard from "../../components/pollCard";
+import "./TelaPesquisa.css";
+import background from './background.svg';
+import NavBar from "../../components/navbar";
+import Footer from "../../components/footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const poll = [
@@ -324,6 +329,10 @@ const poll = [
         description: "Escolha a ave que enfrenta maior risco de extinção no território brasileiro.",
         creator: "Fernanda Conservationist",
         tags: ["aves", "extinção"],
+        title: "Qual é a ave mais ameaçada de extinção no Brasil",
+        description: "Escolha a ave que enfrenta maior risco de extinção no território brasileiro.",
+        creator: "Fernanda Conservationist Conservationist",
+        tags: ["aves", "extinção","aves", "extinção","aves", "extinção","aves", "extinção","aves", "extinção","aves", "extinção","aves", "extinção","aves", "extinção","aves", "extinção","aves", "extinção"],
         pollCreation: new Date('February 15, 2023 09:00:00'),
         pollClosing: new Date('May 20, 2025, 14:30:00'),
         category: "Ciência",
@@ -349,7 +358,31 @@ function TelaPesquisa() {
         if(index == 3) {setSortedPolls([...poll].sort((a, b) => b.pollCreation.getTime() - a.pollCreation.getTime()));}
         else  setSortedPolls(poll);
     };
-
+    function PollCardWithHeight(props: {
+        title: string;
+        description: string;
+        creator: string;
+        category: string;
+        expiry: Date;
+        tags: string[];
+        height: string; // Defina o tipo como string para a altura
+      }) {
+        const { title, description, creator, category, expiry, tags, height } = props;
+      
+        return (
+          <div style={{ height: height }}>
+            <PollCard
+              title={title}
+              description={description}
+              creator={creator}
+              category={category}
+              expiry={expiry}
+              tags={tags}
+            />
+          </div>
+        );
+      }
+      
       return (
         <>
         <div className="main">
@@ -376,12 +409,28 @@ function TelaPesquisa() {
                                 expiry={poll.pollClosing}
                                 tags={poll.tags}
                             ></PollCard>
+                <div className="row row-eq-height row-cols-4 fileira">
+                    {sortedPolls.map(poll => (
+                        <div  className="col mb-4">
+                            <div className='colunas'>
+                                <PollCardWithHeight
+                                    title={poll.title}
+                                    description={""}
+                                    creator={poll.creator}
+                                    category={poll.category}
+                                    expiry={poll.pollClosing}
+                                    tags={poll.tags}
+                                    height="247px"
+                                ></PollCardWithHeight>
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
             <div className="footer">
                     <Footer/>      
+            <div>
+                <Footer/>
             </div>
         </div>
           </>
