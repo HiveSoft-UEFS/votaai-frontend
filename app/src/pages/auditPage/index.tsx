@@ -35,13 +35,13 @@ const modalStyleAuditePage = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: 'rgba(0, 0, 0, 0.5)', // Cor de fundo do modal
+  backgroundColor: 'rgba(0, 0, 0, 0.5)', 
 };
 
 const contentStyleAuditPage = {
   width: 400,
-  maxHeight: 'calc(100vh - 100px)', // Altura máxima ajustada para o tamanho da tela
-  overflowY: 'auto', // Adiciona scroll caso o conteúdo seja maior que a altura máxima
+  maxHeight: 'calc(100vh - 100px)', 
+  overflowY: 'auto', 
   backgroundColor: 'white',
   padding: '16px',
   borderRadius: '8px',
@@ -65,12 +65,12 @@ const AuditPage = () => {
         throw new Error('Erro ao auditar');
       }
       const data = await response.json();
-      setAuditResult(data); // Define o resultado da auditoria
-      setModalIsOpen(true); // Abre o modal após receber os dados
+      setAuditResult(data); 
+      setModalIsOpen(true); 
     } catch (error) {
       setErrorOccurred(true)
       console.error('Erro ao auditar:', error);
-      // Tratar erro ou exibir mensagem ao usuário
+      
     }
   };
 
@@ -80,7 +80,7 @@ const AuditPage = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
-    setAuditResult(null); // Limpar as informações ao fechar o modal
+    setAuditResult(null); 
   };
 
   const handleNext = () => {
@@ -92,7 +92,7 @@ const AuditPage = () => {
   };
 
   const handleCloseErrorAlert = () => {
-    setErrorOccurred(false); // Fecha o alerta de erro ao clicar no ícone de fechar
+    setErrorOccurred(false); 
   };
 
   return (
@@ -113,7 +113,7 @@ const AuditPage = () => {
                     <Stack sx={{ 
                       width: '50%',
                       borderRadius: '5px',
-                      position: 'absolute', // Changed from 'absolute' to 'relative'
+                      position: 'absolute', 
                       marginTop: '32%',
                       zIndex: 1
                     }} spacing={2}>
@@ -197,7 +197,7 @@ const AuditPage = () => {
 
                 <MobileStepper
                   variant="dots"
-                  steps={auditResult.questions.length + 1} // +1 for creator info
+                  steps={auditResult.questions.length + 1} 
                   position="static"
                   activeStep={activeStep}
                   sx={{ maxWidth: 400, flexGrow: 1 }}
