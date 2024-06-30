@@ -1,10 +1,100 @@
-import React from "react";
+import React, { useState } from 'react';
 import './auditPage.css';
 import BasePage from "../../components/basePage";
 import questionIcon from '../../assets/img/question.png';
 import confirmIcon from '../../assets/img/confirm.png'
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import logo from "./logo-nome.png";
+import hivesoft_inc from "./HiveSoft-Inc.png";
+import MobileStepper from '@mui/material/MobileStepper';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
+interface AuditResult {
+  creator_name: string;
+  creation_date: string;
+  finish_date: string;
+  status: string;
+  title: string;
+  description: string;
+  questions: {
+    title: string;
+    options: {
+      text: string;
+      img: string[];
+    }[];
+  }[];
+}
+
+const modalStyleAuditePage = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)', // Cor de fundo do modal
+};
+
+const contentStyleAuditPage = {
+  width: 400,
+  maxHeight: 'calc(100vh - 100px)', // Altura máxima ajustada para o tamanho da tela
+  overflowY: 'auto', // Adiciona scroll caso o conteúdo seja maior que a altura máxima
+  backgroundColor: 'white',
+  padding: '16px',
+  borderRadius: '8px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: 2
+};
 
 const AuditPage = () => {
+  const [auditCode, setAuditCode] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [auditResult, setAuditResult] = useState<AuditResult | null>(null);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [errorOccurred, setErrorOccurred] = React.useState(false);
+
+  const handleAudit = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/vote/${auditCode}/`);
+      if (!response.ok) {
+        throw new Error('Erro ao auditar');
+      }
+      const data = await response.json();
+      setAuditResult(data); // Define o resultado da auditoria
+      setModalIsOpen(true); // Abre o modal após receber os dados
+    } catch (error) {
+      setErrorOccurred(true)
+      console.error('Erro ao auditar:', error);
+      // Tratar erro ou exibir mensagem ao usuário
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAuditCode(event.target.value);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setAuditResult(null); // Limpar as informações ao fechar o modal
+  };
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleCloseErrorAlert = () => {
+    setErrorOccurred(false); // Fecha o alerta de erro ao clicar no ícone de fechar
+  };
+
   return (
     <BasePage username="NomeUsuário" title="AUDITORIA">
       <div className="audit-content">
@@ -13,9 +103,23 @@ const AuditPage = () => {
             type="text"
             placeholder="Digite o código de participação"
             className="audit-input"
+            value={auditCode}
+            onChange={handleChange}
             />
-            <button className="audit-button">Auditar</button>
+            <button className="audit-button" onClick={handleAudit}>Auditar</button>
+
         </div>
+        {errorOccurred && (
+                    <Stack sx={{ 
+                      width: '50%',
+                      borderRadius: '5px',
+                      position: 'absolute', // Changed from 'absolute' to 'relative'
+                      marginTop: '32%',
+                      zIndex: 1
+                    }} spacing={2}>
+          <Alert severity="error" onClose={handleCloseErrorAlert}>Erro ao auditar. Tente novamente.</Alert>
+        </Stack>
+      )}
        
         <div className="audit-info">
           <div className="audit-info-section">
@@ -33,6 +137,93 @@ const AuditPage = () => {
           </div>
         </div>
       </div>
+      
+      <Modal
+        open={modalIsOpen}
+        onClose={closeModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{ ...modalStyleAuditePage }}>
+          <Box sx={{ ...contentStyleAuditPage }}>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2}}>
+                        <img src={logo}
+                             alt="logo.png"
+                             style={{marginTop: '16px', maxWidth: '100%'}}/>
+                    </Box>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Informações da Auditoria
+            </Typography>
+
+            {auditResult && (
+              <div>
+                {activeStep === 0 && (
+                  <div>
+                    <Typography id="modal-modal-description">
+                      Creator Name: {auditResult.creator_name}
+                    </Typography>
+                    <Typography id="modal-modal-description">
+                      Creation Date: {auditResult.creation_date}
+                    </Typography>
+                    <Typography id="modal-modal-description">
+                      Finish Date: {auditResult.finish_date}
+                    </Typography>
+                    <Typography id="modal-modal-description">
+                      Status: {auditResult.status}
+                    </Typography>
+                    <Typography id="modal-modal-description">
+                      Title: {auditResult.title}
+                    </Typography>
+                    <Typography id="modal-modal-description">
+                      Description: {auditResult.description}
+                    </Typography>
+                  </div>
+                )}
+
+                {activeStep > 0 && (
+                  <div>
+                    <Typography id="modal-modal-description">
+                      {auditResult.questions[activeStep - 1].title}
+                    </Typography>
+                    <ul>
+                      {auditResult.questions[activeStep - 1].options.map((option, idx) => (
+                        <li key={idx}>
+                          Text: {option.text}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <MobileStepper
+                  variant="dots"
+                  steps={auditResult.questions.length + 1} // +1 for creator info
+                  position="static"
+                  activeStep={activeStep}
+                  sx={{ maxWidth: 400, flexGrow: 1 }}
+                  nextButton={
+                    <Button size="small" onClick={handleNext} disabled={activeStep === auditResult.questions.length}>
+                      Next
+                      <KeyboardArrowRight />
+                    </Button>
+                  }
+                  backButton={
+                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                      <KeyboardArrowLeft />
+                      Back
+                    </Button>
+                  }
+                />
+              </div>
+            )}
+
+            <Button variant="contained" onClick={closeModal}>Fechar</Button>
+            <Box sx={{ width: '200px', height: '20px', marginTop: '16px' }}>
+              <img src={hivesoft_inc} alt="hivesoft-inc" style={{ width: '100%', height: '100%', objectFit: 'fill' }} />
+            </Box>
+          </Box>
+        </Box>
+      </Modal>      
     </BasePage>
   );
 };
