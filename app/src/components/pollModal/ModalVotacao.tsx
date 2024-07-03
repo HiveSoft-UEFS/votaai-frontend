@@ -167,7 +167,6 @@ const ModalVotacao = ({openModal,goClose,poll}:PollModalProps) => {
               <Box sx={elaboracao}>
                 <div style={fontTitle}>{poll.title}</div>
                 <div style={fontDescription}>{poll.description}</div>
-                <div>{JSON.stringify(selectedOptions)}</div>
               
 
               </Box>
