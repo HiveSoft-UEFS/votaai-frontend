@@ -14,7 +14,7 @@ function App() {
     return (
         <Routes>
             <Route exact path="/" element={<Welcome />}/>
-            <Route path="/perfil" element={<ProfileScreen />}/>
+            <Route path="/perfil" element={<ProfileScreen userId={3}/>}/>
             <Route path="/criar-enquete" element={<CreatePollPage />}/>
             <Route path="/auditoria" element={<AuditPage />}/>
             <Route path="/historico" element={<History />}/>
