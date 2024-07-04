@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Modal, Box, IconButton, Pagination } from '@mui/material';
 import { CheckCircleOutline, ArrowCircleUp, Close, ArrowBack } from '@mui/icons-material';
-import Options from './Options';
+import Options from './options';
 
 import '@fontsource/poppins';
 import { centerModal, elaboracao, fontDescription, fontTitle, infoModal, modalStyle, tracoTela } from './styleModal';

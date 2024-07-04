@@ -8,7 +8,7 @@ import ProfileScreen from "./pages/profileScreen";
 import CreatePollPage from "./pages/CreatePollPage";
 import AuditPage from "./pages/auditPage";
 import History from "./pages/historyPage";
-import AboutPage from "./pages/aboutPage";
+import SearchPage from "./pages/searchPage";
 
 function App() {
     return (
@@ -19,8 +19,7 @@ function App() {
             <Route path="/auditoria" element={<AuditPage />}/>
             <Route path="/historico" element={<History />}/>
             <Route path="/home" element={<HomeScreen />}/>
-            <Route path="/sobre" element={<AboutPage/>}/>
-            <Route path="/contato" element={<AboutPage/>}/>
+            <Route path="/search" element={<SearchPage/>}/>
         </Routes>
     );
 }

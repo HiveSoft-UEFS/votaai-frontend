@@ -12,6 +12,7 @@ import {useNavigate} from 'react-router-dom';
 import Logo_1 from "../../assets/img/logo_1.svg";
 import Logo_2 from "../../assets/img/logo_2.svg";
 import ProfileImg from  "../../assets/img/ProfileIcon.svg";
+import { Link } from 'react-router-dom';
 
 
 const Navbar: React.FC = () => {
@@ -27,9 +28,11 @@ const Navbar: React.FC = () => {
 
             <div className='c-search-navbar'>
                 <input type="text" placeholder='  Digite um código ou uma tag'/>
-                <div className='search-icon-navbar'>
-                    <SearchIcon/>
+                
+                <div className='search-icon-navbar'>                
+                <Link to="/search"><SearchIcon/></Link>
                 </div>
+                
             </div>
 
             <div className='c-buttons-navbar'>
