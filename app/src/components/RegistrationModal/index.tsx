@@ -50,7 +50,7 @@ function RegistrationModal({open, handleClose}: RegistrationModalProps) {
             <Box
                 sx={{
                     width: 400,
-                    height: 800,
+                    height: 900,
                     backgroundColor: 'white',
                     padding: '16px',
                     borderRadius: '8px',
@@ -64,7 +64,17 @@ function RegistrationModal({open, handleClose}: RegistrationModalProps) {
                          alt="logo.png"
                          style={{marginTop: '16px', maxWidth: '100%'}}/>
                 </Box>
-                <TextField id="name" label="Nome Completo" InputProps={{
+                <TextField id="name" label="Nome" InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <AccountCircle/>
+                        </InputAdornment>
+                    ),
+                }} variant="outlined"
+                           fullWidth
+                           margin="normal"/>
+
+                <TextField id="name" label="Sobrenome" InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <AccountCircle/>

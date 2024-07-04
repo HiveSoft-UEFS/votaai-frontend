@@ -10,7 +10,6 @@ import AuditPage from "./pages/auditPage";
 import History from "./pages/historyPage";
 import AboutPage from "./pages/aboutPage";
 
-
 function App() {
     return (
         <Routes>
