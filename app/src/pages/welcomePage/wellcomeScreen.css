@@ -32,3 +32,7 @@
     color: #f0f3f1;
     text-align: center;
 }
+
+body {
+    overflow-x: hidden; /* Impede a rolagem horizontal */
+}

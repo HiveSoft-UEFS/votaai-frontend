@@ -3,47 +3,27 @@
 
 
 
-.customCard {
-    background-color: transparent;
-    color: white;
-    border: none;
-    font-family: 'Poppins', sans-serif;
-    width: 200px;
-    height: 250px;
-    top: 1345px;
-    left: 129px;
-    gap: 0px;
-    opacity: 0px;
-
+.infoContent {
+    width: 60%;
 }
 
-.iconContainer {
-    position: relative;
-    display: inline-block;
-}
-
-.background {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-}
-
-.icon {
+.infoContent h2 {
+    margin-bottom: 10px;
+    font-family: "Poppins", sans-serif;
     color: #2EBB83;
-    font-size: 40px !important;
-    position: relative !important;
-    margin-left: 10px !important;
-    width: 30px;
-    height: 30px;
+    font-size: 35px;
+    height: 40px;
 }
 
-.title {
-    color: #2EBB83;
-    font-family: Poppins !important;
-    font-weight: bold !important;
+.infoContent p {
+    line-height: 1.5;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+    color: #7e7d7d;
+    font-size: 22px;
 }
 
-.description {
-    color: #B4B3B3;
-    font-family: Roboto !important;
+.infoContent img {
+    width: 30%;
+    margin-bottom: 5%;
 }
