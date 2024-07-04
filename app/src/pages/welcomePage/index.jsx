@@ -9,9 +9,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import RegistrationModal from "../../components/RegistrationModal";
 import LoginModal from '../../components/loginScreen';
 import InfoCard from "../../components/infoCard";
-import HowToVoteIcon from '@mui/icons-material/HowToVote';
-import ShieldIcon from '@mui/icons-material/Shield';
-import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
+import voteIcon from "../../assets/img/voteIcon.png";
+import grafIcon from "../../assets/img/grafIcon.png";
+import confirmIcon from "../../assets/img/confirm.png";
 import Footer from "../../components/footer";
 import PollCarrousel from "../../components/carousel";
 
@@ -65,21 +65,21 @@ export default function WelcomePage() {
                         <InfoCard
                             title="Elaboração"
                             description="Crie, gerencie, compartilhe enquetes com quem quiser, de forma online, segura e confiável"
-                            icon={<HowToVoteIcon/>}
+                            icon={voteIcon}
                         />
                     </Col>
                     <Col className="d-flex justify-content-center align-items-center">
                         <InfoCard
                             title="Auditoria"
                             description="Utilizando o poderoso método de criptografia por hash MD5, todas nossas enquetes são auditáveis"
-                            icon={<ShieldIcon/>}
+                            icon={confirmIcon}
                         />
                     </Col>
                     <Col className="d-flex justify-content-center align-items-center">
                         <InfoCard
                             title="Participação"
                             description="Participe de enquetes publicas do seu interesse, ou de uma votação a qual você foi convocado"
-                            icon={<SignalCellularAltIcon/>}
+                            icon={grafIcon}
                         />
                     </Col>
                 </Row>
