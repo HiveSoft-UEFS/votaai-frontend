@@ -24,9 +24,9 @@
     top: 50px;
     width: 350px;
     height: 80px;
-
+    background-image: url('../../assets/img/backgroundTitle.svg');
     display: grid;
-    grid-template-rows: 7px 1fr 7px;
+
 }
 
 .c-Img {
