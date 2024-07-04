@@ -5,13 +5,17 @@ import SideMenu from './components/sideMenu';
 import PollCard from "./components/pollCard";
 import RegistrationModal from "./components/RegistrationModal";
 import BasePage from './components/basePage';
+import AuditPage from './pages/auditPage';
+import homePage from './pages/homePage';
+import HomePage from './pages/homePage';
+
+const initialMenuItem = 'PERFIL';
 
 function App() {
   return (
-    <BasePage username='pimpolho' title='PERFIL'/>
+    <HomePage></HomePage>
   );
 }
-
 
 
 export default App;
