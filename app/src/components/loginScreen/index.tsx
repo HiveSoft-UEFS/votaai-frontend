@@ -7,6 +7,7 @@ import hivesoft_inc from "./HiveSoft-Inc.png";
 import HttpsIcon from '@mui/icons-material/Https';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 interface LoginScreenProps {
     open: boolean;
@@ -14,6 +15,37 @@ interface LoginScreenProps {
 }
 
 function LoginScreen({open, handleClose}: LoginScreenProps) {
+    const navigate = useNavigate();
+
+    const [username, setUsername] = useState('');
+    const [senha, setSenha] = useState('');
+  
+    const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setUsername(event.target.value);
+    };
+  
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSenha(event.target.value);
+    };
+  
+    const handleLoginClick = async () => {
+      try {
+        console.log(username)
+        console.log(senha)
+        const response = await axios.post('http://127.0.0.1:8000/api/token/', {
+          username: username,
+          password: senha,
+        });
+  
+        console.log('Login successful:', response.data);      
+        localStorage.setItem('accessToken', response.data.access);
+        console.log(localStorage.getItem('accessToken'))  
+        navigate('/home');
+      } catch (error) {
+        //TODO: Exibir erro ao logar
+        console.error('Login failed:', error);        
+      }
+    };
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -64,7 +96,7 @@ function LoginScreen({open, handleClose}: LoginScreenProps) {
                              alt="logo.png"
                              style={{marginTop: '16px', maxWidth: '100%'}}/>
                     </Box>
-                    <TextField id="email" label="Email"
+                    <TextField id="username" label="Username"
                                InputProps={{
                                    startAdornment: (
                                        <InputAdornment position="start">
@@ -73,8 +105,9 @@ function LoginScreen({open, handleClose}: LoginScreenProps) {
                                    ),
                                }}
                                variant="outlined" fullWidth
-                               margin="normal"/>
-                    <TextField id="password" label="Senha"
+                               margin="normal"
+                               onChange={handleUsernameChange}/>
+                    <TextField id="senha" label="Senha"
                                InputProps={{
                                    startAdornment: (
                                        <InputAdornment position="start">
@@ -83,13 +116,14 @@ function LoginScreen({open, handleClose}: LoginScreenProps) {
                                    ),
                                }}
                                variant="outlined" fullWidth
-                               margin="normal"/>
+                               margin="normal"
+                               onChange={handlePasswordChange}/>
                     <Box sx={{
                         textAlign: "center",
                         flexDirection: 'column',
                         display: 'flex'
                     }}>
-                        <Button variant="contained">Login</Button>
+                        <Button variant="contained" onClick={handleLoginClick}>Login</Button>
                         <Button variant="text">Esqueci a senha</Button>
                         <Box sx={{width: '200px', height: '20px', marginTop: '16px'}}>
                             <img src={hivesoft_inc} alt="hivesoft-inc" style={{ width: '100%', height: '100%', objectFit: 'fill' }} />
