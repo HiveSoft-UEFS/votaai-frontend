@@ -13,8 +13,16 @@ async function getUserData(id: number) {
     }
 }
 /*Put*/
+async function create(userData: Object) {
+    try {
+        const response = await axios.post(`${ENDPOINT}/`, userData);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
 
+export { getUserData, create };
 
-
-export default getUserData;
 
