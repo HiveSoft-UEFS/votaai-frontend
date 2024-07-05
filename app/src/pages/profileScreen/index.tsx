@@ -2,7 +2,7 @@ import React, { useEffect, useState, ChangeEvent } from 'react';
 import BasePage from '../../components/basePage';
 import './profileScreen.css';
 import CustomButton from '../../components/customButton';
-import getUserData from '../../services/userServices';
+import { getUserData } from '../../services/userServices';
 
 
 interface UserData {
@@ -18,7 +18,7 @@ interface UserData {
     is_staff: boolean;
     last_login: string | null;
     is_admin: boolean;
-    
+
 }
 
 
@@ -30,7 +30,7 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
     //const [userData, setUserData] = useState<UserData | null>(null);
 
 
-    
+
     const [userData, setUserData] = useState({
         id: 0,
         cpf: "",
@@ -45,143 +45,143 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
         is_staff: true,
         last_login: null,
         is_admin: true
-      });
-      
-      const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    });
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setUserData({
-          ...userData,
-          [name]: value
+            ...userData,
+            [name]: value
         });
-      };
-      
-      useEffect(() => {
+    };
+
+    useEffect(() => {
         const fetchUserData = async () => {
-          try {
-            const data = await getUserData(userId); // Chama a função sem o endpoint
-            setUserData(data);
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
+            try {
+                const data = await getUserData(userId); // Chama a função sem o endpoint
+                setUserData(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         };
-      
+
         fetchUserData();
-      }, [userId]);
+    }, [userId]);
 
 
     return (
         <>
-        {!userData ? (
-            <div>Loading...</div>
-        ) : (
-        <BasePage username={userData.username} title="PERFIL">
-            <div className="profile-data-profile-screen">
-                
-                <div className="input-group-2-profile-screen">
-                    <label htmlFor="cpf">CPF</label>
-                    <input
-                        type="text"
-                        id="cpf"
-                        name="cpf" // Adicione o atributo name
-                        value={userData.cpf}
-                        className="profile-input-profile-screen"                        
-                        onChange={handleChange}
-                        readOnly
-                    />
-                </div>
+            {!userData ? (
+                <div>Loading...</div>
+            ) : (
+                <BasePage username={userData.username} title="PERFIL">
+                    <div className="profile-data-profile-screen">
 
-                <div className="input-group-2-profile-screen">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="text"
-                        id="email"
-                        name='email'
-                        value={userData.email}
-                        className="profile-input-profile-screen"
-                        onChange={handleChange}
-                    />
-                </div>
-            </div>
+                        <div className="input-group-2-profile-screen">
+                            <label htmlFor="cpf">CPF</label>
+                            <input
+                                type="text"
+                                id="cpf"
+                                name="cpf" // Adicione o atributo name
+                                value={userData.cpf}
+                                className="profile-input-profile-screen"
+                                onChange={handleChange}
+                                readOnly
+                            />
+                        </div>
 
-            <div className="profile-data-secondary-profile-screen">
-                <div className="input-group-2-profile-screen">
-                    <label htmlFor="firstName">Primeiro Nome</label>
-                    <input
-                        type="text"
-                        id="firstName"
-                        value={userData.name}
-                        className="profile-input-profile-screen"
-                        readOnly
-                    />
-                </div>
+                        <div className="input-group-2-profile-screen">
+                            <label htmlFor="email">Email</label>
+                            <input
+                                type="text"
+                                id="email"
+                                name='email'
+                                value={userData.email}
+                                className="profile-input-profile-screen"
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </div>
 
-                <div className="input-group-2-profile-screen">
-                    <label htmlFor="lastName">Sobrenome</label>
-                    <input
-                        type="text"
-                        id="lastName"
-                        value={userData.lname}
-                        className="profile-input-profile-screen"
-                        readOnly
-                    />
-                </div>
+                    <div className="profile-data-secondary-profile-screen">
+                        <div className="input-group-2-profile-screen">
+                            <label htmlFor="firstName">Primeiro Nome</label>
+                            <input
+                                type="text"
+                                id="firstName"
+                                value={userData.name}
+                                className="profile-input-profile-screen"
+                                readOnly
+                            />
+                        </div>
 
-                <div className="input-group-2-profile-screen">
-                    <label htmlFor="nomeUsuario">Nome de Usuário</label>
-                    <input
-                        type="text"
-                        id="nomeUsuario"
-                        name="username"
-                        value={userData.username}
-                        className="profile-input-profile-screen"
-                        onChange={handleChange}
-                    />
-                </div>
+                        <div className="input-group-2-profile-screen">
+                            <label htmlFor="lastName">Sobrenome</label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                value={userData.lname}
+                                className="profile-input-profile-screen"
+                                readOnly
+                            />
+                        </div>
 
-                <div className="input-group-secondary-2-profile-screen">
-                    <label htmlFor="votacaoCriada">Votação Criadas:</label>
-                    <input
-                        type="text"
-                        id="votacaoCriada"
-                        placeholder="0"
-                        className="profile-input-profile-screen"
-                        readOnly
-                    />
-                </div>
+                        <div className="input-group-2-profile-screen">
+                            <label htmlFor="nomeUsuario">Nome de Usuário</label>
+                            <input
+                                type="text"
+                                id="nomeUsuario"
+                                name="username"
+                                value={userData.username}
+                                className="profile-input-profile-screen"
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                <div className="input-group-secondary-2-profile-screen">
-                    <label htmlFor="votacaoParticipada">Votações Participadas:</label>
-                    <input
-                        type="text"
-                        id="votacaoParticipada"
-                        placeholder="0"
-                        className="profile-input-profile-screen"
-                        readOnly
-                        
-                    />
-                </div>
+                        <div className="input-group-secondary-2-profile-screen">
+                            <label htmlFor="votacaoCriada">Votação Criadas:</label>
+                            <input
+                                type="text"
+                                id="votacaoCriada"
+                                placeholder="0"
+                                className="profile-input-profile-screen"
+                                readOnly
+                            />
+                        </div>
 
-                <div className="button-profile-screen">
-                    <CustomButton
-                        text="Alterar Senha"
-                        bgcolor="#EBE5FC"
-                        text_color="#295478"
-                        font_family="Nunito, sans-serif"
-                        font_weight="Bold"
-                    />
-                </div>
+                        <div className="input-group-secondary-2-profile-screen">
+                            <label htmlFor="votacaoParticipada">Votações Participadas:</label>
+                            <input
+                                type="text"
+                                id="votacaoParticipada"
+                                placeholder="0"
+                                className="profile-input-profile-screen"
+                                readOnly
 
-                <div className="button-2-profile-screen">
-                    <CustomButton
-                        text="Alterar Dados"
-                        bgcolor="#EBE5FC"
-                        text_color="#295478"
-                        font_family="Nunito, sans-serif"
-                        font_weight="Bold"
-                    />
-                </div>
-            </div>
-        </BasePage> )} </>
+                            />
+                        </div>
+
+                        <div className="button-profile-screen">
+                            <CustomButton
+                                text="Alterar Senha"
+                                bgcolor="#EBE5FC"
+                                text_color="#295478"
+                                font_family="Nunito, sans-serif"
+                                font_weight="Bold"
+                            />
+                        </div>
+
+                        <div className="button-2-profile-screen">
+                            <CustomButton
+                                text="Alterar Dados"
+                                bgcolor="#EBE5FC"
+                                text_color="#295478"
+                                font_family="Nunito, sans-serif"
+                                font_weight="Bold"
+                            />
+                        </div>
+                    </div>
+                </BasePage>)} </>
     );
 };
 export default ProfileScreen;
