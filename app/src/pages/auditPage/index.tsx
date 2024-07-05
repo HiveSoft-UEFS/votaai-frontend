@@ -60,7 +60,14 @@ const AuditPage = () => {
 
   const handleAudit = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/vote/${auditCode}/`);
+      const token = localStorage.getItem('accessToken');
+      const response = await fetch(`http://localhost:8000/votes/${auditCode}/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Adiciona o token no header
+        }
+      });
       if (!response.ok) {
         throw new Error('Erro ao auditar');
       }
