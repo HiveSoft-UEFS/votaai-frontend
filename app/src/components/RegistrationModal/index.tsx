@@ -213,8 +213,4 @@ function RegistrationModal({ open, handleClose }: RegistrationModalProps) {
     );
 }
 
-
-
-
-
 export default RegistrationModal;
