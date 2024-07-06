@@ -58,7 +58,7 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const data = await getUserData(userId); // Chama a função sem o endpoint
+                const data = await getUserData(); // Chama a função sem o endpoint
                 setUserData(data);
             } catch (error) {
                 console.error('Error fetching data:', error);
