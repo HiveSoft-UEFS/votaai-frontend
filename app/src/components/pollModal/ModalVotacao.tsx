@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Box, IconButton, Pagination } from '@mui/material';
 import { CheckCircleOutline, ArrowCircleUp, Close, ArrowBack } from '@mui/icons-material';
-import Options from './Options';
+{/*import Options from './options';*/}
 
 import '@fontsource/poppins';
 import { centerModal, elaboracao, fontDescription, fontTitle, infoModal, modalStyle, tracoTela } from './styleModal';
@@ -171,11 +171,12 @@ const ModalVotacao = ({openModal,goClose,poll}:PollModalProps) => {
 
               </Box>
 
+              {/*
               {poll.question_field.map((src, index) => (
                 index === currentIndex ? <Options  question={poll.question_field[index]} onSelectionChange={handleSelectionChange}/> : null
                 
 
-              ))}
+              ))}*/}
               
               
 

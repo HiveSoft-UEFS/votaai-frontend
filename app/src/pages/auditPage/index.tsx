@@ -58,9 +58,19 @@ const AuditPage = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [errorOccurred, setErrorOccurred] = React.useState(false);
 
+
   const handleAudit = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/vote/${auditCode}/`);
+      const accessToken = localStorage.getItem('accessToken')
+      const url = `http://localhost:8000/votes/${auditCode}/`;
+      let opt: RequestInit = {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      };
+      const response = await fetch(url, opt);
       if (!response.ok) {
         throw new Error('Erro ao auditar');
       }
