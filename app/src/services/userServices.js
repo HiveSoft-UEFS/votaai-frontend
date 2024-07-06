@@ -3,9 +3,14 @@ import axios from 'axios';
 const ENDPOINT = 'http://127.0.0.1:8000/users'; // Definindo o endpoint aqui
 
 /*GET*/
-async function getUserData(id: number) {
+async function getUserData() {
     try {
-        const response = await axios.get(`${ENDPOINT}/${id}/`);
+        const token = localStorage.getItem('accessToken')
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+          
+        const response = await axios.get(`${ENDPOINT}/profile/`, {headers});
         return response.data;
     } catch (error) {
         console.error('Error fetching data:', error);
