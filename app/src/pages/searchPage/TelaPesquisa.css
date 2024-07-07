@@ -212,6 +212,7 @@ img {
     z-index: -5;
 }
 
+/*
 .footer {
     margin-top:auto; 
     z-index: 1000;
@@ -220,5 +221,5 @@ img {
     transform: translateX(-50%);
     left:50%;
     height: 170px;
-}
+}*/ 
 }
