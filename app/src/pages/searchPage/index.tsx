@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PollCard from "../../components/pollCard";
 import "./TelaPesquisa.css";
-import background from './background2.svg';
 import NavBar from "../../components/navbar";
 import Footer from "../../components/footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -51,6 +50,7 @@ const poll = [
 function TelaPesquisa() {
     const [activeButton, setActiveButton] = useState<number | null>(1);
     const [sortedPolls, setSortedPolls] = useState(poll);
+
     const handleButtonClick = (index: number) => {
         setActiveButton(index);
         if (index === 3) {
@@ -88,11 +88,7 @@ function TelaPesquisa() {
     return (
         <>
             <div className="main">
-                {/*<img src={background} alt="Imagem de Fundo da Página" />*/}
-                {/*<div className='navbar'>*/}
-                    <NavBar />
-                {/*</div>*/}
-                
+                <NavBar />
                 <div className='subnavbar'>
                     <div className="opcoesFiltro">
                         <button className={`${activeButton === 1 ? 'active button1' : 'button1'}`} onClick={() => handleButtonClick(1)}>Tudo</button>
@@ -133,9 +129,7 @@ function TelaPesquisa() {
                         ))}
                     </div>
                 </div>
-                <div className="footer">
-                    <Footer />
-                </div>
+                <Footer />
             </div>
         </>
     );
