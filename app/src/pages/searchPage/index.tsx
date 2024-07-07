@@ -88,10 +88,11 @@ function TelaPesquisa() {
     return (
         <>
             <div className="main">
-                <img src={background} alt="Imagem de Fundo da Página" />
-                <div className='navbar'>
+                {/*<img src={background} alt="Imagem de Fundo da Página" />*/}
+                {/*<div className='navbar'>*/}
                     <NavBar />
-                </div>
+                {/*</div>*/}
+                
                 <div className='subnavbar'>
                     <div className="opcoesFiltro">
                         <button className={`${activeButton === 1 ? 'active button1' : 'button1'}`} onClick={() => handleButtonClick(1)}>Tudo</button>
