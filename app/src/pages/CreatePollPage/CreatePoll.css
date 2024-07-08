@@ -14,7 +14,7 @@ body {
 .center-content {
     display: grid;
     place-items: center;
-    height: 112vh;
+    height: 100vh;
     min-width: 800px;
     margin: auto;
 }
@@ -27,7 +27,8 @@ body {
     margin: 2px auto;
     border-radius: 8px;
     max-width: 450px;
-    max-height: 900px;
+    max-height: 580px;
+    overflow-y: scroll;
 }
 
 .create-poll-form label {

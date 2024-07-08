@@ -8,17 +8,18 @@ import ProfileScreen from "./pages/profileScreen";
 import CreatePollPage from "./pages/CreatePollPage";
 import AuditPage from "./pages/auditPage";
 import History from "./pages/historyPage";
-
+import SearchPage from "./pages/searchPage";
 
 function App() {
     return (
         <Routes>
             <Route exact path="/" element={<Welcome />}/>
-            <Route path="/perfil" element={<ProfileScreen />}/>
+            <Route path="/perfil" element={<ProfileScreen userId={3}/>}/>
             <Route path="/criar-enquete" element={<CreatePollPage />}/>
             <Route path="/auditoria" element={<AuditPage />}/>
             <Route path="/historico" element={<History />}/>
             <Route path="/home" element={<HomeScreen />}/>
+            <Route path="/search" element={<SearchPage/>}/>
         </Routes>
     );
 }

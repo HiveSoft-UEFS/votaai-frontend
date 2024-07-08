@@ -7,9 +7,66 @@
 }
 
 .container-homePage {
+    height: auto;
+    padding-top: 150px;
+    background-image: url("../../assets/img/backgroundHome2.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: initial;
+
+}
+
+.c-content-homePage {
+    width: 100%;
+    height: 100%;
     display: grid;
-    grid-template-rows: 1fr 0px;
-    height: 1370px;
+    grid-template-rows: 15% 1fr 1fr;
+    margin-bottom: 100px;
+}
+
+.c-title-homePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    background-image: url("../../assets/img/iconsTitle.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.c-cards-homePage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+
+    background-image: url("../../assets/img/iconsCard.svg");
+    background-size: 75% 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.c-carousel-homePage {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+/*
+
+.apenasUmTesteLegal {
+
 }
 
 .container-content-homePage {
@@ -55,3 +112,4 @@
     align-items: center;
     z-index: -1;
 }
+*/
