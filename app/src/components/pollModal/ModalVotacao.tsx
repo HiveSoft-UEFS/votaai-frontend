@@ -1,12 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { Modal, Box, IconButton, Pagination } from '@mui/material';
-import { CheckCircleOutline, ArrowCircleUp, Close, ArrowBack } from '@mui/icons-material';
-{/*import Options from './options';*/}
+import { CheckCircleOutline, ArrowCircleUp, Close, ArrowBack, Token } from '@mui/icons-material';
+import Options from './Options';
 
 import '@fontsource/poppins';
 import { centerModal, elaboracao, fontDescription, fontTitle, infoModal, modalStyle, tracoTela } from './styleModal';
-import { text } from 'stream/consumers';
 
 
 
@@ -59,6 +58,14 @@ const ModalVotacao = ({openModal,goClose,poll}:PollModalProps) => {
 
 
 
+  const [token, setToken] = useState('');
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken !== null) {
+      setToken(accessToken);
+    }
+  }, []);
+
 
   
   
@@ -85,39 +92,33 @@ const ModalVotacao = ({openModal,goClose,poll}:PollModalProps) => {
   }
 
 
-  const postSelectedOptions = async (url: string, data: any) => {
+  const postSelectedOptions = async (url: string, token: string, data: any) => {
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          
         },
         body: JSON.stringify(data)
       });
-  
-      if (!response.ok) {
-        throw new Error('Erro na requisição');
-      }
-  
-      const result = await response.json();
-      return result;
     } catch (error) {
-      console.error('Erro ao enviar dados:', error);
-      throw error;
+      console.error('Erro ao enviar requisição:', error);
+      throw error; // Rejeita a Promise com o erro para tratamento externo
     }
   };
-  
 
 
 
 
   const goToFinalize = () => {
   
+    if (poll){
+      postSelectedOptions('http://localhost:8000/votes/',token,{ [poll.id]  : selectedOptions})
 
-    //postSelectedOptions('http://127.0.0.1:8000/votes/',{'questions': selectedOptions})
-
+    }
     
-    //logica para enviar para backend
+    
     goClose();
     };
   
@@ -171,12 +172,11 @@ const ModalVotacao = ({openModal,goClose,poll}:PollModalProps) => {
 
               </Box>
 
-              {/*
               {poll.question_field.map((src, index) => (
                 index === currentIndex ? <Options  question={poll.question_field[index]} onSelectionChange={handleSelectionChange}/> : null
                 
 
-              ))}*/}
+              ))}
               
               
 
