@@ -12,16 +12,7 @@ function AboutPage(){
     return(
             <>
             <section style={{ background: '#FFD006', display: "flex", alignItems: "center"}}>
-                <img style={{width: '100%', paddingTop: 207}} src={telaIncialSobre} alt='Tela inicial Sobre' />
-                <Button style = {{background: "#E9D495", 
-                                width: 250, left: 140, 
-                                top: 550, 
-                                position: "absolute", 
-                                height: 50, 
-                                color: "#343A40", 
-                                fontSize: 18}} variant = "text" ><InputAdornment position="start">
-                                                                    <KeyboardReturnIcon/>
-                                                                </InputAdornment>Voltar</Button>
+                <img style={{width: '100%', paddingTop: 207}} src={telaIncialSobre} alt='Tela inicial Sobre' />                
             </section>
             <section style={{display: "flex", alignItems: "center"}}>
                 <img style={{ width: '100%' }} src={telaMissaoVisao} alt='Tela inicial Sobre' />
