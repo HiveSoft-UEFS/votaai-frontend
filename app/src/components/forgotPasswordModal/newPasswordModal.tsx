@@ -19,8 +19,13 @@ function NewPasswordModal() {
     };
     return(
         <div>
-            <Button variant="contained" color="primary" onClick={handleOpen}>
-                Open Modal
+            <Button
+                variant="text"
+                color="primary"
+                onClick={handleOpen}
+                style={{ color: 'black', backgroundColor: 'transparent' }}
+            >
+                Recuperar a senha
             </Button>
             <Modal
                 open={open}
@@ -52,24 +57,11 @@ function NewPasswordModal() {
                              style={{marginTop: '-3px', maxWidth: '30%'}}/>
 
                     </Box>
-                    <TextField id="name" label="Nova senha"
-                               type={showPassword ? "text" : "password"}
-                               InputProps={{
-                                   startAdornment: (
-                                       <InputAdornment position="start">
-                                           <HttpsIcon/>
-                                       </InputAdornment>
-
-                                   ),
-                                   endAdornment: (
-                                       <InputAdornment position="end" onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
-                                           {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                                       </InputAdornment>
-                                   ),
-                               }} variant="outlined"
+                    <TextField id="confirm-code" label="Confirme o código"
+                               variant="outlined"
                                fullWidth
                                margin="normal"/>
-                    <TextField id="name" label="Confirmar nova senha"
+                    <TextField id="password" label="Nova senha"
                                type={showPassword ? "text" : "password"}
                                InputProps={{
                                    startAdornment: (
