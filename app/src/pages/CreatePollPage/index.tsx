@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BasePage from "../../components/basePage";
 import "./CreatePoll.css";
+import axios from 'axios';
 
 import { useTheme } from '@mui/material/styles';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -69,26 +70,62 @@ const CreatePoll = () => {
         setAtivarStep((prevAtivarStep) => Math.max(prevAtivarStep - 1, 0));
     };
 
+    const enviarEnquete = () => {
+        const data = {
+            title: titulo,
+            description: descricao,
+            finish_date: dataLimite.toISOString().substring(0, 10),
+            privacy: visibilidade,
+            questions: pages.map(page => ({
+                title: page.titulo,
+                max_qtd_choices: page.maxOpcoes,
+                options: page.opcoes.map(opcao => ({
+                    text: opcao.valor,
+                    img: null // Supondo que não há imagem por enquanto
+                }))
+            }))
+        };
+
+        axios.post('/api/polls/', data)
+            .then(response => {
+                console.log('Enquete criada com sucesso:', response.data);
+            })
+            .catch(error => {
+                console.error('Erro ao criar enquete:', error);
+            });
+    };
+
+    const todosCamposPreenchidos = () => {
+        if (!titulo || !descricao || !dataLimite || !categoria || !visibilidade) return false;
+        for (let page of pages) {
+            if (!page.titulo || !page.maxOpcoes) return false;
+            for (let opcao of page.opcoes) {
+                if (!opcao.valor) return false;
+            }
+        }
+        return true;
+    };
+
     return (
         <div className="div-main">
             <BasePage username="Caio Bruno" title="Criar Enquete">
                 <div className="center-content">
-                    <div style={{ backgroundColor: 'rgb(229, 242, 253)', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', padding: '3px', borderRadius: '8px', }}>
+                    <div style={{ backgroundColor: 'rgb(229, 242, 253)', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', padding: '3px', borderRadius: '8px' }}>
                         {ativarStep === pages.length && (
                             <div className="adicionar-remover-pag">
                                 <>
-                                <Button size="small" onClick={adicionarPagina} style={{ marginTop: '20px' }}>
-                                    Adicionar pergunta
-                                </Button>
-                                {pages.length > 1 && (
-                                    <Button size="small" onClick={removerPagina} style={{ marginTop: '20px', marginLeft: '10px' }}>
-                                        Remover pergunta
+                                    <Button size="small" onClick={adicionarPagina} style={{ marginTop: '20px' }}>
+                                        Adicionar pergunta
                                     </Button>
-                                )}
+                                    {pages.length > 1 && (
+                                        <Button size="small" onClick={removerPagina} style={{ marginTop: '20px', marginLeft: '10px' }}>
+                                            Remover pergunta
+                                        </Button>
+                                    )}
                                 </>
                             </div>
                         )}
-                        
+
                         {ativarStep === 0 && (
                             <div key="step0">
                                 <form className="create-poll-form" onSubmit={handleSubmit}>
@@ -181,9 +218,21 @@ const CreatePoll = () => {
                                             </label>
                                         ))}
                                     </form>
-                                    <div className="buttom-add-remove-options">
-                                        <button onClick={() => adicionarOpcao(page.id)}>+ opção</button>
-                                        <button onClick={() => removerOpcao(page.id)}>- opção</button>
+                                    <div className="buttom-add-remove-options" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+                                        <div>
+                                            <button onClick={() => adicionarOpcao(page.id)}>+ opção</button>
+                                            <button onClick={() => removerOpcao(page.id)}>- opção</button>
+                                        </div>
+                                        {ativarStep === pages.length && (
+                                            <Button
+                                                variant="contained"
+                                                onClick={enviarEnquete}
+                                                disabled={!todosCamposPreenchidos()}
+                                                sx={{ bgcolor: !todosCamposPreenchidos() ? '#ccc' : 'green', color: 'white' }}
+                                            >
+                                                Enviar
+                                            </Button>
+                                        )}
                                     </div>
                                 </div>
                             )
@@ -195,7 +244,7 @@ const CreatePoll = () => {
                                 steps={pages.length + 1}
                                 position="static"
                                 activeStep={ativarStep}
-                                sx={{ maxWidth: 500, flexGrow: 1, marginTop: '10px', color: '#04345c'}}
+                                sx={{ maxWidth: 500, flexGrow: 1, marginTop: '10px', color: '#04345c' }}
                                 nextButton={
                                     <Button size="small" onClick={proximoStep} disabled={ativarStep === pages.length}>
                                         Próximo
