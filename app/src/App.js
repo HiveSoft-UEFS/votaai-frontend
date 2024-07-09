@@ -9,6 +9,7 @@ import CreatePollPage from "./pages/CreatePollPage";
 import AuditPage from "./pages/auditPage";
 import History from "./pages/historyPage";
 import SearchPage from "./pages/searchPage";
+import AboutPage from "./pages/aboutPage";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/historico" element={<History />}/>
             <Route path="/home" element={<HomeScreen />}/>
             <Route path="/search" element={<SearchPage/>}/>
+            <Route path="/sobre" element={<AboutPage/>}/>
         </Routes>
     );
 }
