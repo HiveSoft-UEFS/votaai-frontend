@@ -12,8 +12,13 @@ function EmailModal() {
     const handleClose = () => setOpen(false);
     return(
         <div>
-            <Button variant="contained" color="primary" onClick={handleOpen}>
-                Open Modal
+            <Button
+                variant="text"
+                color="primary"
+                onClick={handleOpen}
+                style={{ color: 'black', backgroundColor: 'transparent' }}
+            >
+                Esqueceu a senha
             </Button>
             <Modal
                 open={open}
