@@ -18,7 +18,7 @@ function EmailModal() {
                 onClick={handleOpen}
                 style={{ color: 'black', backgroundColor: 'transparent' }}
             >
-                Recuperar a senha
+                Esqueceu a senha
             </Button>
             <Modal
                 open={open}
