@@ -149,91 +149,107 @@ const AuditPage = () => {
       </div>
       
       <Modal
-        open={modalIsOpen}
-        onClose={closeModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={{ ...modalStyleAuditePage }}>
-          <Box sx={{ ...contentStyleAuditPage }}>
-          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2}}>
-                        <img src={logo}
-                             alt="logo.png"
-                             style={{marginTop: '16px', maxWidth: '100%'}}/>
-                    </Box>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+  open={modalIsOpen}
+  onClose={closeModal}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Cor de fundo do modal
+  }}
+>
+  <Box
+    sx={{
+      width: 400,
+      height: 'auto', // Ajuste a altura conforme necessário
+      backgroundColor: 'white',
+      padding: '16px',
+      borderRadius: '8px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 2
+    }}
+  >
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+      <img src={logo} alt="logo.png" style={{ marginTop: '16px', maxWidth: '100%' }} />
+    </Box>
+
+    {auditResult && (
+      <div>
+        {activeStep === 0 && (
+          <div>
+            <Typography variant="h6" component="h2">
               Informações da Auditoria
             </Typography>
+            <Typography id="modal-modal-description">
+              Creator Name: {auditResult.creator_name}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Creation Date: {auditResult.creation_date}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Finish Date: {auditResult.finish_date}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Status: {auditResult.status}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Title: {auditResult.title}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Description: {auditResult.description}
+            </Typography>
+          </div>
+        )}
 
-            {auditResult && (
-              <div>
-                {activeStep === 0 && (
-                  <div>
-                    <Typography id="modal-modal-description">
-                      Creator Name: {auditResult.creator_name}
-                    </Typography>
-                    <Typography id="modal-modal-description">
-                      Creation Date: {auditResult.creation_date}
-                    </Typography>
-                    <Typography id="modal-modal-description">
-                      Finish Date: {auditResult.finish_date}
-                    </Typography>
-                    <Typography id="modal-modal-description">
-                      Status: {auditResult.status}
-                    </Typography>
-                    <Typography id="modal-modal-description">
-                      Title: {auditResult.title}
-                    </Typography>
-                    <Typography id="modal-modal-description">
-                      Description: {auditResult.description}
-                    </Typography>
-                  </div>
-                )}
+        {activeStep > 0 && (
+          <div>
+            <Typography variant="h6" component="h2">
+              {auditResult.questions[activeStep - 1].title}
+            </Typography>
+            <ul>
+              {auditResult.questions[activeStep - 1].options.map((option, idx) => (
+                <li key={idx}>
+                  Text: {option.text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-                {activeStep > 0 && (
-                  <div>
-                    <Typography id="modal-modal-description">
-                      {auditResult.questions[activeStep - 1].title}
-                    </Typography>
-                    <ul>
-                      {auditResult.questions[activeStep - 1].options.map((option, idx) => (
-                        <li key={idx}>
-                          Text: {option.text}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+        <MobileStepper
+          variant="dots"
+          steps={auditResult.questions.length + 1}
+          position="static"
+          activeStep={activeStep}
+          sx={{ maxWidth: 400, flexGrow: 1 }}
+          nextButton={
+            <Button size="small" onClick={handleNext} disabled={activeStep === auditResult.questions.length}>
+              Next
+              <KeyboardArrowRight />
+            </Button>
+          }
+          backButton={
+            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+              <KeyboardArrowLeft />
+              Back
+            </Button>
+          }
+        />
+      </div>
+    )}
 
-                <MobileStepper
-                  variant="dots"
-                  steps={auditResult.questions.length + 1} 
-                  position="static"
-                  activeStep={activeStep}
-                  sx={{ maxWidth: 400, flexGrow: 1 }}
-                  nextButton={
-                    <Button size="small" onClick={handleNext} disabled={activeStep === auditResult.questions.length}>
-                      Next
-                      <KeyboardArrowRight />
-                    </Button>
-                  }
-                  backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                      <KeyboardArrowLeft />
-                      Back
-                    </Button>
-                  }
-                />
-              </div>
-            )}
+    <Button variant="contained" onClick={closeModal}>Fechar</Button>
 
-            <Button variant="contained" onClick={closeModal}>Fechar</Button>
-            <Box sx={{ width: '200px', height: '20px', marginTop: '16px' }}>
-              <img src={hivesoft_inc} alt="hivesoft-inc" style={{ width: '100%', height: '100%', objectFit: 'fill' }} />
-            </Box>
-          </Box>
-        </Box>
-      </Modal>      
+    <Box sx={{ width: '200px', height: '20px', marginTop: '16px' }}>
+      <img src={hivesoft_inc} alt="hivesoft-inc" style={{ width: '100%', height: '100%', objectFit: 'fill' }} />
+    </Box>
+  </Box>
+</Modal>
+
     </BasePage>
   );
 };

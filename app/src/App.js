@@ -22,6 +22,7 @@ function App() {
             <Route path="/home" element={<HomeScreen />}/>
             <Route path="/search" element={<SearchPage/>}/>
             <Route path="/sobre" element={<AboutPage/>}/>
+            <Route exact path="/sair" element={<Welcome />}/>
         </Routes>
     );
 }

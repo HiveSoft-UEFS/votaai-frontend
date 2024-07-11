@@ -37,13 +37,13 @@ const Navbar: React.FC = () => {
 
             <div className='c-buttons-navbar'>
                 <CustomButton
+                    callback={() => navigate('/criar-enquete')}
                     text="Votação"
                     icon_component={<AddIcon/>}
                     bgcolor="#EBE5FC"
                     text_color="#295478"
                     font_family="Arial, sans-serif"
-                    font_weight="bold"
-                    callback={() => navigate('/votacao')}
+                    font_weight="bold"                    
                 />
                 <CustomButton
                     text="Histórico"
