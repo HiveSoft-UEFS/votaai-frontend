@@ -8,6 +8,7 @@ import HttpsIcon from '@mui/icons-material/Https';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
+import EmailModal from '../forgotPasswordModal/emailModal';
 
 interface LoginScreenProps {
     open: boolean;
@@ -124,7 +125,7 @@ function LoginScreen({open, handleClose}: LoginScreenProps) {
                         display: 'flex'
                     }}>
                         <Button variant="contained" onClick={handleLoginClick}>Login</Button>
-                        <Button variant="text">Esqueci a senha</Button>
+                        <EmailModal/>
                         <Box sx={{width: '200px', height: '20px', marginTop: '16px'}}>
                             <img src={hivesoft_inc} alt="hivesoft-inc" style={{ width: '100%', height: '100%', objectFit: 'fill' }} />
                         </Box>
