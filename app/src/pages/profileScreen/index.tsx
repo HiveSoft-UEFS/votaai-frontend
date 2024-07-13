@@ -2,7 +2,8 @@ import React, { useEffect, useState, ChangeEvent } from 'react';
 import BasePage from '../../components/basePage';
 import './profileScreen.css';
 import CustomButton from '../../components/customButton';
-import { getUserData } from '../../services/userServices';
+import { getUserData, update } from '../../services/userServices';
+import { Update } from '@mui/icons-material';
 
 
 interface UserData {
@@ -68,6 +69,16 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
         fetchUserData();
     }, [userId]);
 
+    const handleUpdate = async () => {
+        if (userData) {
+            try {
+                const updatedData = await update(userData);
+                console.log("User data updated successfully", updatedData);
+            } catch (error) {
+                console.error('Error updating data:', error);
+            }
+        }
+    };
 
     return (
         <>
@@ -178,6 +189,7 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
                                 text_color="#295478"
                                 font_family="Nunito, sans-serif"
                                 font_weight="Bold"
+                                callback={handleUpdate}
                             />
                         </div>
                     </div>

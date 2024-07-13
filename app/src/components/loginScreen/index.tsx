@@ -107,7 +107,8 @@ function LoginScreen({open, handleClose}: LoginScreenProps) {
                                variant="outlined" fullWidth
                                margin="normal"
                                onChange={handleUsernameChange}/>
-                    <TextField id="senha" label="Senha"
+                    <TextField 
+                    id="senha" label="Senha" type="password"
                                InputProps={{
                                    startAdornment: (
                                        <InputAdornment position="start">
