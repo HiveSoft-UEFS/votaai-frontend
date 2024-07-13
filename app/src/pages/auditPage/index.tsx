@@ -31,25 +31,7 @@ interface AuditResult {
   }[];
 }
 
-const modalStyleAuditePage = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-};
 
-const contentStyleAuditPage = {
-  width: 400,
-  maxHeight: 'calc(100vh - 100px)', 
-  overflowY: 'auto', 
-  backgroundColor: 'white',
-  padding: '16px',
-  borderRadius: '8px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: 2
-};
 
 const AuditPage = () => {
   const [auditCode, setAuditCode] = useState('');
@@ -77,6 +59,7 @@ const AuditPage = () => {
       const data = await response.json();
       setAuditResult(data); 
       setModalIsOpen(true); 
+      setAuditCode('')
     } catch (error) {
       setErrorOccurred(true)
       console.error('Erro ao auditar:', error);
@@ -157,13 +140,13 @@ const AuditPage = () => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Cor de fundo do modal
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
   }}
 >
   <Box
     sx={{
       width: 400,
-      height: 'auto', // Ajuste a altura conforme necessário
+      height: 'auto', 
       backgroundColor: 'white',
       padding: '16px',
       borderRadius: '8px',
@@ -182,25 +165,25 @@ const AuditPage = () => {
         {activeStep === 0 && (
           <div>
             <Typography variant="h6" component="h2">
-              Informações da Auditoria
+              Informações da Participação
             </Typography>
             <Typography id="modal-modal-description">
-              Creator Name: {auditResult.creator_name}
+              Nome do criador: {auditResult.creator_name}
             </Typography>
             <Typography id="modal-modal-description">
-              Creation Date: {auditResult.creation_date}
+              Data da criação: {auditResult.creation_date}
             </Typography>
             <Typography id="modal-modal-description">
-              Finish Date: {auditResult.finish_date}
+              Data da finalização: {auditResult.finish_date}
             </Typography>
             <Typography id="modal-modal-description">
               Status: {auditResult.status}
             </Typography>
             <Typography id="modal-modal-description">
-              Title: {auditResult.title}
+              Titulo: {auditResult.title}
             </Typography>
             <Typography id="modal-modal-description">
-              Description: {auditResult.description}
+              Descrição: {auditResult.description}
             </Typography>
           </div>
         )}
@@ -213,7 +196,7 @@ const AuditPage = () => {
             <ul>
               {auditResult.questions[activeStep - 1].options.map((option, idx) => (
                 <li key={idx}>
-                  Text: {option.text}
+                  {option.text}
                 </li>
               ))}
             </ul>

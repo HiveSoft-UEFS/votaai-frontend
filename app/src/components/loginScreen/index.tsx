@@ -48,26 +48,6 @@ function LoginScreen({open, handleClose}: LoginScreenProps) {
       }
     };
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-
-        const data = {
-            username: (document.getElementById('name') as HTMLInputElement).value,
-            nickname: (document.getElementById('nickname') as HTMLInputElement).value,
-            cpf: (document.getElementById('cpf') as HTMLInputElement).value,
-            email: (document.getElementById('email') as HTMLInputElement).value,
-            password: (document.getElementById('password') as HTMLInputElement).value,
-            passwordCheck: (document.getElementById('passwordCheck') as HTMLInputElement).value,
-        };
-
-        try {
-            const response = await axios.post('http://localhost:8000/api/register/', data);
-            console.log('Registration successful', response.data);
-        } catch (error) {
-            console.error('There was an error!', error);
-        }
-    };
-
     return(
         <div>
             <Modal
@@ -109,6 +89,7 @@ function LoginScreen({open, handleClose}: LoginScreenProps) {
                                margin="normal"
                                onChange={handleUsernameChange}/>
                     <TextField id="senha" label="Senha"
+                               type="password"
                                InputProps={{
                                    startAdornment: (
                                        <InputAdornment position="start">
