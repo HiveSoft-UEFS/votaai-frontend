@@ -30,7 +30,8 @@ const HomePage = () => {
                 </div>
 
                 <div className="c-cards-homePage">
-                    <OptionCard 
+                    <OptionCard
+                            callback={() => navigate('/criar-enquete')}
                             title="Compartilhe Pensamentos"
                             description="Seja parte de uma comunidade cada vez maior"
                             font_familyBtn="Arial, sans-serif"
@@ -38,8 +39,7 @@ const HomePage = () => {
                             text_colorBtn="#295478"
                             icon_componentBtn={<AddIcon/>}
                             bgcolorBtn="#EBE5FC"
-                            textBtn="CRIAR VOTAÇÃO"
-                            callback={() => navigate('#')}
+                            textBtn="CRIAR VOTAÇÃO"                            
                         />
                         <OptionCard 
                             title="Visualize cada Mudança"
