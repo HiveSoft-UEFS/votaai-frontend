@@ -17,7 +17,7 @@ async function getUserData() {
         throw error;
     }
 }
-/*Put*/
+/*Post*/
 async function create(userData: Object) {
     try {
         const response = await axios.post(`${ENDPOINT}/`, userData);
@@ -28,6 +28,23 @@ async function create(userData: Object) {
     }
 }
 
-export { getUserData, create };
+/*Patch*/
+async function update(userData) {
+    const pk = userData.id;
+    try {
+        const token = localStorage.getItem('accessToken');
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+
+        const response = await axios.patch(`${ENDPOINT}/${pk}/`, userData, { headers });
+        return response.data;
+    } catch (error) {
+        console.error('Error updating user data:', error.response ? error.response.data : error.message);
+        throw error;
+    }
+}
+export { getUserData, create, update };
 
 
