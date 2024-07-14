@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import './TelaPesquisa.css';
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import PollCard from "../../components/pollCard";
 import { useNavigate } from 'react-router-dom';
+import { getPollData, getPollSearch } from '../../services/pollServices';
 
-const poll = [
+const araujo = [
     {
         id: 1,
         title: "Melhor passarinho por país",
@@ -340,28 +341,48 @@ const poll = [
     },
 ]
 const SearchPage = () => {
-    const [activeButton, setActiveButton] = useState<number | null>(1);
-    const [sortedPolls, setSortedPolls] = useState(poll);
-    const handleButtonClick = (index: number) => {
-        setActiveButton(index);
-        if(index == 2) {setSortedPolls([...poll].sort((a, b) => b.pollCreation.getTime() - a.pollCreation.getTime()));}
-        else  setSortedPolls(poll);
-    };
+    const [activeButton, setActiveButton] = useState<string>('new');
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [polls, setPolls] = useState<any[]>([]);
+    const handleButtonClick = (index: string) => {setActiveButton(index);};
+    const fetchData = (searchTerm: string) => {setSearchTerm(searchTerm);};
+    useEffect(() => {
+        const fetchPolls = async () => {
+            try {
+                let data = searchTerm;
+                let polls=[];
+                console.log(data,'\n\n')
+                if (data.startsWith('#')) {
+                    polls = await getPollSearch(data.substring(1), activeButton, '', true, false);
+                } else if (data.startsWith('@')) {
+                    polls = await getPollSearch(data.substring(1), activeButton, '', false, true);
+                } else {
+                    polls = await getPollSearch(data, activeButton, '', false, false);
+                    console.log(polls)
+                }
+                setPolls(polls);
+            } catch (error) {
+                console.error('Erro ao obter dados da pesquisa:', error);
+            }
+        };
+
+        fetchPolls();
+    }, [searchTerm, activeButton]); 
     const navigate = useNavigate();
     return (
         <div className="container-searchPage"> 
-            <Navbar/>
+            <Navbar onSearchSubmit={fetchData} />
             <div className="c-content-searchPage">
                 <div className='subnavbar'>
                     <div className="opcoesFiltro">
-                        <button className={`${activeButton === 1 ? 'active button1' : 'button1'}`} onClick={() => handleButtonClick(1)}>Populares</button>
-                        <button className={`${activeButton === 2 ? 'active button2' : 'button2'}`} onClick={() => handleButtonClick(2)}>Recentes</button>
-                        <button className={`${activeButton === 3 ? 'active button3' : 'button3'}`} onClick={() => handleButtonClick(3)}>Antigas</button>
+                        <button className={`${activeButton === 'new' ? 'active button1' : 'button1'}`} onClick={() => handleButtonClick('new')}>Recentes</button>
+                        <button className={`${activeButton === 'old' ? 'active button2' : 'button2'}`} onClick={() => handleButtonClick('old')}>Antigas</button>
+                        <button className={`${activeButton === 'pop' ? 'active button3' : 'button3'}`} onClick={() => handleButtonClick('pop')}>Populares</button>
                     </div>
                 </div>
                 <div className="resultado">
                 <div className="row row-eq-height row-cols-4 fileira">
-                    {sortedPolls.map(poll => (
+                    {polls.map(poll => (
                         <div  className="col mb-4">
                             <div className='colunas'>
                                 <PollCard
@@ -369,9 +390,9 @@ const SearchPage = () => {
                                     description={""}
                                     creator={poll.creator}
                                     category={poll.category}
-                                    expiry={poll.pollClosing}
-                                    tags={poll.tags}
-                                    style={{ height: '290px' }}
+                                    expiry={new Date(poll.finish_date)}
+                                    tags={poll.tags.split('#').filter(Boolean)}
+                                    style={{ maxHeight: '350px' }}
                                 ></PollCard>
                             </div>
                         </div>

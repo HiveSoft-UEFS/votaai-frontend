@@ -103,6 +103,7 @@ body::-webkit-scrollbar {
     display: flex;
     margin-top: 40px;
     transform: translateX(16%);
+    min-height: 700px;
     max-height: 700px; 
     width:1400px; /* (1300/1920)*1488 */
     padding:0px;

@@ -13,10 +13,12 @@ import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
     const navigate = useNavigate();
+    const fetchData = async (searchTerm: string) => {
+    };
     return (
         <div className="container-homePage"> 
             
-            <Navbar/>
+            <Navbar onSearchSubmit={fetchData} />
 
             <div className="c-content-homePage">
 
