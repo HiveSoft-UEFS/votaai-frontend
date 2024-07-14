@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './navbar.css';
 import logo_navbar from '../../assets/img/votaaiLogo.png'
 import PersonIcon from '@mui/icons-material/Person';
@@ -14,8 +14,21 @@ import Logo_2 from "../../assets/img/logo_2.svg";
 import ProfileImg from  "../../assets/img/ProfileIcon.svg";
 import { Link } from 'react-router-dom';
 
+interface NavbarProps {
+    onSearchSubmit: (searchTerm: string) => void;
+}
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        onSearchSubmit(searchTerm.trim()); // Envia o termo de pesquisa para o componente pai
+    };
     const navigate = useNavigate();
 
     return (
@@ -26,14 +39,17 @@ const Navbar: React.FC = () => {
                 <img src={Logo_2} alt="" />
             </div>
 
-            <div className='c-search-navbar'>
-                <input type="text" placeholder='  Digite um código ou uma tag'/>
-                
-                <div className='search-icon-navbar'>                
-                <Link to="/search"><SearchIcon/></Link>
+            <form onSubmit={handleSearchSubmit} className='c-search-navbar'>
+                <input 
+                    type="text" 
+                    placeholder='Digite um código ou uma tag'
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+                <div className='search-icon-navbar'>
+                    <Link to="/search"><SearchIcon/></Link>
                 </div>
-                
-            </div>
+            </form>
 
             <div className='c-buttons-navbar'>
                 <CustomButton
