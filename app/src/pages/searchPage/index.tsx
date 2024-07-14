@@ -4,7 +4,7 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import PollCard from "../../components/pollCard";
 import { useNavigate } from 'react-router-dom';
-import { getPollData, getPollSearch } from '../../services/pollServices';
+import { getPollSearch } from '../../services/pollServices';
 
 const araujo = [
     {
@@ -341,7 +341,7 @@ const araujo = [
     },
 ]
 const SearchPage = () => {
-    const [activeButton, setActiveButton] = useState<string>('new');
+    const [activeButton, setActiveButton] = useState<string>('pop');
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [polls, setPolls] = useState<any[]>([]);
     const handleButtonClick = (index: string) => {setActiveButton(index);};
@@ -375,9 +375,9 @@ const SearchPage = () => {
             <div className="c-content-searchPage">
                 <div className='subnavbar'>
                     <div className="opcoesFiltro">
-                        <button className={`${activeButton === 'new' ? 'active button1' : 'button1'}`} onClick={() => handleButtonClick('new')}>Recentes</button>
-                        <button className={`${activeButton === 'old' ? 'active button2' : 'button2'}`} onClick={() => handleButtonClick('old')}>Antigas</button>
-                        <button className={`${activeButton === 'pop' ? 'active button3' : 'button3'}`} onClick={() => handleButtonClick('pop')}>Populares</button>
+                        <button className={`${activeButton === 'pop' ? 'active button1' : 'button1'}`} onClick={() => handleButtonClick('pop')}>Populares</button>
+                        <button className={`${activeButton === 'new' ? 'active button2' : 'button2'}`} onClick={() => handleButtonClick('new')}>Recentes</button>
+                        <button className={`${activeButton === 'old' ? 'active button3' : 'button3'}`} onClick={() => handleButtonClick('old')}>Antigas</button>
                     </div>
                 </div>
                 <div className="resultado">
