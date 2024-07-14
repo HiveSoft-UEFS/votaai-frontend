@@ -8,7 +8,7 @@ import ProfileScreen from "./pages/profileScreen";
 import CreatePollPage from "./pages/CreatePollPage";
 import AuditPage from "./pages/auditPage";
 import History from "./pages/historyPage";
-import SearchPage from "./pages/searchPage";
+// import SearchPage from "./pages/searchPage";
 import AboutPage from "./pages/aboutPage";
 import Logout from './pages/logout'
 import ProtectedRoute from './components/protectedRoute'
