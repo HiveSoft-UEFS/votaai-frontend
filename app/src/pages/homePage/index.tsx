@@ -9,18 +9,11 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import TaskIcon from '@mui/icons-material/Task';
 import Footer from "../../components/footer";
 import { useNavigate } from 'react-router-dom';
-import { getPollData, getPollSearch } from '../../services/pollServices';
 
 
 const HomePage = () => {
     const navigate = useNavigate();
     const fetchData = async (searchTerm: string) => {
-        try {
-            const data = await getPollSearch(searchTerm, 'new', '', false, false); // Supondo que getPollData faz a requisição e retorna os dados
-            console.log('Dados da pesquisa:', data); // Print dos dados recebidos no console
-        } catch (error) {
-            console.error('Erro ao obter dados da pesquisa:', error);
-        }
     };
     return (
         <div className="container-homePage"> 
