@@ -339,7 +339,7 @@ const poll = [
         ]
     },
 ]
-const HomePage = () => {
+const SearchPage = () => {
     const [activeButton, setActiveButton] = useState<number | null>(1);
     const [sortedPolls, setSortedPolls] = useState(poll);
     const handleButtonClick = (index: number) => {
@@ -349,9 +349,9 @@ const HomePage = () => {
     };
     const navigate = useNavigate();
     return (
-        <div className="container-homePage"> 
+        <div className="container-searchPage"> 
             <Navbar/>
-            <div className="c-content-homePage">
+            <div className="c-content-searchPage">
                 <div className='subnavbar'>
                     <div className="opcoesFiltro">
                         <button className={`${activeButton === 1 ? 'active button1' : 'button1'}`} onClick={() => handleButtonClick(1)}>Populares</button>
@@ -388,5 +388,5 @@ const HomePage = () => {
     );
 }
 
-export default HomePage;
+export default SearchPage;
 
