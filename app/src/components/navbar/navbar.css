@@ -5,7 +5,7 @@
     height: 80px;
     display: grid;
     grid-template-columns: 25% 1fr 1fr 10%;
-
+    z-index: 1000;
     background: linear-gradient(to right, #147b63 5%, #135b4b 95%);
     position: fixed;
 }

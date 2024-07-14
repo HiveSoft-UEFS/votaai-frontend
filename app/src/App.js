@@ -24,7 +24,7 @@ function App() {
                 <Route path="/auditoria" element={<AuditPage />}/>
                 <Route path="/historico" element={<History />}/>
                 <Route path="/home" element={<HomeScreen />}/>
-                <Route path="/search" element={<SearchPage/>}/>
+                {/* <Route path="/search" element={<SearchPage/>}/> */}
             </Route>
             <Route exact path="/sair" element={<Logout />}/>
         </Routes>

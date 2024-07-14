@@ -12,9 +12,10 @@ interface PollCardProps {
     category: string;
     expiry: Date;
     tags: string[];
+    style?: React.CSSProperties;
 }
 
-export default function PollCard({title, description, creator, category, expiry, tags}: PollCardProps){
+export default function PollCard({title, description, creator, category, expiry, tags, style}: PollCardProps){
 
     const category_colors: { [key: string]: string } = {
         "Entretenimento": "#FFD700",
@@ -43,7 +44,7 @@ export default function PollCard({title, description, creator, category, expiry,
     }
 
     return (
-        <Card className="poll-card">
+        <Card className="poll-card" style={style}>
             <CardContent>
                 <div className="poll-card-header">
                     <span className="poll-card-expiry">
