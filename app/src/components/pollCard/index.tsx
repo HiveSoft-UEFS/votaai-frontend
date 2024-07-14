@@ -16,18 +16,19 @@ interface PollCardProps {
 }
 
 export default function PollCard({title, description, creator, category, expiry, tags, style}: PollCardProps){
-
     const category_colors: { [key: string]: string } = {
-        "Entretenimento": "#FFD700",
-        "Ciência": "#FF6347",
-        "Ficção": "#4169E1",
-        "Cinema": "#c00a41",
-        "Música": "#FF69B4",
-        "Esportes": "#32CD32",
-        "Tecnologia": "#00BFFF",
-        "Política": "#FF1493",
-        "Educação": "#FF8C00",
-        "Outros": "#808080"
+        "entertainment": "#b20dff",
+        "science": "#03dfaf",
+        "fashion": "#fc92e1",
+        "art": "#ff1b1b",
+        "politics": "#2f0283",
+        "sports": "#258b0c",
+        "technology": "#0432ff",
+        "culture": "#3e8a97",
+        "tourism": "#49c24f",
+        "food": "#d8910d",
+        "curiosities": "#610359",
+        "random": "#808080"
     };
 
     const get_category_color = (category: string): string => {
@@ -54,7 +55,7 @@ export default function PollCard({title, description, creator, category, expiry,
                 <h2 className="poll-card-title">
                     {title}
                 </h2>
-                <hr className="poll-card-divider" style={{backgroundColor: get_category_color(category)}}/>
+                <hr className="poll-card-divider" style={{opacity: 0.7,backgroundColor: get_category_color(category)}}/>
                 <Typography variant="body2" component="p" className="poll-card-description">
                     {description}
                 </Typography>
