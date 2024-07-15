@@ -20,6 +20,8 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
     const [searchTerm, setSearchTerm] = useState('');
+    const [showMenu, setShowMenu] = useState(false);
+    const navigate = useNavigate();
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
@@ -29,7 +31,15 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
         event.preventDefault();
         onSearchSubmit(searchTerm.trim()); // Envia o termo de pesquisa para o componente pai
     };
-    const navigate = useNavigate();
+
+    const toggleMenu = () => {
+        setShowMenu(!showMenu);
+    };
+
+    const handleMenuItemClick = (route: string) => {
+        navigate(route);
+        setShowMenu(false); // Fecha o menu ao clicar em um item
+    };
 
     return (
         <div className='navbar-navbar'>
@@ -81,71 +91,19 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
                 />
             </div>
             
-            <div className='c-iconProfile-navbar'>
-                <img src={ProfileImg} alt="" />
+            <div className='c-iconProfile-navbar' onClick={toggleMenu}>
+                <img src={ProfileImg} alt="Profile" />
+                {showMenu && (
+                    <ul className='menu'>
+                        <li onClick={() => handleMenuItemClick('/home')}>Início</li>
+                        <li onClick={() => handleMenuItemClick('/auditoria')}>Auditoria</li>
+                        <li onClick={() => handleMenuItemClick('/sobre')}>Sobre</li>
+                        <li onClick={() => handleMenuItemClick('/')}>Sair</li>
+                    </ul>
+                )}
             </div>
         </div>
-
-
     );
 };
 
 export default Navbar;
-
-
-
-{/* 
-                <div className='icon-navbar'>
-                <PersonIcon style={{fontSize: '30px'}}/>
-            </div>
-            <div className='circle-navbar' onClick={() => navigate('/perfil')}>
-                <PanoramaFishEyeIcon style={{fontSize: '50px'}}/>
-            </div>
-
-            <img src={logo_navbar} alt="" className='logo-navbar'/>
-
-
-            <div className='search-box-navbar'>
-                <input type="text" placeholder='Digite um código ou uma tag'/>
-                <div className='search-icon-navbar'>
-                    <SearchIcon/>
-                </div>
-            </div>
-
-
-            <div className='button_container1-navbar'>
-                <CustomButton
-                    text="Votação"
-                    icon_component={<AddIcon/>}
-                    bgcolor="#EBE5FC"
-                    text_color="#295478"
-                    font_family="Arial, sans-serif"
-                    font_weight="bold"
-                    callback={() => navigate('/votacao')}
-                />
-            </div>
-
-            <div className='button_container2-navbar'>
-                <CustomButton
-                    text="Histórico"
-                    icon_component={<VisibilityIcon/>}
-                    bgcolor="#EBE5FC"
-                    text_color="#295478"
-                    font_family="Arial, sans-serif"
-                    font_weight="bold"
-                    callback={() => navigate('/historico')}
-                />
-            </div>
-
-            <div className='button_container3-navbar'>
-                <CustomButton
-                    text="Auditoria"
-                    icon_component={<TaskIcon/>}
-                    bgcolor="#EBE5FC"
-                    text_color="#295478"
-                    font_family="Arial, sans-serif"
-                    font_weight="bold"
-                    callback={() => navigate('/auditoria')}
-                />
-            </div>
-*/}

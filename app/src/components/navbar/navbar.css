@@ -5,9 +5,10 @@
     height: 80px;
     display: grid;
     grid-template-columns: 25% 1fr 1fr 10%;
-    z-index: 1000;
+
     background: linear-gradient(to right, #147b63 5%, #135b4b 95%);
     position: fixed;
+     z-index: 1000; /* Para garantir que o menu fique acima de outros elementos */
 }
 
 .c-logo-navbar {
@@ -57,12 +58,32 @@
     height: 100%;
 }
 
-.c-iconProfile-navbar > img {
-    max-height: 55px;
+.c-iconProfile-navbar:hover .menu {
+    display: block;
+}
+
+.menu {
+    list-style-type: none; /* Remove os pontos/bolinhas das listas */
+}
+
+.menu li {
+    padding: 10px;
+    text-align: center;
+    background-color: #ffffff; /* Fundo branco */
+    border-radius: 10px; /* Bordas arredondadas */
+    margin: 5px; /* Margem entre os itens */
+}
+
+.menu li:hover {
+    background-color: #295478; /* Cor de fundo ao passar o mouse */
     cursor: pointer;
 }
 
-
+.menu li a {
+    color: #147b63; /* Cor do texto */
+    text-decoration: none;
+    font-size: 16px;
+}
 
 
 
