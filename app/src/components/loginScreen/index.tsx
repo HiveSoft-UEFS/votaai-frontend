@@ -10,16 +10,27 @@ import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import EmailModal from '../forgotPasswordModal/emailModal';
 
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
 interface LoginScreenProps {
     open: boolean;
     handleClose: () => void;
 }
 
 function LoginScreen({open, handleClose}: LoginScreenProps) {
+    const [showPassword, setShowPassword] = useState(false);
+    const [senha, setSenha] = useState('');
+    const [username, setUsername] = useState('');
+
+    const togglePasswordVisibility = () => {
+        setShowPassword((prev) => !prev);
+    };
+
+
     const navigate = useNavigate();
 
-    const [username, setUsername] = useState('');
-    const [senha, setSenha] = useState('');
   
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setUsername(event.target.value);
@@ -108,17 +119,29 @@ function LoginScreen({open, handleClose}: LoginScreenProps) {
                                variant="outlined" fullWidth
                                margin="normal"
                                onChange={handleUsernameChange}/>
-                    <TextField id="senha" label="Senha" type="password"
+
+                    <TextField 
+                    id="senha" 
+                    label="Senha" 
+                    type={showPassword ? "text" : "password"}
+                    value={senha}
+                    onChange={handlePasswordChange}
                                InputProps={{
                                    startAdornment: (
                                        <InputAdornment position="start">
                                            <HttpsIcon/>
                                        </InputAdornment>
                                    ),
+                                   endAdornment: (
+                                    <InputAdornment position="end" onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
+                                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                                    </InputAdornment>
+                                ),
                                }}
-                               variant="outlined" fullWidth
-                               margin="normal"
-                               onChange={handlePasswordChange}/>
+                               variant="outlined"
+            fullWidth
+            margin="normal"
+        />
                     <Box sx={{
                         textAlign: "center",
                         flexDirection: 'column',
