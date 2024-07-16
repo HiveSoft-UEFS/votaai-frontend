@@ -7,7 +7,11 @@ import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import PollCard from "../pollCard";
 
-function Carousel() {
+interface CarouselProps {
+    current_filter: [string, string, string];
+}
+
+function Carousel( { current_filter }: CarouselProps) {
     const [cards, setCards] = useState<React.ReactElement[]>([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [slideDirection, setSlideDirection] = useState<
