@@ -2,8 +2,8 @@ import React, { useEffect, useState, ChangeEvent } from 'react';
 import BasePage from '../../components/basePage';
 import './profileScreen.css';
 import CustomButton from '../../components/customButton';
-import { getUserData } from '../../services/userServices';
-
+import { getUserData, update, getPollCounts } from '../../services/userServices';
+import UpdatePasswordModal from '../../components/forgotPasswordModal/updatePasswordModal';
 
 interface UserData {
     cpf: string;
@@ -18,48 +18,33 @@ interface UserData {
     is_staff: boolean;
     last_login: string | null;
     is_admin: boolean;
-
+    id: number; // Adicionando o id para atualizar o usuário
 }
 
-
-
 const ProfileScreen = ({ userId }: { userId: number }) => {
-
-
-
-    //const [userData, setUserData] = useState<UserData | null>(null);
-
-
-
-    const [userData, setUserData] = useState({
-        id: 0,
-        cpf: "",
-        email: "",
-        name: "",
-        lname: "",
-        username: "",
-        status: "",
-        role: "",
-        password: "",
-        is_active: true,
-        is_staff: true,
-        last_login: null,
-        is_admin: true
-    });
+    const [userData, setUserData] = useState<UserData | null>(null);
+    const [totalPollsCreated, setTotalPollsCreated] = useState(0);
+    const [totalPollsParticipated, setTotalPollsParticipated] = useState(0);
+    const [openModal, setOpenModal] = useState(false);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        setUserData({
-            ...userData,
-            [name]: value
-        });
+        if (userData) {
+            setUserData({
+                ...userData,
+                [name]: value,
+            });
+        }
     };
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const data = await getUserData(); // Chama a função sem o endpoint
+                const data = await getUserData();
                 setUserData(data);
+                const { totalCreatedPolls, totalParticipatedPolls } = await getPollCounts(data.id);
+                setTotalPollsCreated(totalCreatedPolls || 0);
+                setTotalPollsParticipated(totalParticipatedPolls || 0);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -68,6 +53,19 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
         fetchUserData();
     }, [userId]);
 
+    const handleUpdate = async () => {
+        if (userData) {
+            try {
+                const updatedData = await update(userData);
+                console.log("User data updated successfully", updatedData);
+            } catch (error) {
+                console.error('Error updating data:', error);
+            }
+        }
+    };
+
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
 
     return (
         <>
@@ -76,13 +74,12 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
             ) : (
                 <BasePage username={userData.username} title="PERFIL">
                     <div className="profile-data-profile-screen">
-
                         <div className="input-group-2-profile-screen">
                             <label htmlFor="cpf">CPF</label>
                             <input
                                 type="text"
                                 id="cpf"
-                                name="cpf" // Adicione o atributo name
+                                name="cpf"
                                 value={userData.cpf}
                                 className="profile-input-profile-screen"
                                 onChange={handleChange}
@@ -139,11 +136,11 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
                         </div>
 
                         <div className="input-group-secondary-2-profile-screen">
-                            <label htmlFor="votacaoCriada">Votação Criadas:</label>
+                            <label htmlFor="votacaoCriada">Votações Criadas:</label>
                             <input
                                 type="text"
                                 id="votacaoCriada"
-                                placeholder="0"
+                                value={totalPollsCreated.toString()}
                                 className="profile-input-profile-screen"
                                 readOnly
                             />
@@ -154,10 +151,9 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
                             <input
                                 type="text"
                                 id="votacaoParticipada"
-                                placeholder="0"
+                                value={totalPollsParticipated.toString()}
                                 className="profile-input-profile-screen"
                                 readOnly
-
                             />
                         </div>
 
@@ -168,6 +164,7 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
                                 text_color="#295478"
                                 font_family="Nunito, sans-serif"
                                 font_weight="Bold"
+                                callback={handleOpenModal} // Abre o modal
                             />
                         </div>
 
@@ -178,10 +175,19 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
                                 text_color="#295478"
                                 font_family="Nunito, sans-serif"
                                 font_weight="Bold"
+                                callback={handleUpdate}
                             />
                         </div>
                     </div>
-                </BasePage>)} </>
+
+                    {/* Modal de Atualização de Senha */}
+                    <UpdatePasswordModal 
+                    open={openModal} 
+                    onClose={handleCloseModal} />
+                </BasePage>
+            )}
+        </>
     );
 };
+
 export default ProfileScreen;
