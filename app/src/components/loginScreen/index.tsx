@@ -8,6 +8,8 @@ import HttpsIcon from '@mui/icons-material/Https';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import EmailModal from '../forgotPasswordModal/emailModal';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './LoginScreen.css';
 
 interface LoginScreenProps {
@@ -19,6 +21,7 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [senha, setSenha] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -28,6 +31,10 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSenha(event.target.value);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
   };
 
   const handleLoginClick = async () => {
@@ -80,7 +87,7 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
         <Box
           sx={{
             width: 400,
-            minHeight: isExpanded ? 500 : 500, // Aumentar altura se necessário
+            minHeight: isExpanded ? 650 : 500, // Aumentar altura se necessário
             backgroundColor: 'white',
             padding: '16px',
             borderRadius: '8px',
@@ -105,17 +112,28 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
             variant="outlined" fullWidth
             margin="normal"
             onChange={handleUsernameChange} />
-          <TextField id="senha" label="Senha" type="password"
+          <TextField 
+            id="senha" 
+            label="Senha" 
+            type={showPassword ? "text" : "password"}
+            value={senha}
+            onChange={handlePasswordChange}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <HttpsIcon />
                 </InputAdornment>
               ),
+              endAdornment: (
+                <InputAdornment position="end" onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </InputAdornment>
+              ),
             }}
-            variant="outlined" fullWidth
-            margin="normal"
-            onChange={handlePasswordChange} />
+            variant="outlined" 
+            fullWidth 
+            margin="normal" 
+          />
           {errorMessage && (
             <Typography color="error" sx={{ marginTop: '16px' }}>
               {errorMessage}
