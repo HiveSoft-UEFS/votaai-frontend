@@ -12,6 +12,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './LoginScreen.css';
 
+// Removendo imports duplicados
+// import Visibility from '@mui/icons-material/Visibility';
+// import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 interface LoginScreenProps {
   open: boolean;
   handleClose: () => void;
@@ -39,16 +43,21 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
 
   const handleLoginClick = async () => {
     try {
+      console.log(username)
+      console.log(senha)
       const response = await axios.post('http://127.0.0.1:8000/api/token/', {
         username: username,
         password: senha,
       });
 
+      console.log('Login successful:', response.data);
       localStorage.setItem('accessToken', response.data.access);
+      console.log(localStorage.getItem('accessToken'))
       navigate('/home');
     } catch (error) {
       setErrorMessage('Falha na autenticação. Usuário ou senha inválidos.');
       setIsExpanded(true); // Expand modal on error
+      console.error('Login failed:', error);
     }
   };
 
