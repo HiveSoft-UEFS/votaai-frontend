@@ -51,26 +51,6 @@ body {
     border-radius: 4px;
 }
 
-
-.checkbox {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-.checkbox-public-private, .checkbox-only-multiple {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 1;
-}
-
-.checkbox-only-multiple {
-    align-items: flex-start;
-}
-
-
-
 .adicionar-remover-pag{
     display: flex;
     justify-content: right;
@@ -91,7 +71,9 @@ body {
     margin-bottom: auto;
 }
 
-.buttom-add-remove-options button {
+.buttom-add-remove-options button.adicionar,
+.buttom-add-remove-options button.remover
+ {
     text-align: center;
     background-color: #00c760;
     color: rgb(0, 0, 0);
@@ -107,4 +89,8 @@ body {
 
 .buttom-add-remove-options button:hover {
     background-color: rgb(1, 142, 71);
+}
+
+.buttom-add-remove-options button.postar:hover {
+    background-color: rgb(4, 28, 207);
 }
