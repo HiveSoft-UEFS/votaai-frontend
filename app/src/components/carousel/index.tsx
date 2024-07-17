@@ -6,12 +6,29 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import PollCard from "../pollCard";
+import { getPollSearch } from "../../services/pollServices.js"
+import { Category } from "@mui/icons-material";
+
 
 interface CarouselProps {
     current_filter: [string, string, string];
 }
 
 function Carousel( { current_filter }: CarouselProps) {
+    
+
+    const fetchPolls = async () => {
+        try {
+            let polls = [];
+            polls = await getPollSearch('', '', current_filter[1], false, false);
+            console.log(polls)          
+        } catch {
+
+        }
+    };
+
+    fetchPolls();
+
     const [cards, setCards] = useState<React.ReactElement[]>([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [slideDirection, setSlideDirection] = useState<

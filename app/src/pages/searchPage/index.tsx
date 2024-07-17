@@ -346,12 +346,13 @@ const SearchPage = () => {
     const [polls, setPolls] = useState<any[]>([]);
     const handleButtonClick = (index: string) => {setActiveButton(index);};
     const fetchData = (searchTerm: string) => {setSearchTerm(searchTerm);};
+
     useEffect(() => {
         const fetchPolls = async () => {
             try {
                 let data = searchTerm;
                 let polls=[];
-                console.log(data,'\n\n')
+                console.log(data,'\n\n');
                 if (data.startsWith('#')) {
                     polls = await getPollSearch(data.substring(1), activeButton, '', true, false);
                 } else if (data.startsWith('@')) {
@@ -368,7 +369,9 @@ const SearchPage = () => {
 
         fetchPolls();
     }, [searchTerm, activeButton]); 
+
     const navigate = useNavigate();
+
     return (
         <div className="container-searchPage"> 
             <Navbar onSearchSubmit={fetchData} />

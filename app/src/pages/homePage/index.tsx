@@ -17,7 +17,7 @@ import Filter from "../../components/filter";
 const HomePage = () => {
 
     const categories_filter: [string, string, string][] = [
-        ["TODOS", "random", "#000000"],      // Black
+        ["TODOS", "all", "#000000"],      // Black
         ["TECNOLOGIA", "technology", "#FF4500"], // OrangeRed
         ["ENTRETENIMENTO", "entertainment", "#1E90FF"], // DodgerBlue
         ["ESPORTES", "sports", "#32CD32"],    // LimeGreen
