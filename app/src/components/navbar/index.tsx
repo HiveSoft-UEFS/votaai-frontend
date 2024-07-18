@@ -93,14 +93,14 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
             
             <div className='c-iconProfile-navbar' onClick={toggleMenu}>
                 <img src={ProfileImg} alt="Profile" />
-                {showMenu && (
+              {/*showMenu && (
                     <ul className='menu'>
                         <li onClick={() => handleMenuItemClick('/home')}>Início</li>
                         <li onClick={() => handleMenuItemClick('/auditoria')}>Auditoria</li>
                         <li onClick={() => handleMenuItemClick('/sobre')}>Sobre</li>
                         <li onClick={() => handleMenuItemClick('/')}>Sair</li>
                     </ul>
-                )}
+                )*/}
             </div>
         </div>
     );
