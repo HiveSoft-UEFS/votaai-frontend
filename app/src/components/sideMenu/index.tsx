@@ -7,9 +7,25 @@ interface SideMenuProps{
     onMenuItemClick: (menuItem: string) => void;
 }
 
+<<<<<<< Updated upstream
 function SideMenu({ userName, selectedMenuItem, onMenuItemClick }:SideMenuProps){
     const options = ['HOME','PERFIL','CRIAR VOTAÇÃO','AUDITORIA', 'HISTÓRICO', 'SAIR']
     return(
+=======
+function SideMenu({ userName, selectedMenuItem, onMenuItemClick }: SideMenuProps) {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const options = ['HOME', 'PERFIL', 'CRIAR ENQUETE', 'AUDITORIA', 'HISTORICO', 'SAIR'];
+
+    useEffect(() => {
+        const currentPath = location.pathname.substring(1).replace('-', ' ').toUpperCase();
+          if (options.includes(currentPath) && currentPath !== selectedMenuItem) {
+            onMenuItemClick(currentPath);
+        }
+    }, [location.pathname, selectedMenuItem, onMenuItemClick]);
+
+    return (
+>>>>>>> Stashed changes
         <section className='sideMenu'>
             <div className='profile'>
                 <div className="profile-picture">
