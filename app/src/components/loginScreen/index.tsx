@@ -96,7 +96,7 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
         <Box
           sx={{
             width: 400,
-            minHeight: isExpanded ? 650 : 500, // Aumentar altura se necessário
+            minHeight: isExpanded ? 500 : 500, // Aumentar altura se necessário
             backgroundColor: 'white',
             padding: '16px',
             borderRadius: '8px',
@@ -155,8 +155,8 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
           }}>
             <Button variant="contained" onClick={handleLoginClick}>Login</Button>
             <EmailModal />
-            <Box sx={{ width: '200px', height: '20px', marginTop: '16px', display: 'flex', justifyContent: 'center' }}>
-              <img src={hivesoft_inc} alt="hivesoft-inc" style={{ width: '100%', height: '100%', objectFit: 'fill' }} />
+            <Box sx={{ width: '200px', height: '20px', marginTop: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <img src={hivesoft_inc}  alt="hivesoft-inc" style={{width: '100%', height: '100%', objectFit: 'fill' }} />
             </Box>
           </Box>
         </Box>
