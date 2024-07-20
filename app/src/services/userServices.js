@@ -49,7 +49,7 @@ async function update(userData) {
 }
 
 /* PATCH - Atualizar Senha */
-async function updatePassword({ currentPassword, newPassword }) {
+async function updatePassword({ userId, currentPassword, newPassword }) {
     try {
         const token = localStorage.getItem('accessToken');
         const headers = {
@@ -62,7 +62,8 @@ async function updatePassword({ currentPassword, newPassword }) {
             new_password: newPassword
         };
 
-        const response = await axios.patch(`${ENDPOINT}/profile/${token.id}/`, requestData, { headers });
+        // Use o ID do usuário para construir a URL
+        const response = await axios.patch(`${ENDPOINT}/${userId}/`, requestData, { headers });
         return response.data;
     } catch (error) {
         console.error('Error updating password:', error.response ? error.response.data : error.message);
