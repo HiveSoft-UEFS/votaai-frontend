@@ -101,7 +101,7 @@ function Carousel({ current_filter }: CarouselProps) {
                                         creator={poll.creator}
                                         category={poll.category}
                                         expiry={new Date(poll.finish_date)}
-                                        tags={poll.tags.split('#').filter(Boolean)}
+                                        tags={(poll.tags || '').split('#').filter(Boolean)}
                                         style={{ maxHeight: '350px' }}
                                     />
                                 ))}
