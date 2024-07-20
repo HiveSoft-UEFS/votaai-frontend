@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import BasePage from "../../components/basePage";
 import "./CreatePoll.css";
 import axios from 'axios';
-import Notification from "../../components/notification/Notification";
 
 import { useTheme } from '@mui/material/styles';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -20,7 +19,6 @@ const CreatePoll = () => {
     const [visibilidade, setVisibilidade] = useState("Público");
     const [pages, setPages] = useState([{ id: 1, titulo: "", maxOpcoes: 1, opcoes: [{ id: 1, valor: "", img: "" }, { id: 2, valor: "", img: "" }] }]);
     const [ativarStep, setAtivarStep] = useState(0);
-    const [mensagem, setMensagem] = useState("")
 
     const tema = useTheme();
 
@@ -97,6 +95,43 @@ const CreatePoll = () => {
                 break;
         }
 
+        let categoryValue;
+        switch (categoria) {
+            case 'Entretenimento':
+                categoryValue = 'ENTERTAINMENT';
+                break;
+            case 'Tecnologia':
+                categoryValue = 'TECHNOLOGY';
+                break;
+            case 'Esportes':
+                categoryValue = 'SPORTS';
+                break;
+            case 'Alimentação':
+                categoryValue = 'FOOD';
+                break;
+            case 'Viagens':
+                categoryValue = 'TRAVEL';
+                break;
+            case 'Cultura e Arte':
+                categoryValue = 'CULTURE_ART';
+                break;
+            case 'Política e Sociedade':
+                categoryValue = 'POLITICS_SOCIAL';
+                break;
+            case 'Ciência e Educação':
+                categoryValue = 'SCIENCE_EDUCATION';
+                break;
+            case 'Moda e Beleza':
+                categoryValue = 'FASHION_BEAUTY';
+                break;
+            case 'Outros':
+                categoryValue = 'OTHER';
+                break;
+            default:
+                categoryValue = 'OTHER';
+                break;
+        }
+
         const data = {
             title: titulo,
             description: descricao,
@@ -113,7 +148,7 @@ const CreatePoll = () => {
             criation_date: new Date().toISOString().substring(0, 10), 
             status: 'OPEN', 
             creator: 1,
-            category: categoria
+            category: categoryValue
         };
     
         console.log("Dados da requisição: ", JSON.stringify(data, null, 2));
@@ -125,24 +160,12 @@ const CreatePoll = () => {
         })
         .then(response => {
             console.log('Enquete criada com sucesso:', response.data);
-            setMensagem("Enquete criada com sucesso!");
-            limparCampos();
         })
         .catch(error => {
             console.error('Erro ao criar enquete:', error.response ? error.response.data : error.message);
-            setMensagem("Erro ao criar enquete.");
         });
     };
     
-    const limparCampos = () => {
-        setTitulo("");
-        setDescricao("");
-        setDataLimite(new Date());
-        setCategoria("");
-        setVisibilidade("Público");
-        setPages([{ id: 1, titulo: "", maxOpcoes: 1, opcoes: [{ id: 1, valor: "", img: "" }, { id: 2, valor: "", img: "" }] }]);
-        setAtivarStep(0);
-    };
     
 
     const todosCamposPreenchidos = () => {
@@ -159,7 +182,6 @@ const CreatePoll = () => {
     return (
         <div className="div-main">
             <BasePage username="Caio Bruno" title="Criar Enquete">
-                <Notification message={mensagem} />
                 <div className="center-content">
                     <div style={{ backgroundColor: 'rgb(229, 242, 253)', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', padding: '3px', borderRadius: '8px' }}>
                         {ativarStep === pages.length && (
@@ -212,10 +234,10 @@ const CreatePoll = () => {
                                             <option value="SPORTS">Esportes</option>
                                             <option value="FOOD">Alimentação</option>
                                             <option value="TRAVEL">Viagens</option>
-                                            <option value="CULTURE">Cultura e Arte</option>
-                                            <option value="POLITICS">Política e Sociedade</option>
-                                            <option value="SCIENCE">Ciência e Educação</option>
-                                            <option value="FASHION">Moda e Beleza</option>
+                                            <option value="CULTURE_ART">Cultura e Arte</option>
+                                            <option value="POLITICS_SOCIAL">Política e Sociedade</option>
+                                            <option value="SCIENCE_EDUCATION">Ciência e Educação</option>
+                                            <option value="FASHION_BEAUTY">Moda e Beleza</option>
                                             <option value="OTHER">Outros</option>
                                         </select>
                                     </label>
@@ -273,18 +295,17 @@ const CreatePoll = () => {
                                     ))}
                                     <div className="buttom-add-remove-options" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
                                         <div>
-                                            <button type="button" className="adicionar" onClick={() => adicionarOpcao(page.id)}>+ opção</button>
-                                            <button type="button" className="remover" onClick={() => removerOpcao(page.id)}>- opção</button>
+                                            <button type="button" onClick={() => adicionarOpcao(page.id)}>+ opção</button>
+                                            <button type="button" onClick={() => removerOpcao(page.id)}>- opção</button>
                                         </div>
                                         {ativarStep === pages.length && (
                                             <Button
                                                 variant="contained"
-                                                className="postar"
                                                 onClick={enviarEnquete}
                                                 disabled={!todosCamposPreenchidos()}
-                                                sx={{ bgcolor: !todosCamposPreenchidos() ? '#ccc' : '#05078b', color: 'white' }}
+                                                sx={{ bgcolor: !todosCamposPreenchidos() ? '#ccc' : 'green', color: 'white' }}
                                             >
-                                                Postar
+                                                Enviar
                                             </Button>
                                         )}
                                     </div>

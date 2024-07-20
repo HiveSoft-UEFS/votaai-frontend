@@ -1,0 +1,25 @@
+/* Notification.css */
+.notification-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.notification {
+    padding: 16px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+}
+
+.close-button {
+    background-color: #00c760;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-left: 15px;
+}
