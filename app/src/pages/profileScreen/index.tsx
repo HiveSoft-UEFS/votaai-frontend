@@ -18,7 +18,7 @@ interface UserData {
     is_staff: boolean;
     last_login: string | null;
     is_admin: boolean;
-    id: number; // Adicionando o id para atualizar o usuário
+    id: number;
 }
 
 const initialUserData: UserData = {
@@ -42,6 +42,7 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
     const [totalPollsCreated, setTotalPollsCreated] = useState(0);
     const [totalPollsParticipated, setTotalPollsParticipated] = useState(0);
     const [openModal, setOpenModal] = useState(false);
+    const [updateStatus, setUpdateStatus] = useState<string | null>(null);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -74,9 +75,14 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
             try {
                 const updatedData = await update(userData);
                 console.log("User data updated successfully", updatedData);
+                setUpdateStatus('Dados atualizados com sucesso!');
             } catch (error) {
                 console.error('Error updating data:', error);
+                setUpdateStatus('Erro ao atualizar dados. Tente novamente.');
             }
+            
+            // Limpa a mensagem de status após segundos
+            setTimeout(() => setUpdateStatus(null), 1500);
         }
     };
 
@@ -169,26 +175,35 @@ const ProfileScreen = ({ userId }: { userId: number }) => {
                     />
                 </div>
 
-                <div className="button-profile-screen">
-                    <CustomButton
-                        text="Alterar Senha"
-                        bgcolor="#EBE5FC"
-                        text_color="#295478"
-                        font_family="Nunito, sans-serif"
-                        font_weight="Bold"
-                        callback={handleOpenModal} // Abre o modal
-                    />
-                </div>
+                <div className="profile-button-group">
+                    {/* Exibe a mensagem de status da atualização */}
+                    {updateStatus && (
+                        <div className={`update-status-message ${updateStatus ? 'show-status-message' : ''}`}>
+                            {updateStatus}
+                        </div>
+                    )}
 
-                <div className="button-2-profile-screen">
-                    <CustomButton
-                        text="Alterar Dados"
-                        bgcolor="#EBE5FC"
-                        text_color="#295478"
-                        font_family="Nunito, sans-serif"
-                        font_weight="Bold"
-                        callback={handleUpdate}
-                    />
+                    <div className="button-profile-screen">
+                        <CustomButton
+                            text="Alterar Senha"
+                            bgcolor="#EBE5FC"
+                            text_color="#295478"
+                            font_family="Nunito, sans-serif"
+                            font_weight="Bold"
+                            callback={handleOpenModal} // Abre o modal
+                        />
+                    </div>
+
+                    <div className="button-2-profile-screen">
+                        <CustomButton
+                            text="Alterar Dados"
+                            bgcolor="#EBE5FC"
+                            text_color="#295478"
+                            font_family="Nunito, sans-serif"
+                            font_weight="Bold"
+                            callback={handleUpdate}
+                        />
+                    </div>
                 </div>
             </div>
 

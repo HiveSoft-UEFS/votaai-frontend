@@ -1,4 +1,4 @@
-.profile-data-profile-screen{
+.profile-data-profile-screen {
     width: 75%;
     display: flex;
     align-items: flex-start;
@@ -7,21 +7,18 @@
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
-   
 }
 
-.profile-data-secondary-profile-screen{
+.profile-data-secondary-profile-screen {
     width: 75%;
     display: flex;
     align-items: flex-start;
-    margin-top: 25%;
+    margin-top: 0; /* Remover o topo extra */
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 0%;
     margin-left: auto;
     margin-right: auto;
 }
-
 
 .profile-input-profile-screen {
     width: 75%;
@@ -42,7 +39,6 @@
     flex-direction: column;
     width: 48%;
     margin-bottom: 20px;
-    
 }
 
 .input-group-secondary-2-profile-screen {
@@ -63,7 +59,6 @@
     margin-right: 10px;
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
-    
 }
 
 .input-group-secondary-2-profile-screen label {
@@ -76,26 +71,43 @@
     font-family: 'Nunito', sans-serif;
     justify-content: center;
     font-weight: 800;
-    
-    
-}
-.button-profile-screen {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    margin-top: 5%;
-    margin-left: 31%;
-    margin-right: 1%;
-    
 }
 
-.button-2-profile-screen {
+/* Contêiner para os botões e a mensagem de status */
+.profile-button-group {
+    position: relative;
+    width: 75%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 100%;
-    margin-top: 5%;
-    margin-left: 1%;
+    flex-wrap: wrap;
+    margin-left: auto;
     margin-right: auto;
+}
+
+/* Mensagem de status */
+.update-status-message {
+    position: absolute;
+    top: -50px; /* Ajuste a posição conforme necessário */
+    width: 100%;
+    text-align: center;
+    background-color: #d4edda; /* Cor de fundo verde claro */
+    color: #155724; /* Cor do texto verde escuro */
+    padding: 10px;
+    border: 1px solid #c3e6cb; /* Borda verde clara */
+    border-radius: 4px;
+    z-index: 10; /* Garante que a mensagem fique acima dos botões */
+    display: none; /* Inicialmente escondido */
+}
+
+/* Exibe a mensagem quando há uma atualização */
+.show-status-message {
+    display: block;
+}
+
+.button-profile-screen, .button-2-profile-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
 }

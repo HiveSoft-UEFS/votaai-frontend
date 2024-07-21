@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, InputAdornment, Modal, TextField, Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, InputAdornment, Modal, TextField, Button, Typography } from "@mui/material";
 import HttpsIcon from '@mui/icons-material/Https';
 import ClearIcon from '@mui/icons-material/Clear';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -21,6 +21,8 @@ function UpdatePasswordModal({ open, onClose, userId }: UpdatePasswordModalProps
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [error, setError] = useState(""); // Estado para armazenar mensagem de erro
+    const [success, setSuccess] = useState(""); // Estado para armazenar mensagem de sucesso
 
     const toggleCurrentPasswordVisibility = () => {
         setShowCurrentPassword(prev => !prev);
@@ -35,19 +37,32 @@ function UpdatePasswordModal({ open, onClose, userId }: UpdatePasswordModalProps
     };
 
     const handleUpdate = async () => {
+        // Limpa mensagens de erro e sucesso ao tentar atualizar a senha
+        setError("");
+        setSuccess("");
+
         if (newPassword === confirmPassword) {
             try {
                 await updatePassword({ userId, currentPassword, newPassword }); // Passa o userId
-                console.log("Senha atualizada com sucesso");
+                setSuccess("Senha atualizada com sucesso");
+                setTimeout(() => {
+                    onClose(); // Fecha o modal após a mensagem de sucesso
+                }, 1500); // Mensagem exibida por 1.5 segundos
             } catch (error) {
-                console.error("Erro ao atualizar a senha:", error);
-            } finally {
-                onClose(); // Fecha o modal após a tentativa de atualização
+                setError("Erro ao atualizar a senha. Verifique as informações e tente novamente.");
             }
         } else {
-            console.error("As senhas não coincidem");
+            setError("As senhas não coincidem");
         }
     };
+
+    // Limpa as mensagens quando o modal for fechado
+    useEffect(() => {
+        if (!open) {
+            setError("");
+            setSuccess("");
+        }
+    }, [open]);
 
     return (
         <Modal
@@ -105,6 +120,16 @@ function UpdatePasswordModal({ open, onClose, userId }: UpdatePasswordModalProps
                 <Button variant="contained" onClick={handleUpdate} fullWidth>
                     Redefinir
                 </Button>
+                {error && (
+                    <Typography color="error" variant="body2" sx={{ mt: 2 }}>
+                        {error}
+                    </Typography>
+                )}
+                {success && (
+                    <Typography color="success.main" variant="body2" sx={{ mt: 2 }}>
+                        {success}
+                    </Typography>
+                )}
                 <img src={hivesoft_inc} alt="HiveSoft Inc" style={{ width: '50%', height: '20%', objectFit: 'fill', marginTop: '20px' }} />
             </Box>
         </Modal>
