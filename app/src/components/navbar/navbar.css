@@ -85,6 +85,27 @@
     font-size: 16px;
 }
 
+.profile-menu {
+    position: absolute;
+    top: 60px; /* ajuste conforme necessário */
+    right: 10px; /* ajuste conforme necessário */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.profile-menu div {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.profile-menu div:hover {
+    background-color: #f0f0f0;
+}
+
+
 
 
 
