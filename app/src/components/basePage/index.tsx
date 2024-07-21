@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './basePage.css';
 import SideMenu from "../sideMenu";
+import { getUserData } from "../../services/userServices"
 
 interface BasePageProps {
     username: string;
@@ -8,10 +9,28 @@ interface BasePageProps {
     children?: React.ReactNode;
 }
 
-const BasePage = ({username, title, children}: BasePageProps) => {
+const BasePage = ({title, children}: BasePageProps) => {
     const [selectedMenuItem, setSelectedMenuItem] = useState(title);
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const data = await getUserData();
+                setUsername(data.username);  
+            } catch (error) {
+                console.error('Failed to fetch user data', error);
+            }
+        };
+
+        fetchUserData();
+    }, []);
+
+
     const handleMenuItemClick = (menuItem: string) => {
         setSelectedMenuItem(menuItem);
+
+
     };
 
         return (
