@@ -7,9 +7,10 @@ interface FilterProps {
     categories: [string, string, string][];
     current_filter: [string, string, string];
     onFilterChange: (filter: [string, string, string]) => void;
+    isVertical?: boolean;
 }
 
-const Filter = ({ categories, current_filter, onFilterChange }: FilterProps) => {
+const Filter = ({ categories, current_filter, onFilterChange, isVertical = false }: FilterProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handleToggle = () => {
@@ -34,7 +35,7 @@ const Filter = ({ categories, current_filter, onFilterChange }: FilterProps) => 
                     </div>
                 </>
             ) : (
-                <div className="filter-options">
+                <div className={isVertical ? "filter-options-vertical" : "filter-options"}>
                     {categories.map(([filter_pt, filter_en, color], index) => (
                         <div key={index} className="option-filter new-option-filter" onClick={() => handleFilterClick([filter_pt, filter_en, color])}>
                             <div className="circle-filter" style={{ backgroundColor: color }}></div>
@@ -51,4 +52,3 @@ const Filter = ({ categories, current_filter, onFilterChange }: FilterProps) => 
 }
 
 export default Filter;
-

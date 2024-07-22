@@ -19,17 +19,17 @@ const HomePage = () => {
 
     const categories_filter: [string, string, string][] = [
         ["TODOS", "all", "#000000"],      // Black
-        ["TECNOLOGIA", "technology", "#FF4500"], // OrangeRed
-        ["ENTRETENIMENTO", "entertainment", "#1E90FF"], // DodgerBlue
-        ["ESPORTES", "sports", "#32CD32"],    // LimeGreen
-        ["COMIDA", "food", "#8A2BE2"],        // BlueViolet
-        ["TURISMO", "tourism", "#FF6347"],    // Tomato
-        ["CULTURA", "culture", "#FFD700"],    // Gold
-        ["ARTE", "art", "#FF8C00"],           // DarkOrange
-        ["POLÍTICA", "politics", "#00CED1"],  // DarkTurquoise
-        ["CIÊNCIA", "science", "#8B0000"],    // DarkRed
-        ["MODA", "fashion", "#FF69B4"],       // HotPink
-        ["CURIOSIDADES", "curiosities", "#4B0082"], // Indigo
+        ["TECNOLOGIA", "technology", "#0432ff"], // OrangeRed
+        ["ENTRETENIMENTO", "entertainment", "#b20dff"], // DodgerBlue
+        ["ESPORTES", "sports", "#258b0c"],    // LimeGreen
+        ["COMIDA", "food", "#d8910d"],        // BlueViolet
+        ["TURISMO", "tourism", "#49c24f"],    // Tomato
+        ["CULTURA", "culture", "#3e8a97"],    // Gold
+        ["ARTE", "art", "#ff1b1b"],           // DarkOrange
+        ["POLÍTICA", "politics", "#2f0283"],  // DarkTurquoise
+        ["CIÊNCIA", "science", "#03dfaf"],    // DarkRed
+        ["MODA", "fashion", "#fc92e1"],       // HotPink
+        ["CURIOSIDADES", "curiosities", "#610359"], // Indigo
     ];
 
     const [currentFilter, setCurrentFilter] = useState(categories_filter[0]);
@@ -91,6 +91,7 @@ const HomePage = () => {
                             categories={categories_filter} 
                             current_filter={currentFilter} 
                             onFilterChange={handleFilterChange} 
+                            isVertical={false}
                         />
                     </div>
                     <Carousel current_filter={currentFilter} 

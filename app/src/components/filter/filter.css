@@ -79,3 +79,9 @@
 .second-position-icon-filter {
     bottom: -30px;
 }
+
+.filter-options-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Ajuste o alinhamento conforme necessário */
+}
