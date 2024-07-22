@@ -10,6 +10,7 @@ import TaskIcon from '@mui/icons-material/Task';
 import Footer from "../../components/footer";
 import { useNavigate } from 'react-router-dom';
 import Filter from "../../components/filter";
+import ModalVotacao from "../../components/pollModal/ModalVotacao";
 
 
 
@@ -40,10 +41,42 @@ const HomePage = () => {
     const navigate = useNavigate();
     const fetchData = async (searchTerm: string) => {
     };
+
+    const goClose =() => {
+        setModalAberto(false);
+    };
+
+    const[pollOpen, setPoll] = useState(null);
+
+    const [modalAberto, setModalAberto] = useState(false);
+
+    const handleOpenModal = (pollId:number) => {
+        getPoll(pollId);
+        setModalAberto(true); //verificar se o usuario não estiver participado, verificar pelo id do user.
+    };
+
+    const getPoll = (id:number) => {
+        fetch(`http://localhost:8000/polls/${id}/`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Sem net');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setPoll(data);
+        })
+        .catch(error => {
+            console.error("Error Fetching Modal De Votação", error);
+        });
+    };
+
+
     return (
         <div className="container-homePage"> 
-            
+           <ModalVotacao openModal={modalAberto} goClose={goClose} poll={pollOpen}/>
             <Navbar onSearchSubmit={fetchData} />
+            
 
             <div className="c-content-homePage">
 
@@ -60,7 +93,9 @@ const HomePage = () => {
                             onFilterChange={handleFilterChange} 
                         />
                     </div>
-                    <Carousel current_filter={currentFilter} />
+                    <Carousel current_filter={currentFilter} 
+                    handleopenModal={(pollId)=>handleOpenModal(pollId)}
+                    /> 
                 </div>
 
                 <div className="c-cards-homePage">
