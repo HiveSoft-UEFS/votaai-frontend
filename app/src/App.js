@@ -18,6 +18,7 @@ function App() {
         <Routes>
             <Route exact path="/" element={<Welcome />}/>
             <Route path="/sobre" element={<AboutPage/>}/>
+            <Route path="/contato" element={<AboutPage/>}/>
             <Route path="/auditoria" element={<AuditPage />}/>
             <Route path="/" element={<ProtectedRoute />}>
                 <Route path="/perfil" element={<ProfileScreen userId={3}/>}/>
