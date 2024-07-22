@@ -103,7 +103,7 @@ function Carousel({ current_filter, handleopenModal }: CarouselProps) {
                                         creator={poll.creator}
                                         category={poll.category}
                                         expiry={new Date(poll.finish_date)}
-                                        tags={(poll.tags || '').split('#').filter(Boolean)}
+                                        tags={[]}
                                         style={{ maxHeight: '350px' }}
                                         handleopenModal = {()=>handleopenModal(poll.id)}
                                     />
