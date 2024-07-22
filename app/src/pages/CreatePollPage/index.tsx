@@ -181,22 +181,23 @@ const CreatePoll = () => {
                             <div key="step0">
                                 <form className="create-poll-form" onSubmit={handleSubmit}>
                                     <label>
-                                        Titulo da enquete:
+                                    <span className="red-asterisk">*</span>Titulo da enquete: 
                                         <input
                                             type="text"
                                             value={titulo}
                                             onChange={(e) => setTitulo(e.target.value)}
                                         />
+                                        
                                     </label>
                                     <label>
-                                        Descrição da Enquete:
+                                    <span className="red-asterisk">*</span>Descrição da Enquete:
                                         <textarea
                                             value={descricao}
                                             onChange={(e) => setDescricao(e.target.value)}
                                         />
                                     </label>
                                     <label>
-                                        Data Limite
+                                    <span className="red-asterisk">*</span>Data Limite
                                         <input
                                             type="datetime-local"
                                             value={dataLimite.toISOString().substring(0, 16)}
@@ -204,19 +205,21 @@ const CreatePoll = () => {
                                         />
                                     </label>
                                     <label>
-                                        Categoria:
+                                    <span className="red-asterisk">*</span>Categoria:
                                         <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                                             <option value="">Selecione uma categoria</option>
                                             <option value="ENTERTAINMENT">Entretenimento</option>
                                             <option value="TECHNOLOGY">Tecnologia</option>
                                             <option value="SPORTS">Esportes</option>
                                             <option value="FOOD">Alimentação</option>
-                                            <option value="TRAVEL">Viagens</option>
-                                            <option value="CULTURE">Cultura e Arte</option>
+                                            <option value="TOURISM">Turismo</option>
+                                            <option value="CULTURE">Cultura</option>
+                                            <option value="ART">Artes</option>
                                             <option value="POLITICS">Política e Sociedade</option>
                                             <option value="SCIENCE">Ciência e Educação</option>
                                             <option value="FASHION">Moda e Beleza</option>
-                                            <option value="OTHER">Outros</option>
+                                            <option value="CURIOSITIES">Curiosidades</option>
+                                            <option value="RANDOM">Aleatorio</option>
                                         </select>
                                     </label>
                                     <label>
@@ -235,7 +238,7 @@ const CreatePoll = () => {
                             <div key={page.id} style={{ display: ativarStep === index + 1 ? 'block' : 'none' }}>
                                 <form className="create-poll-form" onSubmit={handleSubmit}>
                                     <label>
-                                        Título da pergunta:
+                                    <span className="red-asterisk">*</span>Título da pergunta:
                                         <input
                                             type="text"
                                             value={page.titulo}
@@ -254,7 +257,7 @@ const CreatePoll = () => {
                                     {page.opcoes.map(opcao => (
                                         <div key={opcao.id} className="input-div-opcoes">
                                             <label>
-                                                Opção {opcao.id}:
+                                            <span className="red-asterisk">*</span>Opção {opcao.id}:
                                                 <input
                                                     type="text"
                                                     value={opcao.valor}
