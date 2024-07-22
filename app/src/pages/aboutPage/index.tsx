@@ -56,8 +56,8 @@ function AboutPage(id : string){
     return(
         <>
             <section id = "about-page">
-                <Grid container rowSpacing={0} columnSpacing={{ xs: 0, sm: 0, md:0}} sx={{alignItems: 'center', paddingTop: 20}}>
-                    <Grid item xs={5.7} sx = {{marginLeft: 20}}>
+                <Grid container justifyContent="center" alignItems="center" sx = {{paddingY: 20}}>
+                <Grid item xs={5.7} sx = {{marginLeft: 20}}>
                         <img style={{ width: '100%', mixBlendMode: 'multiply'}} src={texto} alt='Tela inicial Sobre' />
                         <Button style={{
                             width: 250,
@@ -87,10 +87,9 @@ function AboutPage(id : string){
                         </Button>
                     </Grid>
                     <Grid item xs={5}>
-                        <img style={{ width: '80%', paddingLeft: 10}} src={hivesoftLogo} />
+                        <img style={{ width: '80%'}} src={hivesoftLogo} />
                     </Grid>
                 </Grid>
-                
             </section>
             <section id = 'about-vision-mission'>
                 <img style={{ width: '100%', height: '100%'}} src={telaMissaoVisao} alt='Tela inicial Sobre' />
@@ -99,16 +98,17 @@ function AboutPage(id : string){
                 <img style={{ width: '100%', height: '100%'}} src={telaLinhaDoTempo} alt='Tela inicial Sobre' />
             </section>
             <section id = "contato" className="contato">
-                <Grid container spacing={0}>
-                    <Grid item xs={5.4}>
+                <Grid container justifyContent="center" alignItems="center">
+                    <Grid item xs={12} md={6} sx={{ textAlign: 'center' }}>
                         <img style={{width: 800, paddingTop: 95, margin: '10px'}} src={imagemSobre} alt = 'Linha do tempo'/>
                     </Grid> 
-                    <Grid item xs={6}>
-                        <img style={{ marginLeft: 160, paddingTop: 95}} src={vector} alt = 'vetor'/>
-                        <form style = {{alignItems: 'center', width: 100, marginTop: -420, marginLeft: 320}} onSubmit={handleSubmit}>
+                    <Grid item xs={12} md={6} sx={{ textAlign: 'center', paddingY: 2 }}>
+                        <form style = {{alignItems: 'center', justifyContent: "center", width: 629, marginLeft: 80, height: 522, marginTop: 40}} onSubmit={handleSubmit} id = "form">
                             <TextField style={{ height: 56, 
                                                 width: 350, 
-                                                background: 'white', 
+                                                background: 'white',
+                                                marginTop: 126,
+                                                marginLeft: 30,
                                                 boxShadow: '0 5px 6px rgba(0, 0, 0, 0.5)'
                                             }}  id="email" label="E-MAIL" type="email" name = "email"
                                 required
@@ -128,6 +128,7 @@ function AboutPage(id : string){
                                                 width: 350,
                                                 background: "white", 
                                                 boxShadow: '0 5px 6px rgba(0, 0, 0, 0.5)',
+                                                marginLeft: 30,
                                                 marginTop: 0
                                             }} id="subject" label="ASSUNTO" type="text" name = 'subject'
                                 InputProps={{
@@ -146,6 +147,7 @@ function AboutPage(id : string){
                                                 width: 350, 
                                                 textAlign: 'justify',
                                                 background: 'white',
+                                                marginLeft: 30,
                                                 marginTop: 0,
                                                 boxShadow: '0 5px 6px rgba(0, 0, 0, 0.5)'
                                             }} id="message" label="MENSAGEM" type="text" name = "message"
@@ -165,7 +167,7 @@ function AboutPage(id : string){
                                 backgroundColor: '#2C2B2B', 
                                 height: 50,
                                 fontSize: 18,
-                                marginLeft: 30,
+                                marginLeft: 35,
                                 marginTop: 10,
                                 width: 300, 
                                 color: '#FFD006',

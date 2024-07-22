@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, InputAdornment, Modal, TextField, Typography } from "@mui/material";
+import { Box, Divider, Grow, InputAdornment, Modal, TextField, Typography } from "@mui/material";
 import { AlternateEmail } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import logo from "./logo-nome.png";
@@ -11,6 +11,7 @@ import EmailModal from '../forgotPasswordModal/emailModal';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './LoginScreen.css';
+import ClearIcon from '@mui/icons-material/Clear';
 
 // Removendo imports duplicados
 // import Visibility from '@mui/icons-material/Visibility';
@@ -80,7 +81,7 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
       console.error('There was an error!', error);
     }
   };
-
+  
   return (
     <div>
       <Modal
@@ -93,73 +94,79 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
           backgroundColor: 'rgba(0, 0, 0, 0.5)', // Cor de fundo do modal
         }}
       >
-        <Box
-          sx={{
-            width: 400,
-            minHeight: isExpanded ? 500 : 500, // Aumentar altura se necessário
-            backgroundColor: 'white',
-            padding: '16px',
-            borderRadius: '8px',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 2
-          }}
-        >
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-            <img src={logo}
-              alt="logo.png"
-              style={{ marginTop: '16px', maxWidth: '100%' }} />
-          </Box>
-          <TextField id="username" label="Username"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AlternateEmail />
-                </InputAdornment>
-              ),
+        <Grow in = {open}>
+          <Box
+            sx={{
+              width: 400,
+              minHeight: isExpanded ? 500 : 400, // Aumentar altura se necessário
+              backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              padding: '16px',
+              borderRadius: '10px',
+              flexDirection: 'column',
+              alignItems: 'center',
+              border: 0,
+              gap: 2
             }}
-            variant="outlined" fullWidth
-            margin="normal"
-            onChange={handleUsernameChange} />
-          <TextField 
-            id="senha" 
-            label="Senha" 
-            type={showPassword ? "text" : "password"}
-            value={senha}
-            onChange={handlePasswordChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <HttpsIcon />
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="end" onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </InputAdornment>
-              ),
-            }}
-            variant="outlined" 
-            fullWidth 
-            margin="normal" 
-          />
-          {errorMessage && (
-            <Typography color="error" sx={{ marginTop: '16px' }}>
-              {errorMessage}
-            </Typography>
-          )}
-          <Box sx={{
-            textAlign: "center",
-            flexDirection: 'column',
-            display: 'flex'
-          }}>
-            <Button variant="contained" onClick={handleLoginClick}>Login</Button>
-            <EmailModal />
-            <Box sx={{ width: '200px', height: '20px', marginTop: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <img src={hivesoft_inc}  alt="hivesoft-inc" style={{width: '100%', height: '100%', objectFit: 'fill' }} />
+          >
+            <ClearIcon onClick={handleClose} style={{ cursor: 'pointer', color: 'grey', marginLeft: 346}} />
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+              <img src={logo}
+                alt="logo.png"
+                style={{ marginTop: '16px', maxWidth: '100%' }} />
+            </Box>
+            {errorMessage && (
+              <Typography color="error" sx={{ marginTop: '16px' }}>
+                {errorMessage}
+              </Typography>
+            )}
+            <TextField id="username" label="Username"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AlternateEmail />
+                  </InputAdornment>
+                ),
+              }}
+              variant="outlined" fullWidth
+              margin="normal"
+              onChange={handleUsernameChange} />
+            <TextField
+              sx = {{marginTop: -0}}
+              id="senha" 
+              label="Senha" 
+              type={showPassword ? "text" : "password"}
+              value={senha}
+              onChange={handlePasswordChange}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <HttpsIcon />
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end" onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </InputAdornment>
+                ),
+              }}
+              variant="outlined" 
+              fullWidth 
+              margin="normal" 
+            />
+            <Box sx={{
+              textAlign: "center",
+              flexDirection: 'column',
+              display: 'flex'
+            }}>
+              <Button variant="contained" onClick={handleLoginClick}>Login</Button>
+              <EmailModal />
+              <Divider component="li" sx = {{height: '7px', color: 'rgba(255, 255, 255, 0.1)'}}/>
+              <footer style={{ width: '200px', height: '20px', marginTop: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: 81}}>
+                <img src={hivesoft_inc}  alt="hivesoft-inc" style={{width: '100%', height: '100%', objectFit: 'fill' }} />
+              </footer>
             </Box>
           </Box>
-        </Box>
+        </Grow>
       </Modal>
     </div>
   );

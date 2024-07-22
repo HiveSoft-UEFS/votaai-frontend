@@ -21,3 +21,9 @@
     justify-items: center;
     background-image: url(../../assets/img/backgroundEntreEmContato.png);
 }
+
+#form {
+    background-image: url(../../assets/img/vetorSobre.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
