@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './navbar.css';
-import logo_navbar from '../../assets/img/votaaiLogo.png'
+import logo_navbar from '../../assets/img/votaaiLogo.png';
 import PersonIcon from '@mui/icons-material/Person';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import SearchIcon from '@mui/icons-material/Search';
@@ -8,10 +8,10 @@ import CustomButton from '../customButton/index';
 import AddIcon from '@mui/icons-material/Add';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import TaskIcon from '@mui/icons-material/Task';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Logo_1 from "../../assets/img/logo_1.svg";
 import Logo_2 from "../../assets/img/logo_2.svg";
-import ProfileImg from  "../../assets/img/ProfileIcon.svg";
+import ProfileImg from "../../assets/img/ProfileIcon.svg";
 import { Link } from 'react-router-dom';
 
 interface NavbarProps {
@@ -21,6 +21,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [showMenu, setShowMenu] = useState(false);
+    const [showProfileMenu, setShowProfileMenu] = useState(false); // Estado para o menu do perfil
     const navigate = useNavigate();
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
 
     const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        onSearchSubmit(searchTerm.trim()); // Envia o termo de pesquisa para o componente pai
+        onSearchSubmit(searchTerm.trim());
     };
 
     const toggleMenu = () => {
@@ -38,15 +39,23 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
 
     const handleMenuItemClick = (route: string) => {
         navigate(route);
-        setShowMenu(false); // Fecha o menu ao clicar em um item
+        setShowMenu(false);
+    };
+
+    const toggleProfileMenu = () => {
+        setShowProfileMenu(!showProfileMenu);
+    };
+
+    const handleProfileMenuClick = (route: string) => {
+        navigate(route);
+        setShowProfileMenu(false);
     };
 
     return (
         <div className='navbar-navbar'>
-
             <div className='c-logo-navbar'>
-                <img src={Logo_1} alt="" />
-                <img src={Logo_2} alt="" />
+                <img src={Logo_1} alt="Logo 1" />
+                <img src={Logo_2} alt="Logo 2" />
             </div>
 
             <form onSubmit={handleSearchSubmit} className='c-search-navbar'>
@@ -55,9 +64,10 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
                     placeholder='Digite um código ou uma tag'
                     value={searchTerm}
                     onChange={handleSearchChange}
+                    aria-label="Search"
                 />
                 <div className='search-icon-navbar'>
-                    <Link to="/search"><SearchIcon/></Link>
+                    <Link to="/search"><SearchIcon aria-label="Search Icon" /></Link>
                 </div>
             </form>
 
@@ -65,15 +75,15 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
                 <CustomButton
                     callback={() => navigate('/criar-enquete')}
                     text="Votação"
-                    icon_component={<AddIcon/>}
+                    icon_component={<AddIcon />}
                     bgcolor="#EBE5FC"
                     text_color="#295478"
                     font_family="Arial, sans-serif"
-                    font_weight="bold"                    
+                    font_weight="bold"
                 />
                 <CustomButton
                     text="Histórico"
-                    icon_component={<VisibilityIcon/>}
+                    icon_component={<VisibilityIcon />}
                     bgcolor="#EBE5FC"
                     text_color="#295478"
                     font_family="Arial, sans-serif"
@@ -82,7 +92,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
                 />
                 <CustomButton
                     text="Auditoria"
-                    icon_component={<TaskIcon/>}
+                    icon_component={<TaskIcon />}
                     bgcolor="#EBE5FC"
                     text_color="#295478"
                     font_family="Arial, sans-serif"
@@ -90,16 +100,16 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchSubmit }) => {
                     callback={() => navigate('/auditoria')}
                 />
             </div>
-            
-            <div className='c-iconProfile-navbar' onClick={toggleMenu}>
+
+            <div className='c-iconProfile-navbar' onClick={toggleProfileMenu}>
                 <img src={ProfileImg} alt="Profile" />
-                {showMenu && (
-                    <ul className='menu'>
-                        <li onClick={() => handleMenuItemClick('/home')}>Início</li>
-                        <li onClick={() => handleMenuItemClick('/auditoria')}>Auditoria</li>
-                        <li onClick={() => handleMenuItemClick('/sobre')}>Sobre</li>
-                        <li onClick={() => handleMenuItemClick('/')}>Sair</li>
-                    </ul>
+                {showProfileMenu && (
+                    <div className='profile-menu'>
+                        <div onClick={() => handleProfileMenuClick('/home')}>Inicio</div>
+                        <div onClick={() => handleProfileMenuClick('/perfil')}>Perfil</div>
+                        <div onClick={() => handleProfileMenuClick('/sobre')}>Sobre</div>
+                        <div onClick={() => handleProfileMenuClick('/')}>Sair</div>
+                    </div>
                 )}
             </div>
         </div>

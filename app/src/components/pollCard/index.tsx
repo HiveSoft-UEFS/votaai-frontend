@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./pollCard.css";
 import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import CardActions from "@mui/material/CardActions";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import ModalVotacao from "../pollModal/ModalVotacao";
 
 interface PollCardProps {
     title: string;
@@ -13,9 +15,13 @@ interface PollCardProps {
     expiry: Date;
     tags: string[];
     style?: React.CSSProperties;
+    handleopenModal: () => void; // Propriedade requerida
 }
 
-export default function PollCard({title, description, creator, category, expiry, tags, style}: PollCardProps){
+export default function PollCard({ title, description, creator, category, expiry, tags, style , handleopenModal}: PollCardProps) {
+    const [isHovered, setIsHovered] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const category_colors: { [key: string]: string } = {
         "entertainment": "#b20dff",
         "science": "#03dfaf",
@@ -38,36 +44,53 @@ export default function PollCard({title, description, creator, category, expiry,
     const get_expiration_date = (date: Date): string => {
         const now = new Date();
         const diff = date.getTime() - now.getTime();
+        
+        if (diff <= 0) return "Expirado";
+        
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        
         return `${days}d ${hours}h ${minutes}min`;
     }
 
+
     return (
-        <Card className="poll-card" style={style}>
-            <CardContent>
-                <div className="poll-card-header">
-                    <span className="poll-card-expiry">
-                        Expira em: {get_expiration_date(expiry)}
-                    </span>
-                </div>
-                <h2 className="poll-card-title">
-                    {title}
-                </h2>
-                <hr className="poll-card-divider" style={{opacity: 0.7,backgroundColor: get_category_color(category)}}/>
-                <Typography variant="body2" component="p" className="poll-card-description">
-                    {description}
-                </Typography>
-                <Typography variant="body2" component="p" className="poll-card-creator">
-                    Criado por: {creator}
-                </Typography>
-                <div className="poll-card-tags">
-                    {tags.map((tag) => (
-                        <span className="poll-card-tag">#{tag}</span>
-                    ))}
-                </div>
-            </CardContent>
-        </Card>
-);
+        <>
+            
+            <Card
+                className={`poll-card ${isHovered ? 'poll-card-hovered' : ''}`}
+                style={style}
+                onMouseEnter = {()=> setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={handleopenModal}
+            >
+                <CardContent>
+                    
+                    <div className="poll-card-header">
+                        <span className="poll-card-expiry">
+                            Expira em: {get_expiration_date(expiry)}
+                        </span>
+                    </div>
+                    <h2 className="poll-card-title">
+                        {title}
+                    </h2>
+                    <hr className="poll-card-divider" style={{ opacity: 0.7, backgroundColor: get_category_color(category) }} />
+                    <Typography variant="body2" component="p" className="poll-card-description">
+                        {description}
+                    </Typography>
+                    <Typography variant="body2" component="p" className="poll-card-creator">
+                        Criado por: {creator}
+                    </Typography>
+                    <div className="poll-card-tags">
+                        {tags.map((tag, index) => (
+                            <span key={index} className="poll-card-tag">#{tag}</span>
+                        ))}
+                    </div>
+                </CardContent>
+
+            </Card>
+
+        </>
+    );
 }

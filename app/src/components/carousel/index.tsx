@@ -10,9 +10,11 @@ import { getPollSearch } from "../../services/pollServices.js";
 
 interface CarouselProps {
     current_filter: [string, string, string];
+    handleopenModal:(id:number)=>void;
 }
 
 interface Poll {
+    id: number;
     title: string;
     description: string;
     creator: string;
@@ -21,7 +23,7 @@ interface Poll {
     tags: string;
 }
 
-function Carousel({ current_filter }: CarouselProps) {
+function Carousel({ current_filter, handleopenModal }: CarouselProps) {
     const [polls, setPolls] = useState<Poll[]>([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [slideDirection, setSlideDirection] = useState<"right" | "left" | undefined>("left");
@@ -101,8 +103,9 @@ function Carousel({ current_filter }: CarouselProps) {
                                         creator={poll.creator}
                                         category={poll.category}
                                         expiry={new Date(poll.finish_date)}
-                                        tags={poll.tags.split('#').filter(Boolean)}
+                                        tags={(poll.tags || '').split('#').filter(Boolean)}
                                         style={{ maxHeight: '350px' }}
+                                        handleopenModal = {()=>handleopenModal(poll.id)}
                                     />
                                 ))}
                             </Stack>

@@ -25,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:mock": "json-server --watch src/tests/mock/db/db.json --port 5005"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +47,10 @@
     ]
   },
   "devDependencies": {
+    "jest": "^27.5.1",
+    "jest-fetch-mock": "^3.0.3",
+    "json-server": "^1.0.0-beta.1",
+    "msw": "^2.3.2",
     "tailwindcss": "^3.4.4"
   }
 }

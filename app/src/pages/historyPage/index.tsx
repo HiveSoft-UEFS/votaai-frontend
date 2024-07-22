@@ -1,15 +1,15 @@
 
-import React, { useState } from 'react';
+import React, {useEffect, useState, ChangeEvent} from 'react';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import SideMenu from '../../components/sideMenu';
 import PageTitle from '../../components/pageTitle';
 import Paper from '@mui/material/Paper';
 import './History.css';
 import BasePage from '../../components/basePage';
-
+import { getUserPollHistory } from '../../services/pollServices';
 
 interface Column {
-    id: 'status' | 'codigo' | 'data' | 'horario' | 'enquete' | 'origem';
+    id: 'status' | 'data_criacao' | 'titulo' | 'tipo';
     label: string;
     minWidth?: number;
     align?: 'center';
@@ -17,135 +17,117 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-    { id: 'status', label: 'Status', minWidth: 50, align: 'center'},
-    { id: 'codigo', label: 'Codigo', minWidth: 100, align: 'center'},
-    {
-        id: 'data',
-        label: 'Data',
-        minWidth: 100,
-        align: 'center',
-    },
-    {
-        id: 'horario',
-        label: 'Horário',
-        minWidth: 100,
-        align: 'center',
-    },
-    {
-        id: 'enquete',
-        label: 'Enquete',
-        minWidth: 300,
-        align: 'center',
-    },
-    {
-        id: 'origem',
-        label: 'Origem',
-        minWidth: 100,
-        align: 'center',
-    },
+    { id: 'status', label: 'Status', minWidth: 50, align: 'center' },
+    { id: 'data_criacao', label: 'Data de Criação', minWidth: 100, align: 'center' },
+    { id: 'titulo', label: 'Enquete', minWidth: 300, align: 'center' },
+    { id: 'tipo', label: 'Origem', minWidth: 100, align: 'center' },
 ];
 
-interface Data {
+interface PollData {
+    username: string;
     status: string;
-    codigo: string;
-    data: string;
-    horario: string;
-    enquete: string;
-    origem: string;
+    data_criacao: string;
+    titulo: string;
+    tipo: string;
 }
-
-
-
-function createData(
-    status: string,
-    codigo: string,
-    data: string,
-    horario: string,
-    enquete: string,
-    origem: string,
-): Data {
-
-    return { status, codigo, data, horario, enquete, origem};
-}
-
-
-function getStatusColor(status: any) {
-    switch (status) {
-        case 'finalizada':
-            return 'red';
-        case 'andamento':
-            return '#13ff03';
-        case 'arquivada':
-            return 'yellow';
-    }
-}
-
-const rows = [
-    createData('finalizada', 'PRV4890', '01/02/2023', '13:30', 'A Capital do Brazil mais Votada nas últimas ...', 'Criada'),
-    createData('andamento', 'PUB4890', '02/02/2023', '11:29', 'Barco navegado pelos tripulantes vindo da Bahia ', 'Participada'),
-    createData('arquivada', 'PRV4890', '02/02/2023', '23:14', 'Como o Planalto dexou passar a lei 15.201/2023', 'Participada'),
-    createData('andamento', 'PRV4890', '04/02/2023', '10:49', 'Direitos constituintes dos povos indígenas.', 'Criada'),
-];
-
-
-
 
 
 const History = () => {
-    const [filter, setFilter] = React.useState<string | number>('');
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [pollData, setPollData] = useState<PollData[]>([]);
+    const [filter, setFilter] = useState<string | number>('');
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    const filteredData = rows.filter((row) => {
-        if (filter === '') {
-            return true;
-        } else if (filter === 1) {
-            return row.status === 'finalizada';
-        } else if (filter === 2) {
-            return row.status === 'andamento';
-        } else if (filter === 3) {
-            return row.status === 'arquivada';
-        } else if (filter === 4) {
-            return row.origem === 'Criada';
-        } else if (filter === 5) {
-            return row.origem === 'Participada';
+
+    const [userPollHistory, setUserPollHistory] = useState<{ username: string }>({ username: '' }); // Inicialize com um objeto contendo username
+
+
+
+    // Função para lidar com alterações nos dados
+    const handleChange = (e: ChangeEvent<HTMLInputElement>, rowIndex: number, key: keyof PollData) => {
+        const newData = [...pollData];
+        newData[rowIndex][key] = e.target.value; // Aqui TypeScript sabe que key é uma chave válida de PollData
+        setPollData(newData);
+    };
+    
+
+    useEffect(() => {
+        fetchPollHistory(); // Chamada inicial para carregar os dados do histórico de enquetes
+    }, []);
+
+    // Função para buscar e atualizar os dados do histórico de enquetes
+    const fetchPollHistory = async () => {
+        try {
+            const data = await getUserPollHistory();
+            setPollData(data.polls);
+            // Defina o username no estado userPollHistory
+            setUserPollHistory({ username: data.polls[0]?.username || '' });
+        } catch (error) {
+            console.error('Error fetching poll history:', error);
+            setPollData([]); // Definindo como array vazio em caso de erro para evitar problemas
         }
-    });
+    };
+
+    
+
+    const getStatusColor = (status: string | undefined): string => {
+        switch (status) {
+            case 'CLOSED':
+                return 'red';
+            case 'OPEN':
+                return '#13ff03';
+            case 'ARCHIVED':
+                return 'yellow';
+            default:
+                return 'black'; // Cor padrão para outros status não especificados
+        }
+    };
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
 
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
 
-
+    const filteredData = pollData.filter((row) => {
+        if (filter === '') {
+            return true;
+        } else if (filter === 1) {
+            return row.status === 'CLOSED';
+        } else if (filter === 2) {
+            return row.status === 'OPEN';
+        } else if (filter === 3) {
+            return row.status === 'ARCHIVED';
+        } else if (filter === 4) {
+            return row.tipo === 'Criada';
+        } else if (filter === 5) {
+            return row.tipo === 'Participada';
+        }
+    });
 
     return (
         <div className=''>
-            <BasePage username='Usuario' title='Historico'>
-
+            <BasePage username={userPollHistory.username} title='Historico'>
                 <div className='description'>
-                    <div style={{ display: 'flex', margin: '0 10px'}}>
+                    <div style={{ display: 'flex', margin: '0 10px' }}>
                         <div style={{ backgroundColor: 'red', borderRadius: '50%', width: '20px', height: '20px' }}></div>
                         <span className="spans" style={{ fontSize: '20px', margin: '0 2px', color: "white" }}>Finalizada</span>
                     </div>
 
-                    <div style={{ display: 'flex', margin: '0 10px'}}>
-                        <div style={{ backgroundColor: '#13ff03', borderRadius: '50%', width: '20px', height: '20px'}}></div>
+                    <div style={{ display: 'flex', margin: '0 10px' }}>
+                        <div style={{ backgroundColor: '#13ff03', borderRadius: '50%', width: '20px', height: '20px' }}></div>
                         <span className="spans" style={{ fontSize: '20px', margin: '0 2px', color: 'white' }}>Andamento</span>
                     </div>
 
                     <div style={{ display: 'flex', margin: '0 10px' }}>
-                        <div style={{ backgroundColor: 'yellow',borderRadius: '50%', width: '20px', height: '20px' }}></div>
-                        <span className="spans" style={{fontSize: '20px', margin: '0 2px', color: 'white' }}>Arquivada</span>
+                        <div style={{ backgroundColor: 'yellow', borderRadius: '50%', width: '20px', height: '20px' }}></div>
+                        <span className="spans" style={{ fontSize: '20px', margin: '0 2px', color: 'white' }}>Arquivada</span>
                     </div>
 
-
-                    <FormControl sx={{ m: 1, minWidth: 200, marginLeft: '200px', backgroundColor: 'white', borderRadius: '8px'}}>
+                    <FormControl sx={{ m: 1, minWidth: 200, marginLeft: '200px', backgroundColor: 'white', borderRadius: '8px' }}>
                         <InputLabel id="demo-controlled-open-select-label">Filtro</InputLabel>
                         <Select
                             labelId="demo-controlled-open-select-label"
@@ -166,11 +148,9 @@ const History = () => {
                     </FormControl>
                 </div>
 
-
-
-                <div className='table' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <div className='table' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Paper sx={{ width: '80%', overflow: 'hidden' }}>
-                        <TableContainer sx={{ maxHeight: 300}} className='table-container' >
+                        <TableContainer sx={{ maxHeight: 300 }} className='table-container'>
                             <Table stickyHeader aria-label="sticky table">
                                 <TableHead>
                                     <TableRow>
@@ -185,12 +165,12 @@ const History = () => {
                                         ))}
                                     </TableRow>
                                 </TableHead>
-                                <TableBody >
+                                <TableBody>
                                     {filteredData
                                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                        .map((row) => {
+                                        .map((row, rowIndex) => {
                                             return (
-                                                <TableRow hover role="checkbox" tabIndex={-1} key={row.codigo}>
+                                                <TableRow hover role="checkbox" tabIndex={-1} key={row.titulo}>
                                                     {columns.map((column) => {
                                                         const value = row[column.id];
                                                         return (
@@ -204,9 +184,16 @@ const History = () => {
                                                                         display: 'inline-block'
                                                                     }} />
                                                                 ) : (
-                                                                    column.format && typeof value === 'number'
+                                                                    <input
+                                                                    type="text"
+                                                                    value={value}
+                                                                    onChange={(e) => handleChange(e, rowIndex, column.id as keyof PollData)}
+                                                                    style={{ width: '100%', border: 'none', textAlign: 'center' }}
+                                                                    />
+                                                                    /*column.format && typeof value === 'number'
                                                                         ? column.format(value)
-                                                                        : value
+                                                                        : value*/
+                                                                        
                                                                 )}
                                                             </TableCell>
                                                         );
@@ -220,7 +207,7 @@ const History = () => {
                         <TablePagination
                             rowsPerPageOptions={[10, 25, 50]}
                             component="div"
-                            count={rows.length}
+                            count={pollData.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             onPageChange={handleChangePage}
@@ -234,3 +221,4 @@ const History = () => {
 };
 
 export default History;
+
