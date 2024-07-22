@@ -5,6 +5,7 @@ import Footer from "../../components/footer";
 import PollCard from "../../components/pollCard";
 import { useNavigate } from 'react-router-dom';
 import { getPollSearch } from '../../services/pollServices';
+import ModalVotacao from "../../components/pollModal/ModalVotacao"; // Importar o componente ModalVotacao
 
 const SearchPage = () => {
     const [activeButton, setActiveButton] = useState<string>('pop');
@@ -12,6 +13,8 @@ const SearchPage = () => {
     const [polls, setPolls] = useState<any[]>([]);
     const [highlightedPoll, setHighlightedPoll] = useState<number | null>(null);
     const [expandedPoll, setExpandedPoll] = useState<number | null>(null);
+    const [modalAberto, setModalAberto] = useState(false); // Estado para controlar o modal
+    const [pollOpen, setPoll] = useState<any>(null); // Estado para armazenar a enquete aberta
 
     const handleButtonClick = (index: string) => { setActiveButton(index); };
     const fetchData = (searchTerm: string) => { setSearchTerm(searchTerm); };
@@ -41,12 +44,31 @@ const SearchPage = () => {
 
     const navigate = useNavigate();
 
-    const handleOpenModal = () => {
-        // Lógica para abrir o modal
+    const goClose = () => {
+        setModalAberto(false);
+    };
+
+    const handleOpenModal = async (pollId: number) => {
+        await getPoll(pollId);
+        setModalAberto(true);
+    };
+
+    const getPoll = async (id: number) => {
+        try {
+            const response = await fetch(`http://localhost:8000/polls/${id}/`);
+            if (!response.ok) {
+                throw new Error('Sem net');
+            }
+            const data = await response.json();
+            setPoll(data);
+        } catch (error) {
+            console.error("Error Fetching Modal De Votação", error);
+        }
     };
 
     return (
         <div className="container-searchPage">
+            <ModalVotacao openModal={modalAberto} goClose={goClose} poll={pollOpen}/>
             <Navbar onSearchSubmit={fetchData} />
             <div className="c-content-searchPage">
                 <div className='subnavbar'>
@@ -63,7 +85,7 @@ const SearchPage = () => {
                                 className={`col mb-4 ${highlightedPoll === poll.id ? 'highlighted' : ''} ${expandedPoll === poll.id ? 'expanded' : ''}`}
                                 onMouseEnter={() => setHighlightedPoll(poll.id)}
                                 onMouseLeave={() => setHighlightedPoll(null)}
-                                onClick={() => setExpandedPoll(expandedPoll === poll.id ? null : poll.id)}
+                                onClick={() => handleOpenModal(poll.id)} // Chamar handleOpenModal ao clicar
                                 key={poll.id}
                             >
                                 <div className='colunas'>
@@ -75,8 +97,8 @@ const SearchPage = () => {
                                         expiry={new Date(poll.finish_date)}
                                         tags={poll.tags.split('#').filter(Boolean)}
                                         style={{ maxHeight: expandedPoll === poll.id ? 'none' : '350px' }}
-                                        handleopenModal={handleOpenModal} // Propriedade adicionada
-                                    ></PollCard>
+                                        handleopenModal={() => handleOpenModal(poll.id)} // Passar handleopenModal como propriedade
+                                    />
                                 </div>
                             </div>
                         ))}
