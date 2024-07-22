@@ -116,7 +116,7 @@ function RegistrationModal({ open, handleClose }: RegistrationModalProps) {
 
                         <TextField
                             sx = {{marginTop: 0}}
-                            id="name"
+                            id="lname"
                             label="Sobrenome"
                             name="lname"
                             onChange={handleChange}

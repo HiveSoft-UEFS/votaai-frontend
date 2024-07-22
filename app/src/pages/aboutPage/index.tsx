@@ -17,8 +17,21 @@ import hivesoftLogo from "../../assets/img/hivesoftLogo.png";
 import ComputerIcon from '@mui/icons-material/Computer';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-function AboutPage(id : string){
+
+interface AboutPageProps {
+    local: string;
+}
+
+function AboutPage({ local }: AboutPageProps){
     const [openModalAbout, setOpenModalAbout] = useState(false);
+
+    useEffect(() => {
+        if (local === "start"){
+            {scrollToSection("about-page")}
+        }else if(local === "contact"){
+            scrollToSection("contato")
+        }
+    }, []);
 
     const scrollToSection = (section : any) => {
         const contatoElement = document.getElementById(section);
