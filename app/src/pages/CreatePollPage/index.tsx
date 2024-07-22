@@ -118,7 +118,7 @@ const CreatePoll = () => {
     
         console.log("Dados da requisição: ", JSON.stringify(data, null, 2));
     
-        axios.post('/polls/', data, {
+        axios.post('/api/polls/', data, {
             headers: {
                 'Content-Type': 'application/json'
             }
