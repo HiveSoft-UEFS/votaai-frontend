@@ -6,7 +6,7 @@ import SendIcon from '@mui/icons-material/Send';
 import React, { ChangeEvent, useEffect, useState } from "react";
 import imagemSobre from "../../assets/img/figuraSobre.png"
 import SubjectIcon from '@mui/icons-material/Subject';
-import vector from '../../assets/img/vetorSobre.png'
+import vector from '../../assets/img/vetorSobre.png';
 import { AlternateEmail } from "@mui/icons-material";
 import MessageIcon from '@mui/icons-material/Message';
 import Footer from "../../components/footer";
@@ -57,7 +57,7 @@ function AboutPage(id : string){
         <>
             <section id = "about-page">
                 <Grid container justifyContent="center" alignItems="center" sx = {{paddingY: 20}}>
-                <Grid item xs={5.7} sx = {{marginLeft: 20}}>
+                    <Grid item xs={5.7} sx = {{marginLeft: 20}}>
                         <img style={{ width: '100%', mixBlendMode: 'multiply'}} src={texto} alt='Tela inicial Sobre' />
                         <Button style={{
                             width: 250,
@@ -103,7 +103,7 @@ function AboutPage(id : string){
                         <img style={{width: 800, paddingTop: 95, margin: '10px'}} src={imagemSobre} alt = 'Linha do tempo'/>
                     </Grid> 
                     <Grid item xs={12} md={6} sx={{ textAlign: 'center', paddingY: 2 }}>
-                        <form style = {{alignItems: 'center', justifyContent: "center", width: 629, marginLeft: 80, height: 522, marginTop: 40}} onSubmit={handleSubmit} id = "form">
+                        <form style = {{alignItems: 'center', justifyContent: "center", width: 629, marginLeft: 80, height: 522, marginTop: 47}} onSubmit={handleSubmit} id = "form">
                             <TextField style={{ height: 56, 
                                                 width: 350, 
                                                 background: 'white',

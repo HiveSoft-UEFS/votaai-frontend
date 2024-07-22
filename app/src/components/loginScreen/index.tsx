@@ -12,6 +12,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './LoginScreen.css';
 import ClearIcon from '@mui/icons-material/Clear';
+import LoginIcon from '@mui/icons-material/Login';
 
 // Removendo imports duplicados
 // import Visibility from '@mui/icons-material/Visibility';
@@ -159,7 +160,7 @@ function LoginScreen({ open, handleClose }: LoginScreenProps) {
               display: 'flex'
             }}>
               <Button variant="contained" onClick={handleLoginClick}>Login</Button>
-              <EmailModal />
+              <EmailModal/>
               <Divider component="li" sx = {{height: '7px', color: 'rgba(255, 255, 255, 0.1)'}}/>
               <footer style={{ width: '200px', height: '20px', marginTop: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: 81}}>
                 <img src={hivesoft_inc}  alt="hivesoft-inc" style={{width: '100%', height: '100%', objectFit: 'fill' }} />
