@@ -17,9 +17,9 @@ function App() {
     return (
         <Routes>
             <Route exact path="/" element={<Welcome />}/>
-            <Route path="/sobre" element={<AboutPage/>}/>
-            <Route path="/contato" element={<AboutPage/>}/>
-            <Route path="/auditoria" element={<AuditPage />}/>
+            <Route path="/sobre" element={<AboutPage local = "start"/>}/>
+            <Route path="/contato" element={<AboutPage local = "contact"/>}/>
+            <Route path="/auditoria" element={<AuditPage/>}/>
             <Route path="/" element={<ProtectedRoute />}>
                 <Route path="/perfil" element={<ProfileScreen userId={3}/>}/>
                 <Route path="/criar-enquete" element={<CreatePollPage />}/>
