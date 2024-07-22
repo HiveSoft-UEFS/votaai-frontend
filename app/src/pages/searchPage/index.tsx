@@ -125,7 +125,7 @@ const SearchPage = () => {
                                         creator={poll.creator}
                                         category={poll.category}
                                         expiry={new Date(poll.finish_date)}
-                                        tags={poll.tags.split('#').filter(Boolean)}
+                                        tags={[]}
                                         style={{ maxHeight: expandedPoll === poll.id ? 'none' : '350px' }}
                                         handleopenModal={() => handleOpenModal(poll.id)} // Passar handleopenModal como propriedade
                                     />
