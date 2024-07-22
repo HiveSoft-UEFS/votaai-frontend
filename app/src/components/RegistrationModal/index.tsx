@@ -86,7 +86,7 @@ function RegistrationModal({ open, handleClose }: RegistrationModalProps) {
                             height: 800,
                             backgroundColor: 'rgba(255, 255, 255, 0.8)',
                             padding: '16px',
-                            borderRadius: '8px',
+                            borderRadius: '10px',
                             flexDirection: 'column',
                             alignItems: 'center',
                             gap: 2
@@ -227,7 +227,6 @@ function RegistrationModal({ open, handleClose }: RegistrationModalProps) {
                         </Box>
                     </Box>
                 </Grow>
-
             </Modal>
             <LoginScreen open={openModalLogin} handleClose={() => {
                 setOpenModalLogin(false)
