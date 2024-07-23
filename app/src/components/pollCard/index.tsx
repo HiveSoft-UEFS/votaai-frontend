@@ -3,9 +3,6 @@ import "./pollCard.css";
 import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import ModalVotacao from "../pollModal/ModalVotacao";
 
 interface PollCardProps {
     title: string;
@@ -18,9 +15,8 @@ interface PollCardProps {
     handleopenModal: () => void; // Propriedade requerida
 }
 
-export default function PollCard({ title, description, creator, category, expiry, tags, style , handleopenModal}: PollCardProps) {
+const PollCard: React.FC<PollCardProps> = ({ title, description, creator, category, expiry, tags, style, handleopenModal }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const category_colors: { [key: string]: string } = {
         "entertainment": "#b20dff",
@@ -54,19 +50,24 @@ export default function PollCard({ title, description, creator, category, expiry
         return `${days}d ${hours}h ${minutes}min`;
     }
 
+    const handleCardClick = () => {
+        try {
+            handleopenModal();
+        } catch (error) {
+            console.error("Error in handleopenModal:", error);
+        }
+    };
 
     return (
         <>
-            
             <Card
                 className={`poll-card ${isHovered ? 'poll-card-hovered' : ''}`}
                 style={style}
-                onMouseEnter = {()=> setIsHovered(true)}
+                onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                onClick={handleopenModal}
+                onClick={handleCardClick}
             >
                 <CardContent>
-                    
                     <div className="poll-card-header">
                         <span className="poll-card-expiry">
                             Expira em: {get_expiration_date(expiry)}
@@ -88,9 +89,9 @@ export default function PollCard({ title, description, creator, category, expiry
                         ))}
                     </div>
                 </CardContent>
-
             </Card>
-
         </>
     );
-}
+};
+
+export default PollCard;
