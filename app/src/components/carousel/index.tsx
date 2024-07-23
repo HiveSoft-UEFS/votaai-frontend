@@ -1,50 +1,64 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import {IconButton} from "@mui/material";
+import { IconButton } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import PollCard from "../pollCard";
+import { getPollSearch } from "../../services/pollServices.js";
 
-function Carousel() {
-    const [cards, setCards] = useState<React.ReactElement[]>([]);
+interface CarouselProps {
+    current_filter: [string, string, string];
+    handleopenModal:(id:number)=>void;
+}
+
+interface Poll {
+    id: number;
+    title: string;
+    description: string;
+    creator: string;
+    category: string;
+    finish_date: string;
+    tags: string;
+}
+
+function Carousel({ current_filter, handleopenModal }: CarouselProps) {
+    const [polls, setPolls] = useState<Poll[]>([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const [slideDirection, setSlideDirection] = useState<
-        "right" | "left" | undefined
-    >("left");
+    const [slideDirection, setSlideDirection] = useState<"right" | "left" | undefined>("left");
     const cardsPerPage = 5;
 
-    const duplicateCards: React.ReactElement[] = Array.from({length: 10}, (_,i) =>
-        <PollCard key={i} title="Melhores alguma coisa do ano passado"
+    const fetchPolls = async () => {
+        try {
+            const fetchedPolls = await getPollSearch('', '', current_filter[1], false, false);
+            setPolls(fetchedPolls);
+            console.log(fetchedPolls);
+            console.log(polls)
+        } catch (error) {
+            console.error("Failed to fetch polls:", error);
+        }
+    };
 
-                  description="Votação que criei simplesmente por ter sentido alguma vontade aleatória de criar algo para ser votado, então, por favor, participe!"
-                  creator="NoNameBro"
-                  tags={['Ciência', 'Ficção', 'Cinema']}
-                  category="Cinema" expiry={new Date("2024-07-12T23:59:59")}/> //colocar aqui o que é pra ser exibido
-    );
+    useEffect(() => {
+        fetchPolls();
+    }, [current_filter]);
 
     const handleNextPage = () => {
         setSlideDirection("left");
-        setCurrentPage((prevPage) => (prevPage + 1) % Math.ceil(cards.length / cardsPerPage));
+        setCurrentPage((prevPage) => (prevPage + 1) % Math.ceil(polls.length / cardsPerPage));
     };
 
     const handlePrevPage = () => {
         setSlideDirection("right");
         setCurrentPage((prevPage) =>
-            prevPage === 0 ? Math.ceil(cards.length / cardsPerPage) - 1 : prevPage - 1
+            prevPage === 0 ? Math.ceil(polls.length / cardsPerPage) - 1 : prevPage - 1
         );
     };
 
-    useEffect(() => {
-        // define os cartões iniciais
-        setCards(duplicateCards);
-    }, []);
-
-    // largura do container baseada na quantidade de cartões por página
     const containerWidth = cardsPerPage * 250; // 250px per card
+
     return (
-        //  container externo que contém o carrossel e os botões
         <Box
             sx={{
                 display: "flex",
@@ -57,16 +71,11 @@ function Carousel() {
                 marginTop: "40px",
             }}
         >
-            <IconButton
-                onClick={handlePrevPage}
-                sx={{ margin: 5 }}
-            >
-                {/* botão para ir para a página anterior*/}
+            <IconButton onClick={handlePrevPage} sx={{ margin: 5 }}>
                 <NavigateBeforeIcon />
             </IconButton>
             <Box sx={{ width: `${containerWidth}px`, height: "100%" }}>
-                {/* container que contém os cartões e a animação de slide*/}
-                {Array.from({ length: Math.ceil(cards.length / cardsPerPage) }, (_, index) => (
+                {Array.from({ length: Math.ceil(polls.length / cardsPerPage) }, (_, index) => (
                     <Box
                         key={`card-${index}`}
                         sx={{
@@ -75,7 +84,6 @@ function Carousel() {
                             display: currentPage === index ? "block" : "none",
                         }}
                     >
-                        {/* animação de slide para 'deslizar' os cartões*/}
                         <Slide direction={slideDirection} in={currentPage === index}>
                             <Stack
                                 spacing={2}
@@ -84,25 +92,32 @@ function Carousel() {
                                 justifyContent="center"
                                 sx={{ width: "100%", height: "100%" }}
                             >
-                                {/* exibir os cards na pagina atual*/}
-                                {cards.slice(
+                                {polls.slice(
                                     index * cardsPerPage,
                                     index * cardsPerPage + cardsPerPage
-                                )}
+                                ).map((poll, idx) => (
+                                    <PollCard
+                                        key={idx}
+                                        title={poll.title}
+                                        description=""
+                                        creator={poll.creator}
+                                        category={poll.category}
+                                        expiry={new Date(poll.finish_date)}
+                                        tags={[]}
+                                        style={{ maxHeight: '350px' }}
+                                        handleopenModal = {()=>handleopenModal(poll.id)}
+                                    />
+                                ))}
                             </Stack>
                         </Slide>
                     </Box>
                 ))}
             </Box>
-            <IconButton
-                onClick={handleNextPage}
-                sx={{
-                    margin: 5,
-                }}
-            >
+            <IconButton onClick={handleNextPage} sx={{ margin: 5 }}>
                 <NavigateNextIcon />
             </IconButton>
         </Box>
     );
 }
+
 export default Carousel;

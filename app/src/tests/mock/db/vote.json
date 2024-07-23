@@ -1,0 +1,32 @@
+{
+    "creator_name": "John Doe",
+    "creation_date": "2024-07-01",
+    "finish_date": "2024-07-31",
+    "status": "OPEN",
+    "title": "Sample Poll",
+    "description": "This is a sample poll description.",
+    "questions": [
+      {
+        "title": "Sample Question 1",
+        "options": [
+          {
+            "text": "Option 1"
+          },
+          {
+            "text": "Option 2"
+          }
+        ]
+      },
+      {
+        "title": "Sample Question 2",
+        "options": [
+          {
+            "text": "Option A"
+          },
+          {
+            "text": "Option B"
+          }
+        ]
+      }
+    ]
+  }

@@ -50,66 +50,18 @@
 }
 
 .c-carousel-homePage {
+    position: relative;
     width: 100%;
     height: 100%;
     margin-bottom: 200px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-
-
-
-/*
-
-.apenasUmTesteLegal {
-
-}
-
-.container-content-homePage {
-    position: relative;
-    width: 100%;
-    height: auto;
-}
-
-.container-content-homePage>img {
-    position: absolute;
-    width: 100%;
-    height: auto;
-
-    z-index: -5;
-}
-
-.carousel-homePage {
-    position: absolute;
-    top: 350px;
-
-    z-index: -1;
-}
-
-.cards-homePage {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 90px;
-    top: 955px;
-}
-
-.titles-homePage {
-    position: absolute;
-    top: 150px;
-    left: 150px;
-    color: white;
-    font-family: 'Poppins', 'Sans-serif';
-    font-size: 20px;
-    display: flex;
     flex-direction: column;
+    gap: 5%;
     justify-content: center;
     align-items: center;
-    z-index: -1;
 }
-*/
+
+.c-filter-homePage {
+    position: absolute;
+    top: 0;
+}

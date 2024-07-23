@@ -8,7 +8,6 @@ body{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 15px 20px;
     max-width: 250px;
-    margin: 20px auto;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -63,4 +62,20 @@ body{
     padding: 5px 10px;
     font-size: 12px;
     color: #333;
+}
+.poll-card {
+    transition: transform 0.3s, box-shadow 0.3s, max-height 0.3s;
+    cursor: pointer;
+    overflow: hidden; /* Evita que o conteúdo extra seja visível */
+    max-height: 300px; /* Define uma altura máxima padrão para o cartão */
+}
+
+.poll-card-hovered {
+    transform: scale(1.15); /* Aumenta a escala para 115% */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Aumenta a sombra */
+}
+
+.poll-card-expanded {
+    max-height: 600px; /* Define uma altura maior para o cartão expandido */
+    border: 2px solid #ccc; /* Adiciona uma borda opcional para indicar expansão */
 }

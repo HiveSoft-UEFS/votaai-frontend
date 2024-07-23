@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fontsource/poppins": "^5.0.14",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
     "@testing-library/jest-dom": "^5.17.0",
@@ -12,18 +13,20 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "http-proxy-middleware": "^3.0.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.3",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:mock": "json-server --watch src/tests/mock/db/db.json --port 5005"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +47,10 @@
     ]
   },
   "devDependencies": {
+    "jest": "^27.5.1",
+    "jest-fetch-mock": "^3.0.3",
+    "json-server": "^1.0.0-beta.1",
+    "msw": "^2.3.2",
     "tailwindcss": "^3.4.4"
   },
   "proxy": "http://localhost:8000"

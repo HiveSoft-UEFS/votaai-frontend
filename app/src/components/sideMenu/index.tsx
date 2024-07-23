@@ -15,7 +15,7 @@ function SideMenu({ userName, selectedMenuItem, onMenuItemClick }: SideMenuProps
 
     useEffect(() => {
         const currentPath = location.pathname.substring(1).replace('-', ' ').toUpperCase();
-        if (options.includes(currentPath) && currentPath !== selectedMenuItem) {
+          if (options.includes(currentPath) && currentPath !== selectedMenuItem) {
             onMenuItemClick(currentPath);
         }
     }, [location.pathname, selectedMenuItem, onMenuItemClick]);

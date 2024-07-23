@@ -8,6 +8,7 @@
 
     background: linear-gradient(to right, #147b63 5%, #135b4b 95%);
     position: fixed;
+     z-index: 1000; /* Para garantir que o menu fique acima de outros elementos */
 }
 
 .c-logo-navbar {
@@ -57,11 +58,52 @@
     height: 100%;
 }
 
-.c-iconProfile-navbar > img {
-    max-height: 55px;
+.c-iconProfile-navbar:hover .menu {
+    display: block;
+}
+
+.menu {
+    list-style-type: none; /* Remove os pontos/bolinhas das listas */
+}
+
+.menu li {
+    padding: 10px;
+    text-align: center;
+    background-color: #ffffff; /* Fundo branco */
+    border-radius: 10px; /* Bordas arredondadas */
+    margin: 5px; /* Margem entre os itens */
+}
+
+.menu li:hover {
+    background-color: #295478; /* Cor de fundo ao passar o mouse */
     cursor: pointer;
 }
 
+.menu li a {
+    color: #147b63; /* Cor do texto */
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.profile-menu {
+    position: absolute;
+    top: 60px; /* ajuste conforme necessário */
+    right: 10px; /* ajuste conforme necessário */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.profile-menu div {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.profile-menu div:hover {
+    background-color: #f0f0f0;
+}
 
 
 

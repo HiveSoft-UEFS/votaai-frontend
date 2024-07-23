@@ -31,6 +31,7 @@ interface AuditResult {
   }[];
 }
 
+
 const modalStyleAuditePage = {
   display: 'flex',
   alignItems: 'center',
@@ -51,6 +52,7 @@ const contentStyleAuditPage = {
   gap: 2
 };
 
+
 const AuditPage = () => {
   const [auditCode, setAuditCode] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -58,15 +60,26 @@ const AuditPage = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [errorOccurred, setErrorOccurred] = React.useState(false);
 
+
   const handleAudit = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/vote/${auditCode}/`);
+      const accessToken = localStorage.getItem('accessToken')
+      const url = `http://localhost:8000/votes/${auditCode}/`;
+      let opt: RequestInit = {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      };
+      const response = await fetch(url, opt);
       if (!response.ok) {
         throw new Error('Erro ao auditar');
       }
       const data = await response.json();
       setAuditResult(data); 
       setModalIsOpen(true); 
+      setAuditCode('')
     } catch (error) {
       setErrorOccurred(true)
       console.error('Erro ao auditar:', error);
@@ -224,6 +237,106 @@ const AuditPage = () => {
           </Box>
         </Box>
       </Modal>      
+  open={modalIsOpen}
+  onClose={closeModal}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+  }}
+>
+  <Box
+    sx={{
+      width: 400,
+      height: 'auto', 
+      backgroundColor: 'white',
+      padding: '16px',
+      borderRadius: '8px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 2
+    }}
+  >
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+      <img src={logo} alt="logo.png" style={{ marginTop: '16px', maxWidth: '100%' }} />
+    </Box>
+
+    {auditResult && (
+      <div>
+        {activeStep === 0 && (
+          <div>
+            <Typography variant="h6" component="h2">
+              Informações da Participação
+            </Typography>
+            <Typography id="modal-modal-description">
+              Nome do criador: {auditResult.creator_name}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Data da criação: {auditResult.creation_date}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Data da finalização: {auditResult.finish_date}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Status: {auditResult.status}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Titulo: {auditResult.title}
+            </Typography>
+            <Typography id="modal-modal-description">
+              Descrição: {auditResult.description}
+            </Typography>
+          </div>
+        )}
+
+        {activeStep > 0 && (
+          <div>
+            <Typography variant="h6" component="h2">
+              {auditResult.questions[activeStep - 1].title}
+            </Typography>
+            <ul>
+              {auditResult.questions[activeStep - 1].options.map((option, idx) => (
+                <li key={idx}>
+                  {option.text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <MobileStepper
+          variant="dots"
+          steps={auditResult.questions.length + 1}
+          position="static"
+          activeStep={activeStep}
+          sx={{ maxWidth: 400, flexGrow: 1 }}
+          nextButton={
+            <Button size="small" onClick={handleNext} disabled={activeStep === auditResult.questions.length}>
+              Next
+              <KeyboardArrowRight />
+            </Button>
+          }
+          backButton={
+            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+              <KeyboardArrowLeft />
+              Back
+            </Button>
+          }
+        />
+      </div>
+    )}
+
+    <Button variant="contained" onClick={closeModal}>Fechar</Button>
+
+    <Box sx={{ width: '200px', height: '20px', marginTop: '16px' }}>
+      <img src={hivesoft_inc} alt="hivesoft-inc" style={{ width: '100%', height: '100%', objectFit: 'fill' }} />
+    </Box>
+  </Box>
+</Modal>
     </BasePage>
   );
 };

@@ -1,21 +1,36 @@
-name: CI/CD Pipeline
+name: Node.js CI
 
 on:
-    push:
-        branches:
-        - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-
-# run a test to know if github actions is working
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-            - name: Run a one-line script
-              run: echo "This is a one-line script"
-            - name: Run a multi-line script
-              run: |
-                echo "This is a multi-line script"
-                echo "It is running on ubuntu-latest"
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: |
+          cd app
+          npm install
+
+      - name: Build project
+        run: |
+          cd app
+          npm run build
+
+      - name: Move build to /build directory
+        run: |
+          mv app/build /build

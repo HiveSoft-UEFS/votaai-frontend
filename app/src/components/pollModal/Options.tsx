@@ -14,11 +14,6 @@ import { fontText } from './styleOption';
 
 
 
-  const bytesToImageUrl = (bytes: number[]) => {
-    const blob = new Blob([new Uint8Array(bytes)], { type: 'image/png' }); // Assumindo que as imagens são PNG
-    return URL.createObjectURL(blob);
-  };
-
 
 
   
@@ -88,6 +83,5 @@ const Options: React.FC< OptionsProps > = ({question, onSelectionChange }) => {
     )
 
 };
-
-
+  
 export default Options;
