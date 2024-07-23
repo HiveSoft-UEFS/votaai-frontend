@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/static/css/main.23b3f148.css",
+    "main.js": "/static/js/main.a74bb22c.js",
+    "static/media/backgroundInicialLinhaDoTempo.png": "/static/media/backgroundInicialLinhaDoTempo.ffc2a678c299e3ea1df8.png",
+    "static/media/backgroundInicioSobre.png": "/static/media/backgroundInicioSobre.400c335a1750ea9f1d28.png",
+    "static/media/backgroundMissaoVisiao.png": "/static/media/backgroundMissaoVisiao.e04fb5b56b4f2d7fc037.png",
+    "static/media/backgroundEntreEmContato.png": "/static/media/backgroundEntreEmContato.61369509ee85563f40cb.png",
+    "static/media/logoHivesoft.png": "/static/media/logoHivesoft.8cc64ba043c4feff1533.png",
+    "static/media/hivesoftLogo.png": "/static/media/hivesoftLogo.e496299631c768d9ae47.png",
+    "static/media/figuraSobre.png": "/static/media/figuraSobre.46ff374526246bca68c3.png",
+    "static/media/illustration.png": "/static/media/illustration.2d705842d998a9f28a11.png",
+    "static/media/vetorSobre.png": "/static/media/vetorSobre.a6425718b06d9c7fa4b9.png",
+    "static/media/modal.png": "/static/media/modal.3d0132106f6d49ab7206.png",
+    "static/media/LogoVotaai.svg": "/static/media/LogoVotaai.c0603433732ec2a373c5e7daae8931cc.svg",
+    "static/media/textoInicioSobre.png": "/static/media/textoInicioSobre.3025540331a204c3e24a.png",
+    "static/media/backgroundTitle.svg": "/static/media/backgroundTitle.a9eb2a7802e98f2175c6.svg",
+    "static/media/iconsTitle.svg": "/static/media/iconsTitle.15c86b35b8180ba2ee93.svg",
+    "static/media/votaaiLogo.png": "/static/media/votaaiLogo.020b4d499b520f2c115b.png",
+    "static/media/logo-nome.png": "/static/media/logo-nome.4ba36af059b6eac224ad.png",
+    "static/media/poppins-latin-400-normal.woff": "/static/media/poppins-latin-400-normal.1458587c0aa7cd06b82b.woff",
+    "static/media/poppins-latin-400-normal.woff2": "/static/media/poppins-latin-400-normal.405055dd680fa1dcdfa2.woff2",
+    "static/media/iconsCard.svg": "/static/media/iconsCard.e0377c493cf342b8abb1.svg",
+    "static/media/poppins-latin-ext-400-normal.woff": "/static/media/poppins-latin-ext-400-normal.cf7e1ed83eb19f7b1ea6.woff",
+    "static/media/logo_1.svg": "/static/media/logo_1.98465683d917685e75bcd6e283f4cb63.svg",
+    "static/media/logo_2.svg": "/static/media/logo_2.720461d324a09467f3e868f03603809a.svg",
+    "static/media/poppins-latin-ext-400-normal.woff2": "/static/media/poppins-latin-ext-400-normal.6f94f40f848d79872444.woff2",
+    "static/media/ProfileIcon.svg": "/static/media/ProfileIcon.6d19dac279521803fd3579a2a3b8cead.svg",
+    "static/media/backgroundHome2.svg": "/static/media/backgroundHome2.278ab5cedb4df31badf3.svg",
+    "static/media/backgroundBasePage.svg": "/static/media/backgroundBasePage.9c21db3c1af4fa03e207.svg",
+    "static/media/background2.svg": "/static/media/background2.3c201dea50278b805fef.svg",
+    "index.html": "/index.html",
+    "main.23b3f148.css.map": "/static/css/main.23b3f148.css.map",
+    "main.a74bb22c.js.map": "/static/js/main.a74bb22c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.23b3f148.css",
+    "static/js/main.a74bb22c.js"
+  ]
+}
